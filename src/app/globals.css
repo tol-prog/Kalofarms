@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  --color-app-bg: #f4f6f4;
+  --color-app-text: #1f2a20;
+
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-border: #e5e9e4;
+  --color-sidebar-text: #3f4a40;
+  --color-sidebar-text-muted: #7c887d;
+  --color-sidebar-active-bg: #eaf5ea;
+  --color-sidebar-active-text: #2f7d32;
+
+  --color-topbar-bg: #ffffff;
+  --color-topbar-border: #e5e9e4;
+
+  --color-card-bg: #ffffff;
+  --color-card-border: #e3e8e2;
+
+  --color-primary: #3a8a3f;
+  --color-primary-hover: #2f7433;
+  --color-primary-contrast: #ffffff;
+
+  --color-danger: #c0392b;
+  --color-danger-bg: #fdecea;
+  --color-warning: #b8860b;
+  --color-warning-bg: #fff6e0;
+
+  --color-table-header-bg: #fafbfa;
+  --color-table-border: #e9ece8;
+  --color-table-row-hover: #f5f9f5;
+
+  --color-badge-active-bg: #e6f4e6;
+  --color-badge-active-text: #2f7d32;
+  --color-badge-muted-bg: #eef0ee;
+  --color-badge-muted-text: #5a645b;
+}
+
+@theme inline {
+  --color-app-bg: var(--color-app-bg);
+  --color-app-text: var(--color-app-text);
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer utilities {
+  .kf-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.5rem;
+  }
+
+  .kf-table th {
+    background: var(--color-table-header-bg);
+    border-bottom: 1px solid var(--color-table-border);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #667066;
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .kf-table td {
+    border-bottom: 1px solid var(--color-table-border);
+    padding: 0.6rem 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .kf-table tbody tr:hover {
+    background: var(--color-table-row-hover);
+  }
+
+  .kf-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    padding: 0.15rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .kf-btn-primary {
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+  }
+  .kf-btn-primary:hover {
+    background: var(--color-primary-hover);
+  }
+  .kf-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .kf-btn-secondary {
+    background: #ffffff;
+    color: var(--color-sidebar-text);
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .kf-btn-secondary:hover {
+    background: #f5f7f5;
+  }
+
+  .kf-input {
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.4rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.875rem;
+    background: #fff;
+    width: 100%;
+  }
+  .kf-input:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+
+  .kf-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #556257;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+}
