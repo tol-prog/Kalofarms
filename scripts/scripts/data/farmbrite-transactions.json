@@ -1,0 +1,4979 @@
+[
+{
+"date": "2026-07-14",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "18630.0",
+"description": "Addisu"
+},
+{
+"date": "2026-07-13",
+"category": "Utility",
+"type": "expense",
+"amount": "5239.0",
+"description": "EEU"
+},
+{
+"date": "2026-07-12",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "3710.0",
+"description": "Addisu — layers feed"
+},
+{
+"date": "2026-07-12",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "11260.0",
+"description": "Addisu — milking cows feed"
+},
+{
+"date": "2026-07-12",
+"category": null,
+"type": "income",
+"amount": "14970.0",
+"description": "Addisu"
+},
+{
+"date": "2026-07-08",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "38910.0",
+"description": "Addisu — total sale (72910 - Bokolo payment (34000)"
+},
+{
+"date": "2026-07-07",
+"category": "Salary",
+"type": "expense",
+"amount": "23950.0",
+"description": "Addisu"
+},
+{
+"date": "2026-07-06",
+"category": "Others",
+"type": "expense",
+"amount": "1004.0",
+"description": "Kalo Farm — tax"
+},
+{
+"date": "2026-07-02",
+"category": "Animal feed",
+"type": "expense",
+"amount": "23000.0",
+"description": "Belache Bedasa/Addisu — 10 quintal Bokolo (34000 paid in cash by Addisu)"
+},
+{
+"date": "2026-07-01",
+"category": "Others",
+"type": "expense",
+"amount": "5000.0",
+"description": "Kalo Farm Birhan Bank — second collateral consent"
+},
+{
+"date": "2026-06-29",
+"category": "Utility",
+"type": "expense",
+"amount": "1518.99",
+"description": "ethiotelecom"
+},
+{
+"date": "2026-06-26",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "8821.0",
+"description": "Addisu — Haftee Getinet Biraa Gale ( 188600 -179775) = 8825"
+},
+{
+"date": "2026-06-25",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "11180.0",
+"description": null
+},
+{
+"date": "2026-06-25",
+"category": "Milk sales",
+"type": "income",
+"amount": "31200.0",
+"description": "Addisu — on Siinqee Bank"
+},
+{
+"date": "2026-06-23",
+"category": "Others",
+"type": "expense",
+"amount": "10410.0",
+"description": "Addisu — Different expensed"
+},
+{
+"date": "2026-06-22",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "19565.0",
+"description": "Addisu — Milking"
+},
+{
+"date": "2026-06-22",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "33277.0",
+"description": "Addisu — Broilers"
+},
+{
+"date": "2026-06-22",
+"category": null,
+"type": "income",
+"amount": "52842.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-20",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "3635.0",
+"description": "Addisu — Layers"
+},
+{
+"date": "2026-06-20",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "13975.0",
+"description": "Addisu — Milking"
+},
+{
+"date": "2026-06-20",
+"category": null,
+"type": "income",
+"amount": "17610.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "20000.0",
+"description": "F Three — Envtl final"
+},
+{
+"date": "2026-06-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "15000.0",
+"description": "Fozia — Animal feed bss plan advance"
+},
+{
+"date": "2026-06-15",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "7395.0",
+"description": "Addisu — Broilers feed"
+},
+{
+"date": "2026-06-14",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "16740.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-14",
+"category": "Utility",
+"type": "expense",
+"amount": "5110.0",
+"description": "EEU"
+},
+{
+"date": "2026-06-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10000.0",
+"description": "Dechasa kuma — Environmental"
+},
+{
+"date": "2026-06-13",
+"category": "Milk sales",
+"type": "income",
+"amount": "38541.0",
+"description": "Addisu — On Siinqee Kalo act"
+},
+{
+"date": "2026-06-13",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "23109.0",
+"description": "Addisu — Milking cow feed"
+},
+{
+"date": "2026-06-13",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "3596.0",
+"description": "Addisu — Laying chicken"
+},
+{
+"date": "2026-06-13",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "7220.0",
+"description": "Addisu — Pullet"
+},
+{
+"date": "2026-06-13",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "33318.0",
+"description": "Addisu — Poultry feed"
+},
+{
+"date": "2026-06-13",
+"category": null,
+"type": "income",
+"amount": "69243.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-11",
+"category": "Animal feed",
+"type": "expense",
+"amount": "18000.0",
+"description": "Milishaw/tol — Ppbag"
+},
+{
+"date": "2026-06-08",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "6300.0",
+"description": "Addisu — Animal feed"
+},
+{
+"date": "2026-06-08",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "46300.0",
+"description": "Addisu — Animal feed"
+},
+{
+"date": "2026-06-08",
+"category": null,
+"type": "income",
+"amount": "52600.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-06",
+"category": "Milk sales",
+"type": "income",
+"amount": "15000.0",
+"description": "Addisu — On Siinqee bank"
+},
+{
+"date": "2026-06-06",
+"category": "Salary",
+"type": "expense",
+"amount": "28530.0",
+"description": "Addisu — May2026"
+},
+{
+"date": "2026-06-05",
+"category": "Animal feed",
+"type": "expense",
+"amount": "23000.0",
+"description": "Milishaw/tol — Ppbag"
+},
+{
+"date": "2026-06-03",
+"category": "Salary",
+"type": "expense",
+"amount": "2006.0",
+"description": "kaloo farm telebir — tax"
+},
+{
+"date": "2026-06-03",
+"category": "Daily labour",
+"type": "expense",
+"amount": "13550.0",
+"description": "Addisu — for different expenses"
+},
+{
+"date": "2026-06-03",
+"category": "Utility",
+"type": "expense",
+"amount": "14000.0",
+"description": "Water - Holota"
+},
+{
+"date": "2026-06-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "40003.6",
+"description": "Addisu /Abdu"
+},
+{
+"date": "2026-06-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11628.0",
+"description": "Negasa/Belaj — premix"
+},
+{
+"date": "2026-06-02",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "21876.0",
+"description": "Addisu"
+},
+{
+"date": "2026-06-02",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "71290.0",
+"description": "Zinnash — broilers"
+},
+{
+"date": "2026-06-02",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "181895.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-05-27",
+"category": "Others",
+"type": "expense",
+"amount": "7000.0",
+"description": "tole/wako — bss plan stamp"
+},
+{
+"date": "2026-05-26",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "12500.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-26",
+"category": "Utility",
+"type": "expense",
+"amount": "4000.0",
+"description": "Addisu — fallen transformer tibeka"
+},
+{
+"date": "2026-05-24",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "3125.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-24",
+"category": "Utility",
+"type": "expense",
+"amount": "2002.3",
+"description": "wond/tol — electric maintenance"
+},
+{
+"date": "2026-05-23",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "3125.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-22",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "3125.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-21",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "97202.0",
+"description": "Zinnash — Broilers"
+},
+{
+"date": "2026-05-21",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "6251.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-20",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "29335.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-20",
+"category": "Utility",
+"type": "expense",
+"amount": "8200.0",
+"description": "Addisu — Various costs"
+},
+{
+"date": "2026-05-18",
+"category": "Milk sales",
+"type": "income",
+"amount": "33080.0",
+"description": "Addisu — On Siinqee"
+},
+{
+"date": "2026-05-18",
+"category": "Utility",
+"type": "expense",
+"amount": "1519.0",
+"description": "Tele — Wifi"
+},
+{
+"date": "2026-05-18",
+"category": "Others",
+"type": "expense",
+"amount": "6000.0",
+"description": "Negasa — Electric equipmets for bruder"
+},
+{
+"date": "2026-05-18",
+"category": "Others",
+"type": "expense",
+"amount": "16060.0",
+"description": "Addisu — different expenses"
+},
+{
+"date": "2026-05-17",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "15627.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-16",
+"category": "Utility",
+"type": "expense",
+"amount": "1004.0",
+"description": "Abeba — Nedaj"
+},
+{
+"date": "2026-05-16",
+"category": "Others",
+"type": "expense",
+"amount": "13000.0",
+"description": "Tesfaye GM — Tractor - Ploughing"
+},
+{
+"date": "2026-05-14",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "29312.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-05-13",
+"category": "Other",
+"type": "income",
+"amount": "50000.0",
+"description": "Addisu — TB defined"
+},
+{
+"date": "2026-05-13",
+"category": "Other",
+"type": "income",
+"amount": "27686.0",
+"description": "Addisu — TB defined"
+},
+{
+"date": "2026-05-13",
+"category": "Utility",
+"type": "expense",
+"amount": "2639.46",
+"description": "EEU — Electricity bill"
+},
+{
+"date": "2026-05-12",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "32076.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-10",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "3529.0",
+"description": "Addis"
+},
+{
+"date": "2026-05-10",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "32076.0",
+"description": "Addis"
+},
+{
+"date": "2026-05-10",
+"category": null,
+"type": "income",
+"amount": "35605.0",
+"description": "Addis"
+},
+{
+"date": "2026-05-09",
+"category": "Salary",
+"type": "expense",
+"amount": "23950.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-08",
+"category": "Utility",
+"type": "expense",
+"amount": "500.0",
+"description": "Wondowesen/Tole — Electric maintenance"
+},
+{
+"date": "2026-05-05",
+"category": "Utility",
+"type": "expense",
+"amount": "450.0",
+"description": "Egg tray"
+},
+{
+"date": "2026-05-04",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "1752.0",
+"description": "Addisu — Cuucii"
+},
+{
+"date": "2026-05-04",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "44550.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-04",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "22116.0",
+"description": "Addisu — Broiler"
+},
+{
+"date": "2026-05-04",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "11664.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-04",
+"category": null,
+"type": "income",
+"amount": "80082.0",
+"description": "Addisu"
+},
+{
+"date": "2026-05-04",
+"category": "Capital investment",
+"type": "expense",
+"amount": "45000.0",
+"description": "NVI — Fertile eggs"
+},
+{
+"date": "2026-05-02",
+"category": "Animal feed",
+"type": "expense",
+"amount": "238480.0",
+"description": "Demis Abebe/Juhar Akmel — Bokolo final payment"
+},
+{
+"date": "2026-04-30",
+"category": "Utility",
+"type": "expense",
+"amount": "9740.0",
+"description": "Addisu — Baasii garaagaraaf"
+},
+{
+"date": "2026-04-30",
+"category": "Others",
+"type": "expense",
+"amount": "50000.0",
+"description": "Negasa — Maintenance of transformer"
+},
+{
+"date": "2026-04-29",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "131000.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-04-29",
+"category": "Utility",
+"type": "expense",
+"amount": "1519.0",
+"description": "ethiotelecom — WiFi bill"
+},
+{
+"date": "2026-04-23",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "3290.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-23",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "32670.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "30000.0",
+"description": "Ali Teshome — Soya and Nug cake transport"
+},
+{
+"date": "2026-04-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "150000.0",
+"description": "Meseret Ayalew/Ketema D — Nug Fagulo 20 quintal"
+},
+{
+"date": "2026-04-23",
+"category": "Others",
+"type": "expense",
+"amount": "11800.0",
+"description": "addisu — baasii garaagaraaf"
+},
+{
+"date": "2026-04-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "176000.0",
+"description": "negasa — Soyabean 20 quintal"
+},
+{
+"date": "2026-04-22",
+"category": "Animal feed",
+"type": "expense",
+"amount": "300000.0",
+"description": "Demis Abebe/Juhar Akmel — 100 quintal bokolo -partial payment"
+},
+{
+"date": "2026-04-22",
+"category": "Others",
+"type": "expense",
+"amount": "10000.0",
+"description": "Construction for transformer"
+},
+{
+"date": "2026-04-21",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "131620.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-04-20",
+"category": "Utility",
+"type": "expense",
+"amount": "3000.0",
+"description": "electric fixation"
+},
+{
+"date": "2026-04-20",
+"category": "Others",
+"type": "expense",
+"amount": "4000.0",
+"description": "Bedada — construction for transformer"
+},
+{
+"date": "2026-04-17",
+"category": "Others",
+"type": "expense",
+"amount": "9250.0",
+"description": "Gasho Teshome — Cement"
+},
+{
+"date": "2026-04-16",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "59230.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-04-16",
+"category": "Others",
+"type": "expense",
+"amount": "10000.0",
+"description": "Temesgen — Consultant fee for electriicity"
+},
+{
+"date": "2026-04-15",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "5940.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-14",
+"category": "Milk sales",
+"type": "income",
+"amount": "24020.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-11",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "20880.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-10",
+"category": null,
+"type": "income",
+"amount": "38675.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-10",
+"category": "Sheep sales",
+"type": "income",
+"amount": "5250.0",
+"description": "Misgana — 0.5 Sheeps"
+},
+{
+"date": "2026-04-10",
+"category": "Sheep sales",
+"type": "income",
+"amount": "27750.0",
+"description": "Tolera — 2.5 sheeps"
+},
+{
+"date": "2026-04-10",
+"category": "Others",
+"type": "expense",
+"amount": "126800.0",
+"description": "Tolera — Generator (85K), Electric equip 19K +3800 for switchover, curtain 6500, and pp bag …"
+},
+{
+"date": "2026-04-09",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "5325.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-09",
+"category": "Utility",
+"type": "expense",
+"amount": "6989.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-09",
+"category": "Salary",
+"type": "expense",
+"amount": "28550.0",
+"description": "Addisu"
+},
+{
+"date": "2026-04-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "106000.0",
+"description": "Chala Batu/Addisu — 20 quintal bokolo"
+},
+{
+"date": "2026-04-08",
+"category": "Sheep sales",
+"type": "income",
+"amount": "70800.0",
+"description": "Ketema Dibaba — net 6 sheeps sales"
+},
+{
+"date": "2026-04-06",
+"category": "Sheep sales",
+"type": "income",
+"amount": "450000.0",
+"description": "Wakjira Daba/Negasa — Sheeps Sales"
+},
+{
+"date": "2026-04-06",
+"category": "Animal feed",
+"type": "expense",
+"amount": "8000.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2026-04-05",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "140016.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-04-01",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Negasa — Frushka and fagulo"
+},
+{
+"date": "2026-03-30",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "19129.0",
+"description": "Addisu — Milking cows feed sales"
+},
+{
+"date": "2026-03-30",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "30075.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-03-30",
+"category": "Utility",
+"type": "expense",
+"amount": "1519.0",
+"description": "ethiotelecom"
+},
+{
+"date": "2026-03-30",
+"category": "Animal feed",
+"type": "expense",
+"amount": "8200.0",
+"description": "Ketema Dibaba — Soya cake transport"
+},
+{
+"date": "2026-03-28",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "26630.0",
+"description": "Addisu — Milking cow feed sales"
+},
+{
+"date": "2026-03-28",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "60150.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-03-28",
+"category": "Utility",
+"type": "expense",
+"amount": "3700.0",
+"description": "Addisu"
+},
+{
+"date": "2026-03-27",
+"category": "Others",
+"type": "expense",
+"amount": "3000.0",
+"description": "Dr Diriba — Animal health"
+},
+{
+"date": "2026-03-27",
+"category": "Animal feed",
+"type": "expense",
+"amount": "75000.0",
+"description": "Meseret AYalew — Nugfagulo"
+},
+{
+"date": "2026-03-26",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "7600.0",
+"description": "Addisu — Milking cow feed sales"
+},
+{
+"date": "2026-03-24",
+"category": "Others",
+"type": "expense",
+"amount": "1000.0",
+"description": "Diriba girma — Animal Health"
+},
+{
+"date": "2026-03-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "90000.0",
+"description": "Chala Batu/Addisu — Bokolo"
+},
+{
+"date": "2026-03-23",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "10650.0",
+"description": "Addisu — fattening feed sales"
+},
+{
+"date": "2026-03-20",
+"category": "Others",
+"type": "expense",
+"amount": "1000.0",
+"description": "Diriba girma — animal health"
+},
+{
+"date": "2026-03-19",
+"category": "Other",
+"type": "income",
+"amount": "15591.0",
+"description": "Addisu — 13,317 (milking cowfeed sales) & 2,274 (Fattening feed sales)"
+},
+{
+"date": "2026-03-19",
+"category": "Utility",
+"type": "expense",
+"amount": "4250.0",
+"description": "Addisu — for different expenses"
+},
+{
+"date": "2026-03-18",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "45000.0",
+"description": "Mohammed — milking cow feed sales"
+},
+{
+"date": "2026-03-18",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "35000.0",
+"description": "Mohammed — Milking Cows Feed sales"
+},
+{
+"date": "2026-03-18",
+"category": "Others",
+"type": "expense",
+"amount": "20000.0",
+"description": "Kalo Farm Birhan Bank — ACCRUED INTEREST SETTLEMENT"
+},
+{
+"date": "2026-03-17",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "15975.0",
+"description": "Addisu — milking cows feed sales"
+},
+{
+"date": "2026-03-15",
+"category": "Utility",
+"type": "expense",
+"amount": "3877.7",
+"description": "EEU — Electric bill"
+},
+{
+"date": "2026-03-14",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "2275.0",
+"description": "Addisu — feed for fattening 40kg"
+},
+{
+"date": "2026-03-14",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "23965.0",
+"description": "Addisu — milking cow feed sales"
+},
+{
+"date": "2026-03-14",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "24060.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-03-13",
+"category": "Milk sales",
+"type": "income",
+"amount": "18500.0",
+"description": "Addisu"
+},
+{
+"date": "2026-03-12",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "30075.0",
+"description": "Addisu"
+},
+{
+"date": "2026-03-11",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "60080.0",
+"description": "Zinnash — 10 quintal"
+},
+{
+"date": "2026-03-10",
+"category": "Animal feed",
+"type": "expense",
+"amount": "45000.0",
+"description": "Abera Tolosa — Bokoloa"
+},
+{
+"date": "2026-03-09",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "2276.0",
+"description": "Addisu — fattening feed sales"
+},
+{
+"date": "2026-03-09",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "28755.0",
+"description": "Addisu — Milking cow feed sales"
+},
+{
+"date": "2026-03-09",
+"category": "Salary",
+"type": "expense",
+"amount": "28530.0",
+"description": "Addisu — Salary"
+},
+{
+"date": "2026-03-05",
+"category": "Others",
+"type": "expense",
+"amount": "2000.0",
+"description": "Diriba girma — Animal health"
+},
+{
+"date": "2026-03-04",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "4550.0",
+"description": "Addisu — Fattening feed sales"
+},
+{
+"date": "2026-03-04",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "20545.0",
+"description": "Addisu — Milking cow feed sales"
+},
+{
+"date": "2026-03-04",
+"category": "Utility",
+"type": "expense",
+"amount": "9840.0",
+"description": "Addisu — Different expenses"
+},
+{
+"date": "2026-03-04",
+"category": "Salary",
+"type": "expense",
+"amount": "20000.0",
+"description": "KaloF — Salarytqx"
+},
+{
+"date": "2026-03-03",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "51120.0",
+"description": "Zinash Legese"
+},
+{
+"date": "2026-03-03",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "28400.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-03-03",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "50000.0",
+"description": "Mohammed — Milking cows feed"
+},
+{
+"date": "2026-02-26",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "90225.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-02-26",
+"category": "Utility",
+"type": "expense",
+"amount": "19573.0",
+"description": "Holeta ejere town — Water"
+},
+{
+"date": "2026-02-25",
+"category": "Milk sales",
+"type": "income",
+"amount": "14185.0",
+"description": "Addisu"
+},
+{
+"date": "2026-02-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "86000.0",
+"description": "negasa — Soyacake"
+},
+{
+"date": "2026-02-21",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "28000.0",
+"description": "Getinet Birara"
+},
+{
+"date": "2026-02-18",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Muluneh Lema — Frushka"
+},
+{
+"date": "2026-02-17",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "22400.0",
+"description": "Getinet Birara — Milking cows feed sales"
+},
+{
+"date": "2026-02-16",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "26633.0",
+"description": "Ketema Dibaba — Milking cows feed"
+},
+{
+"date": "2026-02-16",
+"category": "Animal feed",
+"type": "expense",
+"amount": "35400.0",
+"description": "Demis abebe — Bokolo last payment"
+},
+{
+"date": "2026-02-14",
+"category": "Sheep sales",
+"type": "income",
+"amount": "9000.0",
+"description": "Diriba girma — Gurgurta hoolaa dhibamee"
+},
+{
+"date": "2026-02-14",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "34720.0",
+"description": "Addisu — Milking cow feed"
+},
+{
+"date": "2026-02-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "7500.0",
+"description": "Milishaw — Ppbag"
+},
+{
+"date": "2026-02-13",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "29000.0",
+"description": "Zinnash"
+},
+{
+"date": "2026-02-13",
+"category": "Animal feed",
+"type": "expense",
+"amount": "17600.0",
+"description": "Milehaw — Ppbag"
+},
+{
+"date": "2026-02-11",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "40000.0",
+"description": "Mohammed — milking cow feed sales"
+},
+{
+"date": "2026-02-09",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "10560.0",
+"description": "Ketema Dibaba — Milking cow feed sales"
+},
+{
+"date": "2026-02-09",
+"category": "Milk sales",
+"type": "income",
+"amount": "18000.0",
+"description": "Addisu"
+},
+{
+"date": "2026-02-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6000.0",
+"description": "Kinfe Girma/Ketema — Fagulo Transport"
+},
+{
+"date": "2026-02-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "75000.0",
+"description": "Meseret Ayalew/Ketema D — Nugfagulo"
+},
+{
+"date": "2026-02-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "2560.0",
+"description": "Addisu — animal feed inputs"
+},
+{
+"date": "2026-02-09",
+"category": "Others",
+"type": "expense",
+"amount": "3850.0",
+"description": "Addisu — different expenses"
+},
+{
+"date": "2026-02-07",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "99000.0",
+"description": "Mhammed — Diary Cows feed"
+},
+{
+"date": "2026-02-07",
+"category": "Others",
+"type": "expense",
+"amount": "5000.0",
+"description": "Kalo Farm Birhan Bank — Loan Processing Fee"
+},
+{
+"date": "2026-02-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11910.0",
+"description": "Getinet Birara — Atargeleba and salt"
+},
+{
+"date": "2026-02-07",
+"category": "Salary",
+"type": "expense",
+"amount": "28530.0",
+"description": "Addisu — Net Salary of Tir"
+},
+{
+"date": "2026-02-06",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Demis Abebe/Juhar Akmel — Maize 2- only 32k remaining"
+},
+{
+"date": "2026-02-05",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "28000.0",
+"description": "Adugna Birhanu — 5quintals"
+},
+{
+"date": "2026-02-05",
+"category": "Utility",
+"type": "expense",
+"amount": "3200.0",
+"description": "Teshome Taye — Greece filling niples"
+},
+{
+"date": "2026-02-03",
+"category": "Fattening feed sales",
+"type": "income",
+"amount": "2250.0",
+"description": "Addisu — Fattening Feed Sales"
+},
+{
+"date": "2026-02-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11186.0",
+"description": "Getinet Birara — Atergeleba"
+},
+{
+"date": "2026-02-02",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "27210.0",
+"description": "Addisu — Milking Cow feed Sales"
+},
+{
+"date": "2026-02-02",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "28000.0",
+"description": "Addisu — 5quintals"
+},
+{
+"date": "2026-01-31",
+"category": "Capital investment: loan (borrowings)",
+"type": "income",
+"amount": "1000000.0",
+"description": "Tolera Shula — Loan from Tolera for Birhan loan payment"
+},
+{
+"date": "2026-01-31",
+"category": "Others",
+"type": "expense",
+"amount": "960165.0",
+"description": "Birhan Bank - Sileshi Abebe Act — Birhan Bank Loan Repayment"
+},
+{
+"date": "2026-01-30",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "26100.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2026-01-28",
+"category": "Others",
+"type": "expense",
+"amount": "1000.0",
+"description": "Tamirat w via tol — fixing water"
+},
+{
+"date": "2026-01-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "170000.0",
+"description": "Mose Eng/Admasu via Ketema — 50 quintal of Frushka"
+},
+{
+"date": "2026-01-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Demis Abebe/Juhar Akmel — first payment for 58.75 quintals of maize (132k birr remaining)"
+},
+{
+"date": "2026-01-27",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "55960.0",
+"description": "Zinash Legese — 10 quintals"
+},
+{
+"date": "2026-01-27",
+"category": "Others",
+"type": "expense",
+"amount": "50000.0",
+"description": "Negasa — Given on the birth of new baby and purchased items"
+},
+{
+"date": "2026-01-27",
+"category": "Others",
+"type": "expense",
+"amount": "3500.0",
+"description": "Addisu — To cover various expenses"
+},
+{
+"date": "2026-01-26",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "21360.0",
+"description": "Addisu — animal feed sales"
+},
+{
+"date": "2026-01-26",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "21600.0",
+"description": "Ketema Dibaba — Milking cows feed sales"
+},
+{
+"date": "2026-01-26",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "5500.0",
+"description": "Birki Tololsa — Animal feed"
+},
+{
+"date": "2026-01-26",
+"category": "Others",
+"type": "expense",
+"amount": "5880.0",
+"description": "Tegenu Tolosa — Marga Hiisisuuf"
+},
+{
+"date": "2026-01-26",
+"category": "Others",
+"type": "expense",
+"amount": "2000.0",
+"description": "Eng. Sileshi — for interpretation"
+},
+{
+"date": "2026-01-25",
+"category": "Other",
+"type": "income",
+"amount": "13370.0",
+"description": "Addisu — Sales of Milking cow feed"
+},
+{
+"date": "2026-01-25",
+"category": null,
+"type": "income",
+"amount": "15620.0",
+"description": "Addisu"
+},
+{
+"date": "2026-01-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "5000.0",
+"description": "Dr Diriba — Marga hiisisuuf"
+},
+{
+"date": "2026-01-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "12920.0",
+"description": "Addisu — Animal feed raw material"
+},
+{
+"date": "2026-01-24",
+"category": "Utility",
+"type": "expense",
+"amount": "2500.0",
+"description": "Water — Bishaan"
+},
+{
+"date": "2026-01-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10900.0",
+"description": "Getinet Birara — Ater geleba"
+},
+{
+"date": "2026-01-22",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "56000.0",
+"description": "Getinet Birara — 20 quintal chicken feed"
+},
+{
+"date": "2026-01-22",
+"category": "Others",
+"type": "expense",
+"amount": "2310.0",
+"description": "Addisu — For different expenses"
+},
+{
+"date": "2026-01-21",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "9000.0",
+"description": "Ketema Dibaba — Sales of Milking cows feed"
+},
+{
+"date": "2026-01-21",
+"category": "Other",
+"type": "income",
+"amount": "2250.0",
+"description": "Addisu — Fattening feed sales"
+},
+{
+"date": "2026-01-21",
+"category": "Other",
+"type": "income",
+"amount": "8110.0",
+"description": "Addisu — Milking cow feed sales"
+},
+{
+"date": "2026-01-21",
+"category": null,
+"type": "income",
+"amount": "10360.0",
+"description": "Addisu"
+},
+{
+"date": "2026-01-21",
+"category": "Animal feed",
+"type": "expense",
+"amount": "400.0",
+"description": "Addisu — Unloading Nug Fagulo"
+},
+{
+"date": "2026-01-21",
+"category": "Animal feed",
+"type": "expense",
+"amount": "5500.0",
+"description": "Fasika ASnake — Fagulo transport"
+},
+{
+"date": "2026-01-21",
+"category": "Animal feed",
+"type": "expense",
+"amount": "160000.0",
+"description": "Meseret AYalew — 20 Quintal fagulo"
+},
+{
+"date": "2026-01-20",
+"category": "Sheep sales",
+"type": "income",
+"amount": "25500.0",
+"description": "Ketema Dibaba — Gurgurta hoolaa 3"
+},
+{
+"date": "2026-01-19",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "8400.0",
+"description": "Etisa Bedada — 1.5 quintals"
+},
+{
+"date": "2026-01-19",
+"category": "Others",
+"type": "expense",
+"amount": "3000.0",
+"description": "Dr Diriba — Animal health"
+},
+{
+"date": "2026-01-19",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11010.0",
+"description": "Merersa — Animal feed raw material"
+},
+{
+"date": "2026-01-16",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "9385.0",
+"description": "Addisu"
+},
+{
+"date": "2026-01-16",
+"category": "Utility",
+"type": "expense",
+"amount": "3574.92",
+"description": "EEU — Electric bill"
+},
+{
+"date": "2026-01-15",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "55000.0",
+"description": "Addisu"
+},
+{
+"date": "2026-01-15",
+"category": "Other",
+"type": "income",
+"amount": "3000.0",
+"description": "Negasa — Returned from soyapayment"
+},
+{
+"date": "2026-01-15",
+"category": "Others",
+"type": "expense",
+"amount": "2450.0",
+"description": "Addisu — For various expenses"
+},
+{
+"date": "2026-01-15",
+"category": "Animal feed",
+"type": "expense",
+"amount": "12925.0",
+"description": "Addisu — Shiro geleba"
+},
+{
+"date": "2026-01-14",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "90000.0",
+"description": "Mohammed — Milking cow - feed"
+},
+{
+"date": "2026-01-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11000.0",
+"description": "Kinde — Soya transport"
+},
+{
+"date": "2026-01-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "182150.0",
+"description": "Rongi Ethi/Wei Luo — Soya cale"
+},
+{
+"date": "2026-01-13",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "22500.0",
+"description": "Addisu — Feed - Milking cows"
+},
+{
+"date": "2026-01-12",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "11000.0",
+"description": "Etisa Bedada — Milking cow sales"
+},
+{
+"date": "2026-01-12",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "2250.0",
+"description": "Addisu — Milking cow feed"
+},
+{
+"date": "2026-01-12",
+"category": "Milk sales",
+"type": "income",
+"amount": "17000.0",
+"description": "Addisu"
+},
+{
+"date": "2026-01-11",
+"category": "Animal feed",
+"type": "expense",
+"amount": "900.0",
+"description": "Ride — to transport Ppbag on Ride"
+},
+{
+"date": "2026-01-11",
+"category": "Animal feed",
+"type": "expense",
+"amount": "7500.0",
+"description": "Mulugeta Tebeje — Ppbag printing final"
+},
+{
+"date": "2026-01-10",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "13250.0",
+"description": "Merersa — Animal feed(milking cow)"
+},
+{
+"date": "2026-01-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6500.0",
+"description": "Tesfaye k — Frushka and Fagulo transport"
+},
+{
+"date": "2026-01-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "148500.0",
+"description": "Muluneh Lema — Wheat barn -frushka"
+},
+{
+"date": "2026-01-09",
+"category": "Utility",
+"type": "expense",
+"amount": "4000.0",
+"description": "Merersa — fixing water and animal health"
+},
+{
+"date": "2026-01-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "84000.0",
+"description": "Meseret AYalew — Nug fagulo"
+},
+{
+"date": "2026-01-08",
+"category": "Sheep sales",
+"type": "income",
+"amount": "10500.0",
+"description": "Negasa — Sheep"
+},
+{
+"date": "2026-01-08",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "20000.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2026-01-07",
+"category": "Sheep sales",
+"type": "income",
+"amount": "208250.0",
+"description": "Meresa — Net Revenue of 19 sheep sales"
+},
+{
+"date": "2026-01-06",
+"category": "Salary",
+"type": "expense",
+"amount": "49442.0",
+"description": "Merersa"
+},
+{
+"date": "2026-01-06",
+"category": "Utility",
+"type": "expense",
+"amount": "2000.0",
+"description": "Tamirat wedajo — Fixing water"
+},
+{
+"date": "2026-01-05",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "11000.0",
+"description": "Etisa Bedada — Animal feed"
+},
+{
+"date": "2026-01-05",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "22500.0",
+"description": "Merersaa — Animal feed"
+},
+{
+"date": "2026-01-05",
+"category": "Utility",
+"type": "expense",
+"amount": "10000.0",
+"description": "Kalo Farm Birhan Bank — For cic"
+},
+{
+"date": "2026-01-03",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "37000.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2026-01-02",
+"category": "Animal feed",
+"type": "expense",
+"amount": "18500.0",
+"description": "Merersa — Purchase of animal feed inputs"
+},
+{
+"date": "2025-12-30",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "11000.0",
+"description": "Etisa Bedada"
+},
+{
+"date": "2025-12-30",
+"category": "Milk sales",
+"type": "income",
+"amount": "15100.0",
+"description": "Addisu"
+},
+{
+"date": "2025-12-30",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10000.0",
+"description": "Mulugeta Tebeje — Ppbag printing"
+},
+{
+"date": "2025-12-29",
+"category": "Utility",
+"type": "expense",
+"amount": "1065.0",
+"description": "Sunper — Photocopy"
+},
+{
+"date": "2025-12-27",
+"category": "Other",
+"type": "income",
+"amount": "38500.0",
+"description": "Negasa — Returned from sheep withdrawals"
+},
+{
+"date": "2025-12-27",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "31500.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2025-12-27",
+"category": "Animal feed",
+"type": "expense",
+"amount": "22600.0",
+"description": "Milehaw — Ppbag"
+},
+{
+"date": "2025-12-25",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "16500.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2025-12-24",
+"category": "Utility",
+"type": "expense",
+"amount": "2500.0",
+"description": "Tamirat w — Fixing water 1"
+},
+{
+"date": "2025-12-21",
+"category": "Others",
+"type": "expense",
+"amount": "2000.0",
+"description": "Translation"
+},
+{
+"date": "2025-12-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10000.0",
+"description": "Ppbag"
+},
+{
+"date": "2025-12-19",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "18000.0",
+"description": "Addisu — Animal feed"
+},
+{
+"date": "2025-12-19",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "8250.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2025-12-16",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "20650.0",
+"description": "Addisu — Animal feed"
+},
+{
+"date": "2025-12-16",
+"category": "Sale of layer chicken",
+"type": "income",
+"amount": "7500.0",
+"description": "Merersa"
+},
+{
+"date": "2025-12-15",
+"category": "Others",
+"type": "expense",
+"amount": "35008.0",
+"description": "Revenue office — Tax"
+},
+{
+"date": "2025-12-13",
+"category": "Utility",
+"type": "expense",
+"amount": "5320.22",
+"description": "ELECTRIC — Electric bill"
+},
+{
+"date": "2025-12-13",
+"category": "Salary",
+"type": "expense",
+"amount": "19600.0",
+"description": "Merersa — Contract employees"
+},
+{
+"date": "2025-12-13",
+"category": "Salary",
+"type": "expense",
+"amount": "66720.0",
+"description": "Merersa — Salary without tax"
+},
+{
+"date": "2025-12-12",
+"category": "Others",
+"type": "expense",
+"amount": "43016.0",
+"description": "Kalo Farm — Tax"
+},
+{
+"date": "2025-12-10",
+"category": "Utility",
+"type": "expense",
+"amount": "1604.07",
+"description": "Tele — Telecom fee"
+},
+{
+"date": "2025-12-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "8040.0",
+"description": "Dr Diriba — Sheep health"
+},
+{
+"date": "2025-12-06",
+"category": "Milking cow feed sales",
+"type": "income",
+"amount": "16500.0",
+"description": "Merersa — Animal feed"
+},
+{
+"date": "2025-12-06",
+"category": "Utility",
+"type": "expense",
+"amount": "27502.66",
+"description": "Holota town — Water utility"
+},
+{
+"date": "2025-12-06",
+"category": "Others",
+"type": "expense",
+"amount": "197000.0",
+"description": "Negasa — Bittaa hoolaa 2ffaa for Misgana and Negasa"
+},
+{
+"date": "2025-12-06",
+"category": "Utility",
+"type": "expense",
+"amount": "27502.66",
+"description": "Water - Holota — water utility fee"
+},
+{
+"date": "2025-12-06",
+"category": "Others",
+"type": "expense",
+"amount": "8710.0",
+"description": "Dr Diriba — medicine and treatment to sheeps"
+},
+{
+"date": "2025-12-06",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Merersa — Bittaa Hoolaa Marsaa 2ffaaf"
+},
+{
+"date": "2025-12-04",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6260.0",
+"description": "Merersa — Purchase of animal feed inputs"
+},
+{
+"date": "2025-12-04",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Tolera — Bittaa hoolaa marsaa 2ffaaf"
+},
+{
+"date": "2025-12-02",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Negasa — Loan fro Kalo"
+},
+{
+"date": "2025-12-02",
+"category": "Utility",
+"type": "expense",
+"amount": "13000.0",
+"description": "Tesfaye k — Beg Transport Fee"
+},
+{
+"date": "2025-11-30",
+"category": "Capital investment",
+"type": "expense",
+"amount": "20000.0",
+"description": "Geleta Basha - Mixer — Only 75k remaining"
+},
+{
+"date": "2025-11-29",
+"category": "Others",
+"type": "expense",
+"amount": "5600.0",
+"description": "Ebrahim /NEGASA — Tube - pvc"
+},
+{
+"date": "2025-11-29",
+"category": "Others",
+"type": "expense",
+"amount": "10000.0",
+"description": "Kalo Farm Birhan Bank — Loan Reapproval fee"
+},
+{
+"date": "2025-11-28",
+"category": "Other",
+"type": "income",
+"amount": "6000.0",
+"description": "Merersa — dikee"
+},
+{
+"date": "2025-11-28",
+"category": "Utility",
+"type": "expense",
+"amount": "10470.0",
+"description": "meresa — to cover different costs"
+},
+{
+"date": "2025-11-28",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Misgana — Bittaa Hoolaaf"
+},
+{
+"date": "2025-11-28",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Negasa — Bittaa Hoolaaf"
+},
+{
+"date": "2025-11-27",
+"category": "Milk sales",
+"type": "income",
+"amount": "14065.0",
+"description": "Addisu — 15days"
+},
+{
+"date": "2025-11-27",
+"category": "Others",
+"type": "expense",
+"amount": "100000.0",
+"description": "Tolera — Bittaa Hoolaaf"
+},
+{
+"date": "2025-11-27",
+"category": "Others",
+"type": "expense",
+"amount": "200000.0",
+"description": "Merersa — Bittaa Hoolaatiif"
+},
+{
+"date": "2025-11-25",
+"category": "Other",
+"type": "income",
+"amount": "18000.0",
+"description": "Merersa — dikee"
+},
+{
+"date": "2025-11-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "67830.0",
+"description": "Ketema Dibaba — Killee3990"
+},
+{
+"date": "2025-11-18",
+"category": "Animal feed",
+"type": "expense",
+"amount": "5000.0",
+"description": "Tesfaye k — Frushka transport"
+},
+{
+"date": "2025-11-17",
+"category": "Egg sales",
+"type": "income",
+"amount": "224458.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-11-17",
+"category": "Animal feed",
+"type": "expense",
+"amount": "169505.0",
+"description": "Fraol Shula — Bokolo 48.43 quintals*3500birr"
+},
+{
+"date": "2025-11-17",
+"category": "Animal feed",
+"type": "expense",
+"amount": "145000.0",
+"description": "Mulune Lema W — Frushka 50quintal *2900"
+},
+{
+"date": "2025-11-16",
+"category": "Milk sales",
+"type": "income",
+"amount": "17298.0",
+"description": "Addisu — For 15days"
+},
+{
+"date": "2025-11-16",
+"category": "Egg sales",
+"type": "income",
+"amount": "85240.0",
+"description": "million garuma — 5000 eggs"
+},
+{
+"date": "2025-11-15",
+"category": "Other",
+"type": "income",
+"amount": "3000.0",
+"description": "Merersa — dikee"
+},
+{
+"date": "2025-11-15",
+"category": "Other",
+"type": "income",
+"amount": "18000.0",
+"description": "Merersa — Dikee"
+},
+{
+"date": "2025-11-15",
+"category": "Capital investment",
+"type": "expense",
+"amount": "22000.0",
+"description": "Ibsa Degefa — Gari"
+},
+{
+"date": "2025-11-15",
+"category": "Utility",
+"type": "expense",
+"amount": "20000.0",
+"description": "Merersa — To cover different costs"
+},
+{
+"date": "2025-11-14",
+"category": "Utility",
+"type": "expense",
+"amount": "6376.19",
+"description": "electric bill"
+},
+{
+"date": "2025-11-13",
+"category": "Salary",
+"type": "expense",
+"amount": "91512.22",
+"description": "Merersa — Salary without tax for October"
+},
+{
+"date": "2025-11-13",
+"category": "Animal feed",
+"type": "expense",
+"amount": "222233.0",
+"description": "Yasin Ali/ Demis — 49.94 quintal bokolo*4450birr"
+},
+{
+"date": "2025-11-12",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "44000.0",
+"description": "Beka Terefe — 8 quintals"
+},
+{
+"date": "2025-11-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "143807.0",
+"description": "Diriba Admasu — 8670 eggs *16.5birr\r\n 94 broken *8"
+},
+{
+"date": "2025-11-10",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "11000.0",
+"description": "Beka Terefe — 2quintals *5500"
+},
+{
+"date": "2025-11-10",
+"category": "Other",
+"type": "income",
+"amount": "800.0",
+"description": "Addisu — Defect is gas sales"
+},
+{
+"date": "2025-11-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "301500.0",
+"description": "Tegegn Nigusu — 18000 eggs*16.75"
+},
+{
+"date": "2025-11-08",
+"category": "Animal feed",
+"type": "expense",
+"amount": "3800.0",
+"description": "Tolera — Ashinero"
+},
+{
+"date": "2025-11-08",
+"category": "Utility",
+"type": "expense",
+"amount": "1330.0",
+"description": "Tolera — Switch and light fixing"
+},
+{
+"date": "2025-11-08",
+"category": "Capital investment",
+"type": "expense",
+"amount": "66000.0",
+"description": "Tolera — Pc and Printer"
+},
+{
+"date": "2025-11-08",
+"category": null,
+"type": "expense",
+"amount": "71130.0",
+"description": "Tolera"
+},
+{
+"date": "2025-11-08",
+"category": "Animal feed",
+"type": "expense",
+"amount": "4500.0",
+"description": "Ketema Dibaba — Nug Fagulo  transport"
+},
+{
+"date": "2025-11-07",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "22000.0",
+"description": "Beka Terefe — 4 quintal"
+},
+{
+"date": "2025-11-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "153000.0",
+"description": "Meseret A/negasa — Nug Fagulo 17 quintal*9000"
+},
+{
+"date": "2025-11-06",
+"category": "Egg sales",
+"type": "income",
+"amount": "280500.0",
+"description": "Tegegn Nugusu — 16500*17"
+},
+{
+"date": "2025-11-05",
+"category": "Animal feed",
+"type": "expense",
+"amount": "2800.0",
+"description": "Zerihun/Tole — Medicine"
+},
+{
+"date": "2025-11-05",
+"category": "Animal feed",
+"type": "expense",
+"amount": "9000.0",
+"description": "Kinfe/Negasa — Soya transport"
+},
+{
+"date": "2025-11-03",
+"category": "Egg sales",
+"type": "income",
+"amount": "258000.0",
+"description": "Tegegn Nugusu — 15k eggs *17.20"
+},
+{
+"date": "2025-11-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "213280.0",
+"description": "Soyacake — 20 quintals"
+},
+{
+"date": "2025-11-02",
+"category": "Milk sales",
+"type": "income",
+"amount": "1750.0",
+"description": "Misgana — 25 liters"
+},
+{
+"date": "2025-11-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "4080.0",
+"description": "Misgana — Eggs"
+},
+{
+"date": "2025-11-02",
+"category": "Capital investment",
+"type": "expense",
+"amount": "10000.0",
+"description": "Geletu mixer — Only95k remaining"
+},
+{
+"date": "2025-11-02",
+"category": "Utility",
+"type": "expense",
+"amount": "10000.0",
+"description": "Merersa — Jajjabeessuu"
+},
+{
+"date": "2025-11-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "272000.0",
+"description": "Diriba Admasu — 16k eggs *17"
+},
+{
+"date": "2025-11-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "98700.0",
+"description": "Ketema Dibaba — 5640 eggs*17.5"
+},
+{
+"date": "2025-11-01",
+"category": "Utility",
+"type": "expense",
+"amount": "500.0",
+"description": "Poultry Association — Registration fee"
+},
+{
+"date": "2025-11-01",
+"category": "Utility",
+"type": "expense",
+"amount": "18000.0",
+"description": "Chairs — 2 Managerial and 2 guest chairs"
+},
+{
+"date": "2025-11-01",
+"category": "Utility",
+"type": "expense",
+"amount": "20000.0",
+"description": "Merersa — Pitycash"
+},
+{
+"date": "2025-10-31",
+"category": "Egg sales",
+"type": "income",
+"amount": "3180.0",
+"description": "Negasa Dibaba"
+},
+{
+"date": "2025-10-29",
+"category": "Milk sales",
+"type": "income",
+"amount": "19355.0",
+"description": "Addisu — October 2nd round"
+},
+{
+"date": "2025-10-29",
+"category": "Others",
+"type": "expense",
+"amount": "20000.0",
+"description": "Firehiwot B — Gargaarsa Kantiibaa keenyaaf"
+},
+{
+"date": "2025-10-29",
+"category": "Animal feed",
+"type": "expense",
+"amount": "217760.0",
+"description": "Yasin Ali/ Demis — Bokolo final payment for 2 fsr"
+},
+{
+"date": "2025-10-28",
+"category": "Egg sales",
+"type": "income",
+"amount": "358680.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-10-28",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "44000.0",
+"description": "Beka — 8 quintal"
+},
+{
+"date": "2025-10-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "156200.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-10-25",
+"category": "Capital investment",
+"type": "expense",
+"amount": "100000.0",
+"description": "Geletu mixer — Only 105k remaining"
+},
+{
+"date": "2025-10-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Tolera — Premix and Fagulo"
+},
+{
+"date": "2025-10-24",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-10-24",
+"category": "Other",
+"type": "income",
+"amount": "10000.0",
+"description": "Merersa — Payback form previous payments"
+},
+{
+"date": "2025-10-24",
+"category": "Utility",
+"type": "expense",
+"amount": "100000.0",
+"description": "Ethiopian — Design second payment"
+},
+{
+"date": "2025-10-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "79930.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-10-23",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "47000.0",
+"description": "Ketema Dibaba — Animal feed 10quintal"
+},
+{
+"date": "2025-10-23",
+"category": "Utility",
+"type": "expense",
+"amount": "20000.0",
+"description": "Gudisa — Furniture advance"
+},
+{
+"date": "2025-10-23",
+"category": "Utility",
+"type": "expense",
+"amount": "35034.45",
+"description": "Merersa — For various payments"
+},
+{
+"date": "2025-10-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Yasin Ali/ Demis — Bokolo 1st payment of 2 FSR"
+},
+{
+"date": "2025-10-23",
+"category": "Capital investment",
+"type": "expense",
+"amount": "100000.0",
+"description": "Geletu mixer — Mixer"
+},
+{
+"date": "2025-10-22",
+"category": "Egg sales",
+"type": "income",
+"amount": "157000.0",
+"description": "Merersa"
+},
+{
+"date": "2025-10-22",
+"category": "Utility",
+"type": "expense",
+"amount": "67567.15",
+"description": "Water — Water bill of six monthes"
+},
+{
+"date": "2025-10-22",
+"category": "Animal feed",
+"type": "expense",
+"amount": "14400.0",
+"description": "Abdu Abdulaziz — Chicken meds"
+},
+{
+"date": "2025-10-21",
+"category": "Egg sales",
+"type": "income",
+"amount": "50000.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-10-21",
+"category": "Egg sales",
+"type": "income",
+"amount": "14800.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-10-21",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Merersa"
+},
+{
+"date": "2025-10-18",
+"category": "Egg sales",
+"type": "income",
+"amount": "262250.0",
+"description": null
+},
+{
+"date": "2025-10-18",
+"category": "Animal feed",
+"type": "expense",
+"amount": "9900.0",
+"description": "Dr Fulas — Lasota"
+},
+{
+"date": "2025-10-15",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Ketema Dibaba — Fagulo and…"
+},
+{
+"date": "2025-10-14",
+"category": "Milk sales",
+"type": "income",
+"amount": "27030.0",
+"description": "Addisu"
+},
+{
+"date": "2025-10-14",
+"category": "Milk sales",
+"type": "income",
+"amount": "4080.0",
+"description": "Staff"
+},
+{
+"date": "2025-10-13",
+"category": "Egg sales",
+"type": "income",
+"amount": "241710.0",
+"description": "Merersa"
+},
+{
+"date": "2025-10-13",
+"category": "Animal feed",
+"type": "expense",
+"amount": "110000.0",
+"description": "Negasa — Soya"
+},
+{
+"date": "2025-10-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "44400.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-10-11",
+"category": "Animal feed",
+"type": "expense",
+"amount": "330000.0",
+"description": "Daminatint — 50 quintal"
+},
+{
+"date": "2025-10-11",
+"category": "Capital investment",
+"type": "expense",
+"amount": "73520.0",
+"description": "Merersa — Shower construction material cost"
+},
+{
+"date": "2025-10-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "210000.0",
+"description": "Tegegn Nugusi — 12k eggs *17.50"
+},
+{
+"date": "2025-10-10",
+"category": "Animal feed",
+"type": "expense",
+"amount": "206465.0",
+"description": "Yasin Ali/Demis — The first 5899 Bokolo *3500"
+},
+{
+"date": "2025-10-10",
+"category": "Salary",
+"type": "expense",
+"amount": "97500.0",
+"description": "Merersa — Salary for month on September"
+},
+{
+"date": "2025-10-10",
+"category": "Utility",
+"type": "expense",
+"amount": "8000.0",
+"description": "Tolera for merersa — Payback"
+},
+{
+"date": "2025-10-10",
+"category": "Animal feed",
+"type": "expense",
+"amount": "12000.0",
+"description": "Tesfaye k — Limestone transport"
+},
+{
+"date": "2025-10-09",
+"category": "Animal feed",
+"type": "expense",
+"amount": "45000.0",
+"description": "Merin — 60quintals limestone"
+},
+{
+"date": "2025-10-08",
+"category": "Egg sales",
+"type": "income",
+"amount": "46800.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-10-08",
+"category": "Animal feed",
+"type": "expense",
+"amount": "3000.0",
+"description": "Merersa — Bokolo unloading - fraol"
+},
+{
+"date": "2025-10-08",
+"category": "Capital investment",
+"type": "expense",
+"amount": "14000.0",
+"description": "Merersa — 1 biajo additional"
+},
+{
+"date": "2025-10-08",
+"category": "Others",
+"type": "expense",
+"amount": "10000.0",
+"description": "Eng. Sileshi — Loan to Eng"
+},
+{
+"date": "2025-10-07",
+"category": "Other",
+"type": "income",
+"amount": "300.0",
+"description": "Merersa — Defect eggs"
+},
+{
+"date": "2025-10-07",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "44000.0",
+"description": "Merersa — 8 quintals *5500"
+},
+{
+"date": "2025-10-07",
+"category": "Egg sales",
+"type": "income",
+"amount": "310312.0",
+"description": "Nasru chimisa"
+},
+{
+"date": "2025-10-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "3600.0",
+"description": "Merersa — Bokolo unloading"
+},
+{
+"date": "2025-10-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "24500.0",
+"description": "Zerihun Adugna/Merersa — Egg stimulant"
+},
+{
+"date": "2025-10-06",
+"category": "Utility",
+"type": "expense",
+"amount": "30900.0",
+"description": "Merersa — 2 Biajo garaganti and other costs"
+},
+{
+"date": "2025-10-04",
+"category": "Milk sales",
+"type": "income",
+"amount": "920.0",
+"description": "Tolera — Milk"
+},
+{
+"date": "2025-10-04",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "16500.0",
+"description": "Bilisummaa — 3 quintal *5500"
+},
+{
+"date": "2025-10-04",
+"category": "Others",
+"type": "expense",
+"amount": "77492.0",
+"description": "Tolera — Loan settlement to Tolera"
+},
+{
+"date": "2025-10-03",
+"category": "Utility",
+"type": "expense",
+"amount": "3200.0",
+"description": "Merersa — Shibo for poultry house 3 partition"
+},
+{
+"date": "2025-10-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "53473.0",
+"description": "Demi’s Abebe — 100 quintal Bokolo 3rd & final payment 9958*3550"
+},
+{
+"date": "2025-10-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "125000.0",
+"description": "Negasa — 50 quintal Frushka"
+},
+{
+"date": "2025-10-02",
+"category": "Other",
+"type": "income",
+"amount": "1015.0",
+"description": "Merersa — Defect eggs"
+},
+{
+"date": "2025-10-02",
+"category": "Layers chicken feed sales",
+"type": "income",
+"amount": "16500.0",
+"description": "Bilisummaa — First feed sales 3quinyals*5500"
+},
+{
+"date": "2025-10-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "249210.0",
+"description": "Diriba Admasu — 12780 eggs *19.50"
+},
+{
+"date": "2025-10-02",
+"category": "Capital investment",
+"type": "expense",
+"amount": "150000.0",
+"description": "Geletu mixer — Mixer second payment"
+},
+{
+"date": "2025-09-30",
+"category": "Egg sales",
+"type": "income",
+"amount": "1740.0",
+"description": "Misgana — 90eggs *19.50"
+},
+{
+"date": "2025-09-30",
+"category": "Egg sales",
+"type": "income",
+"amount": "2280.0",
+"description": "Misgana — 120eggs *19"
+},
+{
+"date": "2025-09-30",
+"category": "Milk sales",
+"type": "income",
+"amount": "2030.0",
+"description": "Misgana — 29 liters *70"
+},
+{
+"date": "2025-09-30",
+"category": null,
+"type": "income",
+"amount": "6050.0",
+"description": "Misgana"
+},
+{
+"date": "2025-09-30",
+"category": "Milk sales",
+"type": "income",
+"amount": "29085.0",
+"description": "Merersa — For 15 days"
+},
+{
+"date": "2025-09-30",
+"category": "Egg sales",
+"type": "income",
+"amount": "87750.0",
+"description": "Merersa — 4500*19.50"
+},
+{
+"date": "2025-09-30",
+"category": "Utility",
+"type": "expense",
+"amount": "11920.0",
+"description": "Merersa"
+},
+{
+"date": "2025-09-29",
+"category": "Egg sales",
+"type": "income",
+"amount": "324675.0",
+"description": "16650*19.50"
+},
+{
+"date": "2025-09-26",
+"category": "Egg sales",
+"type": "income",
+"amount": "105300.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-09-26",
+"category": "Capital investment",
+"type": "expense",
+"amount": "38000.0",
+"description": "Zerihun Balcha — Final constant pymt to Zerihun"
+},
+{
+"date": "2025-09-26",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Yasin Ali/ Demis — Bokolo for 100quintal 100k+200k"
+},
+{
+"date": "2025-09-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "187704.0",
+"description": "Nesru Chimisa"
+},
+{
+"date": "2025-09-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10000.0",
+"description": "Ketema Dibaba — 20 quintal Soya cake  transport"
+},
+{
+"date": "2025-09-24",
+"category": "Utility",
+"type": "expense",
+"amount": "5050.0",
+"description": "Merersa — Various payments"
+},
+{
+"date": "2025-09-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "206700.0",
+"description": "Rongy eth — 20 quintal soya cake"
+},
+{
+"date": "2025-09-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "248850.0",
+"description": "Tegene n"
+},
+{
+"date": "2025-09-23",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6000.0",
+"description": "Pp bag final — Pp bag printing"
+},
+{
+"date": "2025-09-22",
+"category": "Animal feed",
+"type": "expense",
+"amount": "114000.0",
+"description": "Yasin Ali/ Demis — Bokolo 14k settlement for previous and 100k partial payment from 100quintal"
+},
+{
+"date": "2025-09-22",
+"category": "Salary",
+"type": "expense",
+"amount": "6250.0",
+"description": "Dr Fulas — Half month salary"
+},
+{
+"date": "2025-09-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "42142.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-09-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "163400.0",
+"description": "Dawit Yakob — Lysine 100*382 = 38,200\r\nMethionin 100*633= 63,300\r\nLayers 100*360 =36,000\r\nGrowers 50*524=26200"
+},
+{
+"date": "2025-09-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "4500.0",
+"description": "Negasa ittana- ketema — Fagulo transport"
+},
+{
+"date": "2025-09-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Bilisummaa — Egg sold to municipality"
+},
+{
+"date": "2025-09-19",
+"category": "Utility",
+"type": "expense",
+"amount": "14050.0",
+"description": "Merersa"
+},
+{
+"date": "2025-09-19",
+"category": "Animal feed",
+"type": "expense",
+"amount": "180000.0",
+"description": "Meseret Ayalew/Ketema D — 20 Quintal Nug Fagulo"
+},
+{
+"date": "2025-09-17",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-09-17",
+"category": "Egg sales",
+"type": "income",
+"amount": "33200.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-09-17",
+"category": "Egg sales",
+"type": "income",
+"amount": "36000.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-09-17",
+"category": "Utility",
+"type": "expense",
+"amount": "8000.0",
+"description": "Milishaw — Pp bag purchase and transport cost"
+},
+{
+"date": "2025-09-17",
+"category": "Utility",
+"type": "expense",
+"amount": "6000.0",
+"description": "Yemane Sisay — 50% Printing cost on pp bag"
+},
+{
+"date": "2025-09-17",
+"category": "Capital investment",
+"type": "expense",
+"amount": "17000.0",
+"description": "Unknown trader — Ye pp bag masfiya mashin"
+},
+{
+"date": "2025-09-16",
+"category": "Milk sales",
+"type": "income",
+"amount": "1540.0",
+"description": "Merersa"
+},
+{
+"date": "2025-09-16",
+"category": "Egg sales",
+"type": "income",
+"amount": "44000.0",
+"description": "Nesru Chimisa"
+},
+{
+"date": "2025-09-16",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11500.0",
+"description": "Abdu Abdulaziz — Chicken Meds"
+},
+{
+"date": "2025-09-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "124000.0",
+"description": "Nesru Chimisa"
+},
+{
+"date": "2025-09-15",
+"category": "Utility",
+"type": "expense",
+"amount": "3000.0",
+"description": "Merersa — Audit Fee"
+},
+{
+"date": "2025-09-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "27390.0",
+"description": "Feraole Gizaw"
+},
+{
+"date": "2025-09-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "228000.0",
+"description": "Negasa — Loan settlement to Negasa"
+},
+{
+"date": "2025-09-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "100000.0",
+"description": "Geleta Basha — Advance payment for Mixer production"
+},
+{
+"date": "2025-09-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "5500.0",
+"description": "Sileshi A — 50 quintal Frushka transport"
+},
+{
+"date": "2025-09-13",
+"category": "Egg sales",
+"type": "income",
+"amount": "145000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-09-13",
+"category": "Milk sales",
+"type": "income",
+"amount": "28580.0",
+"description": "Merersa"
+},
+{
+"date": "2025-09-13",
+"category": "Utility",
+"type": "expense",
+"amount": "100000.0",
+"description": "Yohannes Ambisa — Long standing loan settlement"
+},
+{
+"date": "2025-09-13",
+"category": "Animal feed",
+"type": "expense",
+"amount": "140000.0",
+"description": "Bose Food Complex — 50quintal *2800"
+},
+{
+"date": "2025-09-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "50000.0",
+"description": "Diriba Admasu — Advance"
+},
+{
+"date": "2025-09-12",
+"category": "Other",
+"type": "income",
+"amount": "18500.0",
+"description": "Merersa — Sales of substandard maize and frushka"
+},
+{
+"date": "2025-09-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "22800.0",
+"description": "Negasa Dibaba"
+},
+{
+"date": "2025-09-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "58000.0",
+"description": "Lemessa Adugna"
+},
+{
+"date": "2025-09-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "20000.0",
+"description": "Lemessa Adugna"
+},
+{
+"date": "2025-09-12",
+"category": "Animal feed",
+"type": "expense",
+"amount": "11500.0",
+"description": "Abdu/tol — Medicines"
+},
+{
+"date": "2025-09-12",
+"category": "Utility",
+"type": "expense",
+"amount": "6713.81",
+"description": "EEU"
+},
+{
+"date": "2025-09-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "29500.0",
+"description": "Abreham Tolosa"
+},
+{
+"date": "2025-09-10",
+"category": "Capital investment",
+"type": "expense",
+"amount": "20000.0",
+"description": "Sileshi Abebe — Remaining payment to New year"
+},
+{
+"date": "2025-09-10",
+"category": "Capital investment",
+"type": "expense",
+"amount": "21100.0",
+"description": "Merersa — Office construction finishing material"
+},
+{
+"date": "2025-09-10",
+"category": "Capital investment",
+"type": "expense",
+"amount": "50000.0",
+"description": "Zerihun thorough Negasa — Office finishing construction"
+},
+{
+"date": "2025-09-09",
+"category": "Egg sales",
+"type": "income",
+"amount": "58500.0",
+"description": "Abraham Tolosa"
+},
+{
+"date": "2025-09-09",
+"category": "Egg sales",
+"type": "income",
+"amount": "71516.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-09-06",
+"category": "Egg sales",
+"type": "income",
+"amount": "66600.0",
+"description": "Ketema Dibaba"
+},
+{
+"date": "2025-09-06",
+"category": "Egg sales",
+"type": "income",
+"amount": "86140.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-09-06",
+"category": "Utility",
+"type": "expense",
+"amount": "12800.0",
+"description": "Meresa — Different materials requested by Zerihun and Adisu’s back payment"
+},
+{
+"date": "2025-09-06",
+"category": "Salary",
+"type": "expense",
+"amount": "85000.0",
+"description": "Merersa — Employees salary with tax for August"
+},
+{
+"date": "2025-09-05",
+"category": "Egg sales",
+"type": "income",
+"amount": "26100.0",
+"description": "Lensa - Zeki Hallil"
+},
+{
+"date": "2025-09-05",
+"category": "Utility",
+"type": "expense",
+"amount": "23350.0",
+"description": "Tolera - Kidist — Marketing material"
+},
+{
+"date": "2025-09-05",
+"category": "Utility",
+"type": "expense",
+"amount": "12400.0",
+"description": "Merersa — Debeaking"
+},
+{
+"date": "2025-09-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "80000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-09-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "54000.0",
+"description": "Negasa Dibaba — 3000 eggs *18"
+},
+{
+"date": "2025-09-03",
+"category": "Capital investment",
+"type": "expense",
+"amount": "35500.0",
+"description": "Geletu/ Tolera"
+},
+{
+"date": "2025-09-02",
+"category": "Capital investment",
+"type": "expense",
+"amount": "17250.0",
+"description": "Merersa — Cement"
+},
+{
+"date": "2025-09-02",
+"category": "Utility",
+"type": "expense",
+"amount": "24000.0",
+"description": "Tolera/eldans — T-shirt, cup and banner"
+},
+{
+"date": "2025-09-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "112190.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-09-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "70000.0",
+"description": "Tsegaye Atsemuye"
+},
+{
+"date": "2025-09-01",
+"category": "Capital investment",
+"type": "expense",
+"amount": "170000.0",
+"description": "Wennovate consult plc — Plan and design"
+},
+{
+"date": "2025-08-30",
+"category": "Egg sales",
+"type": "income",
+"amount": "81600.0",
+"description": "Negasa — 4800*17"
+},
+{
+"date": "2025-08-30",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6750.0",
+"description": "Merersa — Bokolo and Frushka Unloading"
+},
+{
+"date": "2025-08-30",
+"category": "Capital investment",
+"type": "expense",
+"amount": "24000.0",
+"description": "Natnael/Tolera — Camera"
+},
+{
+"date": "2025-08-30",
+"category": "Capital investment",
+"type": "expense",
+"amount": "27170.0",
+"description": "Merersa — qorqorroo gidgiddaa fi qalama biiroo"
+},
+{
+"date": "2025-08-29",
+"category": "Egg sales",
+"type": "income",
+"amount": "129270.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-08-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "216591.0",
+"description": "Yasin Ali/ Demis — bokolo 59.34*3700"
+},
+{
+"date": "2025-08-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "40400.0",
+"description": "Dawit Yakob — concentrated premix"
+},
+{
+"date": "2025-08-28",
+"category": "Capital investment",
+"type": "expense",
+"amount": "160000.0",
+"description": "Merersa — Total quarantine room material cost, Egg laying cage, and pity cash"
+},
+{
+"date": "2025-08-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "17150.0",
+"description": "Abdu/tol — Medicines"
+},
+{
+"date": "2025-08-27",
+"category": "Egg sales",
+"type": "income",
+"amount": "107610.0",
+"description": "Tegegn Nugusu"
+},
+{
+"date": "2025-08-26",
+"category": "Milk sales",
+"type": "income",
+"amount": "26500.0",
+"description": "merersa"
+},
+{
+"date": "2025-08-26",
+"category": "Capital investment",
+"type": "expense",
+"amount": "54220.0",
+"description": "Merersa — Different construction equipments for the feed house"
+},
+{
+"date": "2025-08-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "202365.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-08-25",
+"category": "Milk sales",
+"type": "income",
+"amount": "490.0",
+"description": "Tolera"
+},
+{
+"date": "2025-08-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "660.0",
+"description": "Tolera"
+},
+{
+"date": "2025-08-25",
+"category": null,
+"type": "income",
+"amount": "1150.0",
+"description": "Tolera"
+},
+{
+"date": "2025-08-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "23842.0",
+"description": "Lalise Geneti — ??"
+},
+{
+"date": "2025-08-25",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "Misgana — 10 liters"
+},
+{
+"date": "2025-08-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "1485.0",
+"description": "Misgana — 90 eggs"
+},
+{
+"date": "2025-08-25",
+"category": null,
+"type": "income",
+"amount": "2185.0",
+"description": "Misgana"
+},
+{
+"date": "2025-08-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "157440.0",
+"description": "Nasru chimisa"
+},
+{
+"date": "2025-08-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "4875.0",
+"description": "Eng. Sileshi"
+},
+{
+"date": "2025-08-23",
+"category": "Capital investment",
+"type": "expense",
+"amount": "20000.0",
+"description": "Zerihun — Existing chick3nhouse Ventilation"
+},
+{
+"date": "2025-08-22",
+"category": "Utility",
+"type": "expense",
+"amount": "12000.0",
+"description": "Merersa — Moringa 80*150"
+},
+{
+"date": "2025-08-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "106900.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "119558.0",
+"description": "Yasin Ali/ Demis — 1st Bokolo final payment"
+},
+{
+"date": "2025-08-20",
+"category": "Utility",
+"type": "expense",
+"amount": "5330.0",
+"description": "Merersa — Construction inputs"
+},
+{
+"date": "2025-08-20",
+"category": "Animal feed",
+"type": "expense",
+"amount": "171000.0",
+"description": "Negasa — Frushka and daminatint transportation"
+},
+{
+"date": "2025-08-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Diriba Admasu — Advance"
+},
+{
+"date": "2025-08-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "69300.0",
+"description": "Negasa"
+},
+{
+"date": "2025-08-19",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Yasin Ali/ Demis — 100k/219,558 for 59.33quintal * 3700"
+},
+{
+"date": "2025-08-19",
+"category": "Utility",
+"type": "expense",
+"amount": "40000.0",
+"description": "Merersa — Celebration of staff day"
+},
+{
+"date": "2025-08-18",
+"category": "Capital investment",
+"type": "expense",
+"amount": "39870.0",
+"description": "Merersa — Different construction materials"
+},
+{
+"date": "2025-08-16",
+"category": "Capital injection",
+"type": "income",
+"amount": "200000.0",
+"description": "Tolera s — Equity investment by Tolera"
+},
+{
+"date": "2025-08-16",
+"category": "Daily labour",
+"type": "expense",
+"amount": "1800.0",
+"description": "Merersa — Bokolo 60 quintal unloading"
+},
+{
+"date": "2025-08-16",
+"category": "Capital investment",
+"type": "expense",
+"amount": "90000.0",
+"description": "Negese Sefye — 1st payment to Architects for Design"
+},
+{
+"date": "2025-08-16",
+"category": "Animal feed",
+"type": "expense",
+"amount": "218758.75",
+"description": "FRIGORIFCO — 35 quintal daminatint"
+},
+{
+"date": "2025-08-16",
+"category": "Capital investment",
+"type": "expense",
+"amount": "27000.0",
+"description": "Merersa — Ventilation- additional"
+},
+{
+"date": "2025-08-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "600.0",
+"description": "Tegegn Nugusi — Broken eggs"
+},
+{
+"date": "2025-08-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "13000.0",
+"description": "Tegegn Nugusi — Normal eggs"
+},
+{
+"date": "2025-08-15",
+"category": null,
+"type": "income",
+"amount": "13600.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-08-15",
+"category": "Animal feed",
+"type": "expense",
+"amount": "37000.0",
+"description": "Tolera — Vaccine and spices"
+},
+{
+"date": "2025-08-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "75000.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-08-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "110000.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-08-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "15000.0",
+"description": "Yoseph wubishet — 20 quintal Soya transport"
+},
+{
+"date": "2025-08-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "93100.0",
+"description": "Merersa — Ventilation existing big chicken house"
+},
+{
+"date": "2025-08-13",
+"category": "Milk sales",
+"type": "income",
+"amount": "280.0",
+"description": "Merersa/Yosef"
+},
+{
+"date": "2025-08-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "91850.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-12",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi — Advance"
+},
+{
+"date": "2025-08-12",
+"category": "Animal feed",
+"type": "expense",
+"amount": "212000.0",
+"description": "Rongi Ethi/Wei Luo — Soya 20 quintaal"
+},
+{
+"date": "2025-08-11",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "Misgana — 10liter m8lk"
+},
+{
+"date": "2025-08-11",
+"category": "Egg sales",
+"type": "income",
+"amount": "3360.0",
+"description": "Misgana — 240*14"
+},
+{
+"date": "2025-08-11",
+"category": null,
+"type": "income",
+"amount": "4060.0",
+"description": "Misgana"
+},
+{
+"date": "2025-08-11",
+"category": "Labor loading unloading",
+"type": "expense",
+"amount": "2100.0",
+"description": "Merersa — Bokolo 5934"
+},
+{
+"date": "2025-08-11",
+"category": "Utility",
+"type": "expense",
+"amount": "13296.2",
+"description": "ELECTRIC — July"
+},
+{
+"date": "2025-08-11",
+"category": "Animal feed",
+"type": "expense",
+"amount": "216175.0",
+"description": "Yasin Ali/ Demis — Bokolo 59.78 *3750 - 8000"
+},
+{
+"date": "2025-08-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "13280.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "224000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-09",
+"category": "Milk sales",
+"type": "income",
+"amount": "31275.0",
+"description": "Merersa — Hamle"
+},
+{
+"date": "2025-08-09",
+"category": "Capital investment",
+"type": "expense",
+"amount": "33516.0",
+"description": "Negassa — Ceramics"
+},
+{
+"date": "2025-08-08",
+"category": "Milk sales",
+"type": "income",
+"amount": "1170.0",
+"description": "Tsion"
+},
+{
+"date": "2025-08-08",
+"category": "Egg sales",
+"type": "income",
+"amount": "50000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-07",
+"category": "Receivable",
+"type": "income",
+"amount": "1000.0",
+"description": "Negasa Dibaba — Nagaasaan Tufe"
+},
+{
+"date": "2025-08-07",
+"category": "Egg sales",
+"type": "income",
+"amount": "42000.0",
+"description": "Lemesa/mererss — 3000 eggs"
+},
+{
+"date": "2025-08-07",
+"category": "Utility",
+"type": "expense",
+"amount": "10000.0",
+"description": "Kalo — CIC Fee at Birhan"
+},
+{
+"date": "2025-08-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "85000.0",
+"description": "Negasa Dibaba — Fagulo"
+},
+{
+"date": "2025-08-05",
+"category": "Sale of layer chicken",
+"type": "income",
+"amount": "10500.0",
+"description": "Merersa — Lukkuu maseente"
+},
+{
+"date": "2025-08-05",
+"category": "Egg sales",
+"type": "income",
+"amount": "102000.0",
+"description": "Fraol Gizo"
+},
+{
+"date": "2025-08-05",
+"category": "Egg sales",
+"type": "income",
+"amount": "840.0",
+"description": "Merersa — 2tiri"
+},
+{
+"date": "2025-08-05",
+"category": "Egg sales",
+"type": "income",
+"amount": "150000.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-08-05",
+"category": "Salary",
+"type": "expense",
+"amount": "81700.0",
+"description": "Merersa — Salary with tax - Sene"
+},
+{
+"date": "2025-08-05",
+"category": "Animal feed",
+"type": "expense",
+"amount": "5000.0",
+"description": "Merersa — Geleba"
+},
+{
+"date": "2025-08-05",
+"category": "Capital investment",
+"type": "expense",
+"amount": "16000.0",
+"description": "Merersa — Garagan"
+},
+{
+"date": "2025-08-05",
+"category": null,
+"type": "expense",
+"amount": "21000.0",
+"description": "Merersa"
+},
+{
+"date": "2025-08-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "1260.0",
+"description": "Misgana — 90*14"
+},
+{
+"date": "2025-08-04",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "Misgana — 10 liters"
+},
+{
+"date": "2025-08-04",
+"category": null,
+"type": "income",
+"amount": "1960.0",
+"description": "Misgana"
+},
+{
+"date": "2025-08-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "14500.0",
+"description": "Meymuna via Misgana — 1000eggs *14.5"
+},
+{
+"date": "2025-08-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "900.0",
+"description": "Tegegn Nugusi — Defect eggs"
+},
+{
+"date": "2025-08-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "126000.0",
+"description": "Tegegn Nugusi — Healthy eggs"
+},
+{
+"date": "2025-08-02",
+"category": null,
+"type": "income",
+"amount": "126900.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-08-02",
+"category": "Milk sales",
+"type": "income",
+"amount": "350.0",
+"description": "Negasa Dibaba — 5 liter by negasa"
+},
+{
+"date": "2025-08-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "33600.0",
+"description": "Negasa Dibaba — Lalise/negasa"
+},
+{
+"date": "2025-08-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "16200.0",
+"description": "Negasa Dibaba — Lensa"
+},
+{
+"date": "2025-08-02",
+"category": null,
+"type": "income",
+"amount": "50150.0",
+"description": "Negasa Dibaba"
+},
+{
+"date": "2025-08-02",
+"category": "Animal feed",
+"type": "expense",
+"amount": "118000.0",
+"description": "Yasin Ali/ Demis — Bokolo 150quintal final"
+},
+{
+"date": "2025-07-31",
+"category": "Egg sales",
+"type": "income",
+"amount": "25200.0",
+"description": "Lelise Geneti"
+},
+{
+"date": "2025-07-30",
+"category": "Utility",
+"type": "expense",
+"amount": "27200.0",
+"description": "Merersa — Avocado, ampul, transport and labor"
+},
+{
+"date": "2025-07-29",
+"category": "Egg sales",
+"type": "income",
+"amount": "900.0",
+"description": "Diriba Admasu — Defect eggs"
+},
+{
+"date": "2025-07-29",
+"category": "Egg sales",
+"type": "income",
+"amount": "121800.0",
+"description": "Diriba Admasu — Healthy eggs"
+},
+{
+"date": "2025-07-29",
+"category": null,
+"type": "income",
+"amount": "122700.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-07-29",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Yasin Ali/ Demis — Bokolo 3"
+},
+{
+"date": "2025-07-29",
+"category": "Animal feed",
+"type": "expense",
+"amount": "100000.0",
+"description": "Yasin Ali/ Demis — Bokolo 3"
+},
+{
+"date": "2025-07-29",
+"category": "Animal feed",
+"type": "expense",
+"amount": "70000.0",
+"description": "Negasa Dibaba — Daminatint"
+},
+{
+"date": "2025-07-29",
+"category": "Capital investment",
+"type": "expense",
+"amount": "29000.0",
+"description": "Ibsa Degefa — Door final statement"
+},
+{
+"date": "2025-07-26",
+"category": "Egg sales",
+"type": "income",
+"amount": "213780.0",
+"description": "Tegegn Nugusi — Egg sales *14"
+},
+{
+"date": "2025-07-26",
+"category": "Egg sales",
+"type": "income",
+"amount": "720.0",
+"description": "Merersa — Broken eggs"
+},
+{
+"date": "2025-07-26",
+"category": "Milk sales",
+"type": "income",
+"amount": "2665.0",
+"description": "Tsion — 15days"
+},
+{
+"date": "2025-07-26",
+"category": "Milk sales",
+"type": "income",
+"amount": "18900.0",
+"description": "Merersa — 15days"
+},
+{
+"date": "2025-07-26",
+"category": "Egg sales",
+"type": "income",
+"amount": "480.0",
+"description": "Merersa — 30 eggs"
+},
+{
+"date": "2025-07-26",
+"category": "Daily labour",
+"type": "expense",
+"amount": "5800.0",
+"description": "Merersa — Unloading (maize &frushka & garaganti"
+},
+{
+"date": "2025-07-26",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6000.0",
+"description": "Hurgesa — Frushka Transport fee"
+},
+{
+"date": "2025-07-26",
+"category": "Animal feed",
+"type": "expense",
+"amount": "172500.0",
+"description": "Tolera — Frushka"
+},
+{
+"date": "2025-07-26",
+"category": "Capital investment",
+"type": "expense",
+"amount": "26050.0",
+"description": "Ibsa Degefa — Office glass"
+},
+{
+"date": "2025-07-25",
+"category": "Egg sales",
+"type": "income",
+"amount": "213585.0",
+"description": "Diriba Admasu"
+},
+{
+"date": "2025-07-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "12000.0",
+"description": "Merersa — 3quintal Frushka"
+},
+{
+"date": "2025-07-25",
+"category": "Animal feed",
+"type": "expense",
+"amount": "60181.25",
+"description": "Dawit Yakob — Concentrated Puremix"
+},
+{
+"date": "2025-07-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "150000.0",
+"description": "Yasin Ali/ Demis — Bokolo payment 2"
+},
+{
+"date": "2025-07-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "370.0",
+"description": "Merersa/lemesa — Sales from Beoken eggs"
+},
+{
+"date": "2025-07-23",
+"category": "Egg sales",
+"type": "income",
+"amount": "3255.0",
+"description": "Misganad — 7 tray eggs* 15.50"
+},
+{
+"date": "2025-07-23",
+"category": "Milk sales",
+"type": "income",
+"amount": "1330.0",
+"description": "Misganad — 19lit *70"
+},
+{
+"date": "2025-07-23",
+"category": null,
+"type": "income",
+"amount": "4585.0",
+"description": "Misganad"
+},
+{
+"date": "2025-07-22",
+"category": "Egg sales",
+"type": "income",
+"amount": "31400.0",
+"description": "Lemesa/mererss"
+},
+{
+"date": "2025-07-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "18600.0",
+"description": "Tirunesh Megersa — Egg sales"
+},
+{
+"date": "2025-07-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "465.0",
+"description": "Tolera — 1tray egg *15.50"
+},
+{
+"date": "2025-07-20",
+"category": "Milk sales",
+"type": "income",
+"amount": "980.0",
+"description": "Tolera — 14 liters"
+},
+{
+"date": "2025-07-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "1395.0",
+"description": "Negasa Dibaba — Egg"
+},
+{
+"date": "2025-07-20",
+"category": "Capital investment",
+"type": "expense",
+"amount": "14000.0",
+"description": "Garagaantii — Garagaantii"
+},
+{
+"date": "2025-07-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "1350.0",
+"description": "Merersa — Hanqaaquu cacabaa"
+},
+{
+"date": "2025-07-19",
+"category": "Egg sales",
+"type": "income",
+"amount": "9300.0",
+"description": "Lalise/Negasa"
+},
+{
+"date": "2025-07-18",
+"category": "Egg sales",
+"type": "income",
+"amount": "15500.0",
+"description": "Meymuna — 1000 eggs * 15.50"
+},
+{
+"date": "2025-07-18",
+"category": "Egg sales",
+"type": "income",
+"amount": "60145.0",
+"description": "Demis — Cbe"
+},
+{
+"date": "2025-07-18",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi — CBE"
+},
+{
+"date": "2025-07-18",
+"category": "Salary",
+"type": "expense",
+"amount": "6000.0",
+"description": "Wondowossen — Professional service fee"
+},
+{
+"date": "2025-07-18",
+"category": "Salary",
+"type": "expense",
+"amount": "25000.0",
+"description": "Tolera s — For salary tax"
+},
+{
+"date": "2025-07-17",
+"category": "Salary",
+"type": "expense",
+"amount": "6000.0",
+"description": "Eng. Sileshi — Penality on employees tax"
+},
+{
+"date": "2025-07-17",
+"category": "Salary",
+"type": "expense",
+"amount": "36000.0",
+"description": "Eng. Sileshi — Tax on salary for 3 months"
+},
+{
+"date": "2025-07-16",
+"category": "Animal feed",
+"type": "expense",
+"amount": "10000.0",
+"description": "Abdulaziz/tole — Meds/Vaccs"
+},
+{
+"date": "2025-07-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "20900.0",
+"description": "Tegegn Nugusi — On CBE"
+},
+{
+"date": "2025-07-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi"
+},
+{
+"date": "2025-07-15",
+"category": "Animal feed",
+"type": "expense",
+"amount": "200000.0",
+"description": "Yasin Ali/Demis — Boqolo 200000 of 568000 for 149.47 quintal"
+},
+{
+"date": "2025-07-15",
+"category": "Animal feed",
+"type": "expense",
+"amount": "70000.0",
+"description": "Negasa Dibaba — Damina axint"
+},
+{
+"date": "2025-07-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "55310.0",
+"description": "Tegegn Nugusi — Additional"
+},
+{
+"date": "2025-07-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi — Advance"
+},
+{
+"date": "2025-07-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "30000.0",
+"description": "Ibsa Degefa — Office Construction"
+},
+{
+"date": "2025-07-14",
+"category": "Utility",
+"type": "expense",
+"amount": "4984.54",
+"description": "EEU — Electric Bill"
+},
+{
+"date": "2025-07-13",
+"category": "Egg sales",
+"type": "income",
+"amount": "19800.0",
+"description": "Negasa for Lensa — Waited"
+},
+{
+"date": "2025-07-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "5915.0",
+"description": "Tsion — 15 days"
+},
+{
+"date": "2025-07-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "29365.0",
+"description": "merersa — 15days"
+},
+{
+"date": "2025-07-10",
+"category": "Daily labour",
+"type": "expense",
+"amount": "49500.0",
+"description": "To Tolera/Zerihun — Foe construction"
+},
+{
+"date": "2025-07-07",
+"category": "Egg sales",
+"type": "income",
+"amount": "4165.0",
+"description": "Tegegn Nugusi — On CBE"
+},
+{
+"date": "2025-07-07",
+"category": "Egg sales",
+"type": "income",
+"amount": "80000.0",
+"description": "Tegegn Nugusi — On Awash"
+},
+{
+"date": "2025-07-07",
+"category": "Salary",
+"type": "expense",
+"amount": "67739.0",
+"description": "Merersa — SENE"
+},
+{
+"date": "2025-07-07",
+"category": "Animal feed",
+"type": "expense",
+"amount": "8000.0",
+"description": "Wondowesen/Tole — Meds"
+},
+{
+"date": "2025-07-06",
+"category": "Egg sales",
+"type": "income",
+"amount": "2325.0",
+"description": "150 eggs * 15.5"
+},
+{
+"date": "2025-07-06",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "10 liter .ill"
+},
+{
+"date": "2025-07-05",
+"category": "Utility",
+"type": "expense",
+"amount": "3200.0",
+"description": "Tolera — Mach8nery Maintenance"
+},
+{
+"date": "2025-07-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "149235.0",
+"description": "Tegegn Nugusi — Egg sales on Awash"
+},
+{
+"date": "2025-07-04",
+"category": "Animal feed",
+"type": "expense",
+"amount": "1500.0",
+"description": "Merersa — Jabbiif"
+},
+{
+"date": "2025-07-04",
+"category": "Utility",
+"type": "expense",
+"amount": "13090.0",
+"description": "Merersa — Various"
+},
+{
+"date": "2025-07-04",
+"category": "Animal feed",
+"type": "expense",
+"amount": "17100.0",
+"description": "Abdu/tol — Meds"
+},
+{
+"date": "2025-07-03",
+"category": "Animal feed",
+"type": "expense",
+"amount": "17400.0",
+"description": "De Sisay/Tolera — To Tolera — Meds"
+},
+{
+"date": "2025-07-02",
+"category": "Egg sales",
+"type": "income",
+"amount": "16000.0",
+"description": "Meymuna — 1000egss *16"
+},
+{
+"date": "2025-07-02",
+"category": "Animal feed",
+"type": "expense",
+"amount": "15000.0",
+"description": "Yosef — 30 quintal soya transprt"
+},
+{
+"date": "2025-07-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "3150.0",
+"description": "Merersa — From Merersa"
+},
+{
+"date": "2025-07-01",
+"category": "Egg sales",
+"type": "income",
+"amount": "1800.0",
+"description": "Merersa — From merersa"
+},
+{
+"date": "2025-07-01",
+"category": "Utility",
+"type": "expense",
+"amount": "33040.0",
+"description": "Merersa — Different materials and labor"
+},
+{
+"date": "2025-06-30",
+"category": "Capital injection",
+"type": "income",
+"amount": "100000.0",
+"description": "Tolera — For Soya"
+},
+{
+"date": "2025-06-30",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi — Paid on Awash"
+},
+{
+"date": "2025-06-30",
+"category": "Animal feed",
+"type": "expense",
+"amount": "234000.0",
+"description": "Rongi Ethi/Wei Luo — Soyabean"
+},
+{
+"date": "2025-06-30",
+"category": "Animal feed",
+"type": "expense",
+"amount": "13600.0",
+"description": "Tolera — Different Spices"
+},
+{
+"date": "2025-06-28",
+"category": "Milk sales",
+"type": "income",
+"amount": "630.0",
+"description": "Nathnael/Tolera — (4+5)*70"
+},
+{
+"date": "2025-06-28",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "Misgana — 10lit milk ×70"
+},
+{
+"date": "2025-06-28",
+"category": "Capital investment",
+"type": "expense",
+"amount": "11000.0",
+"description": "Merersa — Ditch Tube and korkoro"
+},
+{
+"date": "2025-06-28",
+"category": "Animal feed",
+"type": "expense",
+"amount": "4800.0",
+"description": "Tolera — VAC — Vaccinatio"
+},
+{
+"date": "2025-06-28",
+"category": "Daily labour",
+"type": "expense",
+"amount": "20000.0",
+"description": "Zerihun — For Zerihun staffs"
+},
+{
+"date": "2025-06-27",
+"category": "Milk sales",
+"type": "income",
+"amount": "7605.0",
+"description": "Tsion — On CBE"
+},
+{
+"date": "2025-06-27",
+"category": "Milk sales",
+"type": "income",
+"amount": "8900.0",
+"description": "Merersa — On CBE"
+},
+{
+"date": "2025-06-27",
+"category": "Egg sales",
+"type": "income",
+"amount": "26100.0",
+"description": "Tirunesh Megersa/Tole — Egg sale on CBE"
+},
+{
+"date": "2025-06-27",
+"category": "Capital investment",
+"type": "expense",
+"amount": "4600.0",
+"description": "Hermella, Tolera — Blower"
+},
+{
+"date": "2025-06-26",
+"category": "Utility",
+"type": "expense",
+"amount": "10000.0",
+"description": "Yenene w — Vaccine for new chicks — Vaccinatio"
+},
+{
+"date": "2025-06-26",
+"category": "Labor loading unloading",
+"type": "expense",
+"amount": "5460.0",
+"description": "Merersa — For Bokolo and water"
+},
+{
+"date": "2025-06-24",
+"category": "Milk sales",
+"type": "income",
+"amount": "12950.0",
+"description": "Guta chala/merersa"
+},
+{
+"date": "2025-06-24",
+"category": "Capital injection",
+"type": "income",
+"amount": "378100.0",
+"description": "Tolera — Capital injection"
+},
+{
+"date": "2025-06-24",
+"category": "Egg sales",
+"type": "income",
+"amount": "126585.0",
+"description": "Tegegn Nugusi — O. Awash"
+},
+{
+"date": "2025-06-24",
+"category": "Utility",
+"type": "expense",
+"amount": "10000.0",
+"description": "Natnael/Tolera — Final - Security Camera"
+},
+{
+"date": "2025-06-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "378100.0",
+"description": "100 quintal Maize"
+},
+{
+"date": "2025-06-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "153750.0",
+"description": "Abebe Sisay/Merersa — 50quitan Frushka"
+},
+{
+"date": "2025-06-24",
+"category": "Animal feed",
+"type": "expense",
+"amount": "6800.0",
+"description": "Tolera — Vitamin"
+},
+{
+"date": "2025-06-24",
+"category": "Utility",
+"type": "expense",
+"amount": "21650.0",
+"description": "Merersa — Different materiald"
+},
+{
+"date": "2025-06-23",
+"category": "Capital investment",
+"type": "expense",
+"amount": "53000.0",
+"description": "Nathnael/Tolera — Security Camera"
+},
+{
+"date": "2025-06-23",
+"category": "Utility",
+"type": "expense",
+"amount": "3000.0",
+"description": "Merersa — Wifi"
+},
+{
+"date": "2025-06-22",
+"category": "Egg sales",
+"type": "income",
+"amount": "13920.0",
+"description": "Negasa Dibaba"
+},
+{
+"date": "2025-06-22",
+"category": "Egg sales",
+"type": "income",
+"amount": "20400.0",
+"description": "Lensa — Receivable settlement"
+},
+{
+"date": "2025-06-22",
+"category": "Egg sales",
+"type": "income",
+"amount": "2880.0",
+"description": "Misgana — 180 eggs"
+},
+{
+"date": "2025-06-22",
+"category": "Milk sales",
+"type": "income",
+"amount": "700.0",
+"description": "Misgana — 10 lit milk"
+},
+{
+"date": "2025-06-22",
+"category": "Utility",
+"type": "expense",
+"amount": "7890.0",
+"description": "Meresa — Blocket, labor"
+},
+{
+"date": "2025-06-21",
+"category": "Animal feed",
+"type": "expense",
+"amount": "30000.0",
+"description": "Merersa — Frushka 10quintal"
+},
+{
+"date": "2025-06-21",
+"category": "Daily labour",
+"type": "expense",
+"amount": "30000.0",
+"description": "Merersa — Zerihun.staffs"
+},
+{
+"date": "2025-06-21",
+"category": "Capital investment",
+"type": "expense",
+"amount": "20000.0",
+"description": "Ibsa Degefa — Door final payment"
+},
+{
+"date": "2025-06-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "85000.0",
+"description": "Tegenu N — Awash"
+},
+{
+"date": "2025-06-20",
+"category": "Egg sales",
+"type": "income",
+"amount": "100000.0",
+"description": "Tegegn Nugusi — On Awash"
+},
+{
+"date": "2025-06-20",
+"category": "Capital investment",
+"type": "expense",
+"amount": "22576.0",
+"description": "Water — Lakkooftuu Bishaanii"
+},
+{
+"date": "2025-06-20",
+"category": "Capital investment",
+"type": "expense",
+"amount": "30000.0",
+"description": "Merersa — Siminto"
+},
+{
+"date": "2025-06-18",
+"category": "Capital investment",
+"type": "expense",
+"amount": "25000.0",
+"description": "Merersa — Construction Material"
+},
+{
+"date": "2025-06-17",
+"category": "Daily labour",
+"type": "expense",
+"amount": "4000.0",
+"description": "Merersa — Bokolo - unloading 100quital"
+},
+{
+"date": "2025-06-16",
+"category": "Egg sales",
+"type": "income",
+"amount": "58000.0",
+"description": "Tolera — Aged Receivable settlement"
+},
+{
+"date": "2025-06-16",
+"category": "Egg sales",
+"type": "income",
+"amount": "17000.0",
+"description": "Meymuna — 1000 eggs sales by Misgana"
+},
+{
+"date": "2025-06-16",
+"category": "Utility",
+"type": "expense",
+"amount": "17900.0",
+"description": "Abdulaziz — Meds by Tolera — Meds"
+},
+{
+"date": "2025-06-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "10200.0",
+"description": "Negasa Dibaba — 600 eggs"
+},
+{
+"date": "2025-06-15",
+"category": "Milk sales",
+"type": "income",
+"amount": "210.0",
+"description": "Negasa Dibaba — 3 liters milk"
+},
+{
+"date": "2025-06-15",
+"category": "Egg sales",
+"type": "income",
+"amount": "2040.0",
+"description": "Misgana — 120 eggs"
+},
+{
+"date": "2025-06-15",
+"category": "Milk sales",
+"type": "income",
+"amount": "280.0",
+"description": "Misgana — 4 liter milk"
+},
+{
+"date": "2025-06-15",
+"category": "Milk sales",
+"type": "income",
+"amount": "350.0",
+"description": "Tolera — 5 liter milk"
+},
+{
+"date": "2025-06-15",
+"category": "Labor loading unloading",
+"type": "expense",
+"amount": "40000.0",
+"description": "Merersa — Construction labor"
+},
+{
+"date": "2025-06-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "23430.0",
+"description": "Tigist — By Tole"
+},
+{
+"date": "2025-06-14",
+"category": "Receivable",
+"type": "income",
+"amount": "500.0",
+"description": "Negasa Dibaba — Mels"
+},
+{
+"date": "2025-06-14",
+"category": "Egg sales",
+"type": "income",
+"amount": "105000.0",
+"description": "Tegegn Nugusi — On Awash bank"
+},
+{
+"date": "2025-06-14",
+"category": "Utility",
+"type": "expense",
+"amount": "4000.0",
+"description": "Bedilu — Transport"
+},
+{
+"date": "2025-06-14",
+"category": "Animal feed",
+"type": "expense",
+"amount": "19450.0",
+"description": "Dawit Yakob — Premix and disnfectant"
+},
+{
+"date": "2025-06-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "20000.0",
+"description": "Ibsa Degefa — Door second payment"
+},
+{
+"date": "2025-06-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "74090.0",
+"description": "Merersa — Construction Marerials"
+},
+{
+"date": "2025-06-14",
+"category": "Capital investment",
+"type": "expense",
+"amount": "84900.0",
+"description": "Negasa Dibaba — Ega Qorqoro and Roto"
+},
+{
+"date": "2025-06-13",
+"category": "Egg sales",
+"type": "income",
+"amount": "150000.0",
+"description": "Tegegn Nugusi — On Awash Bank"
+},
+{
+"date": "2025-06-13",
+"category": "Utility",
+"type": "expense",
+"amount": "3772.49",
+"description": "EEP — Electric Bill for month of may"
+},
+{
+"date": "2025-06-13",
+"category": "Capital investment",
+"type": "expense",
+"amount": "50000.0",
+"description": "Yenene — Chicken advance 3"
+},
+{
+"date": "2025-06-13",
+"category": "Capital investment",
+"type": "expense",
+"amount": "150000.0",
+"description": "Yenene — Chicken advance 2"
+},
+{
+"date": "2025-06-13",
+"category": "Capital investment",
+"type": "expense",
+"amount": "9525.0",
+"description": "Merersa — Construction material"
+},
+{
+"date": "2025-06-13",
+"category": "Animal feed",
+"type": "expense",
+"amount": "70000.0",
+"description": "Negasa Dibaba — Damina atint 10 quitanl"
+},
+{
+"date": "2025-06-12",
+"category": "Milk sales",
+"type": "income",
+"amount": "13617.0",
+"description": "Merersa — 15day mill sales 2"
+},
+{
+"date": "2025-06-12",
+"category": "Receivable",
+"type": "income",
+"amount": "300000.0",
+"description": "Tolera — Receivable from Tolera (personal loan)"
+},
+{
+"date": "2025-06-12",
+"category": "Capital investment",
+"type": "expense",
+"amount": "317000.0",
+"description": "Yasin Ali/ Demis — Payment to 9935kg maize — Feed"
+},
+{
+"date": "2025-06-11",
+"category": "Egg sales",
+"type": "income",
+"amount": "92000.0",
+"description": "Merersa — Received in cash by Merersa"
+},
+{
+"date": "2025-06-11",
+"category": "Egg sales",
+"type": "income",
+"amount": "55176.0",
+"description": "Nesru Chimisa — From BoA"
+},
+{
+"date": "2025-06-11",
+"category": "Egg sales",
+"type": "income",
+"amount": "10000.0",
+"description": "Nasru chimisa — Additional"
+},
+{
+"date": "2025-06-11",
+"category": "Egg sales",
+"type": "income",
+"amount": "107000.0",
+"description": "Nesru Chimiss — Additional payment of 10k adv"
+},
+{
+"date": "2025-06-11",
+"category": "Capital investment",
+"type": "expense",
+"amount": "39600.0",
+"description": "Tolera — Purchase of materials from mercato"
+},
+{
+"date": "2025-06-11",
+"category": "Capital investment",
+"type": "expense",
+"amount": "85000.0",
+"description": "Merersa — To cover various investment costs"
+},
+{
+"date": "2025-06-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "10000.0",
+"description": "Nesru Chimisa — Advance"
+},
+{
+"date": "2025-06-10",
+"category": "Egg sales",
+"type": "income",
+"amount": "18000.0",
+"description": "Biruk — Long standing receivable settlement"
+},
+{
+"date": "2025-06-10",
+"category": "Milk sales",
+"type": "income",
+"amount": "9035.0",
+"description": "Tsion — 15days payment"
+},
+{
+"date": "2025-06-09",
+"category": "Egg sales",
+"type": "income",
+"amount": "210000.0",
+"description": "Merersa — 12000 wit 17.50"
+},
+{
+"date": "2025-06-09",
+"category": "Capital investment",
+"type": "expense",
+"amount": "50000.0",
+"description": "Merersa — Electric wire and Ashewa for new warehouse"
+},
+{
+"date": "2025-06-09",
+"category": "Salary",
+"type": "expense",
+"amount": "64528.4",
+"description": "Merersa — Salary for Month of May"
+},
+{
+"date": "2025-06-06",
+"category": "Egg sales",
+"type": "income",
+"amount": "11400.0",
+"description": "Negasa Dibaba — To CBE"
+},
+{
+"date": "2025-06-06",
+"category": "Capital investment",
+"type": "expense",
+"amount": "50000.0",
+"description": "Ibsa Degefa — Advance payment for chickenhouse door — Shelter"
+},
+{
+"date": "2025-06-06",
+"category": "Capital investment",
+"type": "expense",
+"amount": "21000.0",
+"description": "Merersa — Purchase of water materials"
+},
+{
+"date": "2025-06-05",
+"category": "Capital investment",
+"type": "expense",
+"amount": "18000.0",
+"description": "Bereket B — Wofco maintenance — Maintenance"
+},
+{
+"date": "2025-06-05",
+"category": "Capital investment",
+"type": "expense",
+"amount": "200000.0",
+"description": "Yenene — Advance payment for 3k 🐔"
+},
+{
+"date": "2025-06-05",
+"category": "Capital investment",
+"type": "expense",
+"amount": "80000.0",
+"description": "Merersa — And vaccine"
+},
+{
+"date": "2025-06-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "92400.0",
+"description": "Nigus Abebe — On CBE"
+},
+{
+"date": "2025-06-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "50000.0",
+"description": "Nigus Abebe — On CBE — Advance"
+},
+{
+"date": "2025-06-04",
+"category": "Egg sales",
+"type": "income",
+"amount": "214000.0",
+"description": "Nigus Abebe — On Wash"
+}
+]

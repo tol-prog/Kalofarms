@@ -1,0 +1,22 @@
+[
+  { "name": "Animal feed", "type": "expense" },
+  { "name": "Capital injection", "type": "income", "description": "Additional capital injection from share holders" },
+  { "name": "Capital investment 1", "type": "expense", "description": "Expense used for capital investments on the farm" },
+  { "name": "Capital investment: Loan (borrowings)", "type": "income" },
+  { "name": "Daily labour", "type": "expense", "description": "Daily labour expense for several tasks on the farm" },
+  { "name": "Egg sales", "type": "income", "description": "Sale of eggs produced on the farm" },
+  { "name": "Fattening feed sales", "type": "income" },
+  { "name": "Labor loading unloading", "type": "expense", "description": "Expense paid for labor for loading and unloading" },
+  { "name": "Layers chicken feed sales", "type": "income" },
+  { "name": "Loan (borrowings): Payable", "type": "income" },
+  { "name": "Milk sales", "type": "income" },
+  { "name": "Milking cow feed sales", "type": "income" },
+  { "name": "Other", "type": "income", "taxLine": "Other" },
+  { "name": "Others", "type": "expense" },
+  { "name": "Payable", "type": "income" },
+  { "name": "Receivable", "type": "income" },
+  { "name": "Salary", "type": "expense", "description": "Monthly Salary" },
+  { "name": "Sale of layer chicken", "type": "income", "description": "Sale of Layer chicken that used to be under production" },
+  { "name": "Sheep sales", "type": "income" },
+  { "name": "Utility", "type": "expense" }
+]

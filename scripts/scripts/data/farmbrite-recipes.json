@@ -1,0 +1,863 @@
+[
+  {
+    "produces_item": "Broiler Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "160.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "42.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "9.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "40.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "6.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "900.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "450.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "450.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "1500.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Broiler chicken 1"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "100.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "56.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "8.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "7.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "3.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "200.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "500.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "50.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "0.066",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Chicken feed concentrate (in house mix)"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "100.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "57.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "20.5",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "7.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "8.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "4.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "3.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "0.2",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "0.05",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "0.066",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "0.3",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Chicken feed concentrate (in house mix) 18/8/2017"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "171.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "54.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "24.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "13.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "750.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "900.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "150.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "200.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Chicken recipe 17-20 may"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "171.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "54.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "24.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "600.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "160.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "210.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "1500.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Generic layers"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "172.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "54.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "24.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "750.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "1.2",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "150.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "210.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "June 22 chicken feed"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "162.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "48.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "27.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "1.5",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "600.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "300.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "160.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Layer feed 01"
+  },
+  {
+    "produces_item": "Layer Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "150.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "35.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Rice Bran",
+        "amount": "25.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "27.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "300.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "160.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Normal",
+        "amount": "1500.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Salt",
+        "amount": "600.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "New adisu rice formula"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "100.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "14.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "60.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "20.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "3.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "2.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "1.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Cow feed may 17-20"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "250.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "30.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "158.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "45.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "12.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "4.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "1.5",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Cow recipe june 09"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "186.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "48.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "6.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Generic cow"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "173.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Shiro Geleba",
+        "amount": "21.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "43.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "6.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Milking cow 01"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "189.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "27.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "15.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "9.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Shiro Geleba",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Milking cow 02 adisu"
+  },
+  {
+    "produces_item": "Milking Cow Feed Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "170.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "22.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "10.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Shiro Geleba",
+        "amount": "17.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Rice Bran",
+        "amount": "34.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "5.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "New adisu rice formula"
+  },
+  {
+    "produces_item": "Calf Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "39.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "170.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "36.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "29.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Shiro Geleba",
+        "amount": "20.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "3.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Calf 001"
+  },
+  {
+    "produces_item": "Fattening Cow Concentrate",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "45.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "145.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Rice Bran",
+        "amount": "30.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "35.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "18.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "6.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "3.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Rice Bran",
+        "amount": "17.0",
+        "unit": "kilograms"
+      }
+    ],
+    "recipe_name": "Adisu rice june 4"
+  },
+  {
+    "produces_item": "Starter Chicken Feed",
+    "makes_amount": "300.0",
+    "makes_unit": "kilograms",
+    "ingredients": [
+      {
+        "name": "Maize (Ethiopian Maize)",
+        "amount": "164.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Frushka",
+        "amount": "60.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nug Fagulo",
+        "amount": "24.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Nora - CaCo3",
+        "amount": "12.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Akuri Atar",
+        "amount": "24.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Dam ina Atint",
+        "amount": "13.0",
+        "unit": "kilograms"
+      },
+      {
+        "name": "Salt",
+        "amount": "400.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Laysen",
+        "amount": "150.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Premix - Mitihon",
+        "amount": "90.0",
+        "unit": "grams"
+      },
+      {
+        "name": "Small Chicks Premix",
+        "amount": "1500.0",
+        "unit": "grams"
+      }
+    ],
+    "recipe_name": "Grower chicks"
+  }
+]
