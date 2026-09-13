@@ -25,6 +25,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Equipment", href: "/resources/equipment" },
       { label: "Warehouses", href: "/resources/warehouses" },
       { label: "Inventory", href: "/resources/inventory" },
+      { label: "Feed Types", href: "/resources/feed-types" },
     ],
   },
   {
