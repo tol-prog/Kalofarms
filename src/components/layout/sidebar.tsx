@@ -14,9 +14,9 @@ import {
   CloudSun,
   FileText,
   ChevronDown,
-  Leaf,
   type LucideIcon,
 } from "lucide-react";
+import { KALO_LOGO_DATA_URL } from "@/lib/logo";
 import { NAV_ITEMS } from "./nav-config";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -48,9 +48,10 @@ export function Sidebar() {
       style={{ background: "var(--color-sidebar-bg)", borderColor: "var(--color-sidebar-border)" }}
     >
       <div className="flex items-center gap-2 px-5 h-16 border-b" style={{ borderColor: "var(--color-sidebar-border)" }}>
-        <Leaf className="text-[--color-primary]" size={22} />
-        <span className="font-semibold text-lg tracking-tight" style={{ color: "var(--color-sidebar-text)" }}>
-          Kalo Farm
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={KALO_LOGO_DATA_URL} alt="Kalo Farms" className="shrink-0 h-6 w-auto" />
+        <span className="font-semibold text-lg tracking-tight truncate" style={{ color: "var(--color-sidebar-text)" }}>
+          Kalo Farms
         </span>
       </div>
       <nav className="flex-1 overflow-y-auto py-3 px-2">

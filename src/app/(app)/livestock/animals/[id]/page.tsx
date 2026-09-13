@@ -6,12 +6,32 @@ import { PageHeader } from "@/components/ui/page-header";
 import { Badge, statusVariant } from "@/components/ui/badge";
 import { formatDate, formatNumber } from "@/lib/format";
 import { recordActivity, deleteLivestock } from "@/lib/actions/livestock-actions";
+import { RecordActivityForm } from "./record-activity-form";
 import { Pencil, Trash2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export default async function AnimalDetailPage({ params }: { params: Promise<{ id: string }> }) {
+const VALID_TYPES = [
+  "note",
+  "change_count",
+  "harvest",
+  "weight",
+  "feeding",
+  "treatment",
+  "wellness",
+  "birth",
+] as const;
+
+export default async function AnimalDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ type?: string }>;
+}) {
   const { id } = await params;
+  const { type } = await searchParams;
+  const defaultType = (VALID_TYPES as readonly string[]).includes(type ?? "") ? (type as (typeof VALID_TYPES)[number]) : "note";
 
   const [animal] = await db.select().from(schema.livestock).where(eq(schema.livestock.id, id)).limit(1);
   if (!animal) notFound();
@@ -81,62 +101,9 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
             )}
           </div>
 
-          <div className="kf-card p-5">
+          <div className="kf-card p-5" id="record-activity">
             <h2 className="text-sm font-semibold mb-3">Record Activity</h2>
-            <form action={boundRecordActivity} className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="kf-label">Type</label>
-                  <select name="type" className="kf-input" defaultValue="note">
-                    <option value="note">Note</option>
-                    <option value="change_count">Change Count / Deceased</option>
-                    <option value="harvest">Harvest (eggs/milk/meat)</option>
-                    <option value="weight">Weigh-in</option>
-                    <option value="feeding">Feeding</option>
-                    <option value="treatment">Treatment</option>
-                    <option value="wellness">Wellness Check</option>
-                    <option value="birth">Birth</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="kf-label">Date</label>
-                  <input type="date" name="date" className="kf-input" defaultValue={new Date().toISOString().slice(0, 10)} />
-                </div>
-                <div>
-                  <label className="kf-label">Deceased Count</label>
-                  <input type="number" name="deceasedCount" min={0} className="kf-input" />
-                </div>
-                <div>
-                  <label className="kf-label">New Set Count (override)</label>
-                  <input type="number" name="newSetCount" min={0} className="kf-input" />
-                </div>
-                <div>
-                  <label className="kf-label">Yield Amount</label>
-                  <input type="number" step="0.01" name="yieldAmount" className="kf-input" />
-                </div>
-                <div>
-                  <label className="kf-label">Yield Unit</label>
-                  <input type="text" name="yieldUnit" placeholder="eggs, liters, kg" className="kf-input" />
-                </div>
-                <div>
-                  <label className="kf-label">Weight (kg)</label>
-                  <input type="number" step="0.01" name="weight" className="kf-input" />
-                </div>
-                <div>
-                  <label className="kf-label">Treatment Name</label>
-                  <input type="text" name="treatmentName" className="kf-input" />
-                </div>
-              </div>
-              <div>
-                <label className="kf-label">Notes</label>
-                <textarea name="notes" className="kf-input" rows={2} />
-              </div>
-              <div className="flex justify-end">
-                <button type="submit" className="kf-btn-primary">
-                  Save Activity
-                </button>
-              </div>
-            </form>
+            <RecordActivityForm action={boundRecordActivity} defaultType={defaultType} />
           </div>
         </div>
 
@@ -151,13 +118,23 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
                   <p className="text-xs text-gray-400">{formatDate(a.date)}</p>
                   <p className="font-medium capitalize">{a.type.replace("_", " ")}</p>
                   {a.deceasedCount ? <p className="text-gray-600">{a.deceasedCount} deceased</p> : null}
-                  {a.yieldAmount ? (
+                  {a.regularEggs || a.oversizedEggs || a.brokenEggs ? (
+                    <p className="text-gray-600">
+                      {formatNumber(a.regularEggs ?? 0)} regular &middot; {formatNumber(a.oversizedEggs ?? 0)} oversized &middot;{" "}
+                      <span style={{ color: "var(--color-danger)" }}>{formatNumber(a.brokenEggs ?? 0)} broken</span>
+                    </p>
+                  ) : a.yieldAmount ? (
                     <p className="text-gray-600">
                       Yield {a.yieldAmount} {a.yieldUnit}
                     </p>
                   ) : null}
                   {a.weight ? <p className="text-gray-600">Weight {a.weight} kg</p> : null}
-                  {a.treatmentName ? <p className="text-gray-600">{a.treatmentName}</p> : null}
+                  {a.treatmentName ? (
+                    <p className="text-gray-600">
+                      {a.treatmentName}
+                      {a.withdrawalUntil ? ` · withdrawal until ${formatDate(a.withdrawalUntil)}` : ""}
+                    </p>
+                  ) : null}
                   {a.notes ? <p className="text-gray-500 italic">{a.notes}</p> : null}
                 </li>
               ))}

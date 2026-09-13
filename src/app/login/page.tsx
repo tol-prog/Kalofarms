@@ -1,5 +1,5 @@
 import { LoginForm } from "./login-form";
-import { Leaf } from "lucide-react";
+import { KALO_LOGO_DATA_URL } from "@/lib/logo";
 
 export default async function LoginPage({
   searchParams,
@@ -11,9 +11,10 @@ export default async function LoginPage({
   return (
     <div className="min-h-screen flex items-center justify-center bg-[--color-app-bg] px-4">
       <div className="w-full max-w-sm">
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <Leaf className="text-[--color-primary]" size={28} />
-          <span className="text-2xl font-semibold tracking-tight">Kalo Farm</span>
+        <div className="flex flex-col items-center justify-center gap-1 mb-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={KALO_LOGO_DATA_URL} alt="Kalo Farms" className="h-12 w-auto" />
+          <span className="text-2xl font-semibold tracking-tight">Kalo Farms</span>
         </div>
         <div className="kf-card p-6 shadow-sm">
           <h1 className="text-lg font-semibold mb-1">Sign in</h1>

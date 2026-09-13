@@ -93,14 +93,25 @@ export async function recordActivity(livestockId: string, formData: FormData) {
   const deceasedCount = num(formData, "deceasedCount");
   const newSetCount = num(formData, "newSetCount");
 
+  const regularEggs = Number(num(formData, "regularEggs") ?? "0") || 0;
+  const oversizedEggs = Number(num(formData, "oversizedEggs") ?? "0") || 0;
+  const brokenEggs = Number(num(formData, "brokenEggs") ?? "0") || 0;
+  const hasEggBreakdown = regularEggs > 0 || oversizedEggs > 0 || brokenEggs > 0;
+  const totalEggs = regularEggs + oversizedEggs + brokenEggs;
+
   await db.insert(schema.livestockActivity).values({
     livestockId,
     date: str(formData, "date") ?? new Date().toISOString().slice(0, 10),
     type: type ?? "note",
     deceasedCount: deceasedCount ? Number(deceasedCount) : null,
     newSetCount: newSetCount ? Number(newSetCount) : null,
-    yieldAmount: num(formData, "yieldAmount"),
-    yieldUnit: str(formData, "yieldUnit"),
+    regularEggs: hasEggBreakdown ? regularEggs : null,
+    oversizedEggs: hasEggBreakdown ? oversizedEggs : null,
+    brokenEggs: hasEggBreakdown ? brokenEggs : null,
+    // Keep the generic yield fields in sync so existing summaries (dashboard,
+    // reports) that read yieldAmount/yieldUnit keep working for egg harvests too.
+    yieldAmount: hasEggBreakdown ? String(totalEggs) : num(formData, "yieldAmount"),
+    yieldUnit: hasEggBreakdown ? "eggs" : str(formData, "yieldUnit"),
     feedAmount: num(formData, "feedAmount"),
     feedUnit: str(formData, "feedUnit"),
     weight: num(formData, "weight"),
@@ -131,7 +142,7 @@ export async function recordActivity(livestockId: string, formData: FormData) {
   }
 
   revalidatePath(`/livestock/animals/${livestockId}`);
-  redirect(`/livestock/animals/${livestockId}`);
+  redirect(`/livestock/animals/${livestockId}#record-activity`);
 }
 
 // --- Livestock groups -------------------------------------------------

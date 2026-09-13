@@ -99,6 +99,11 @@ export const livestockActivity = pgTable("livestock_activity", {
   newSetCount: integer("new_set_count"),
   yieldAmount: numeric("yield_amount", { precision: 12, scale: 2 }),
   yieldUnit: text("yield_unit"),
+  // Egg-quality breakdown for poultry harvests (Farmbrite-style). When these
+  // are filled in, yieldAmount/yieldUnit above are derived as their sum + "eggs".
+  regularEggs: integer("regular_eggs"),
+  oversizedEggs: integer("oversized_eggs"),
+  brokenEggs: integer("broken_eggs"),
   feedInventoryItemId: uuid("feed_inventory_item_id"),
   feedAmount: numeric("feed_amount", { precision: 12, scale: 2 }),
   feedUnit: text("feed_unit"),
