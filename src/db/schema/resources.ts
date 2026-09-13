@@ -64,6 +64,10 @@ export const inventoryItems = pgTable("inventory_items", {
   estValuePerUnit: numeric("est_value_per_unit", { precision: 14, scale: 2 }),
   reorderThreshold: numeric("reorder_threshold", { precision: 14, scale: 2 }),
   avgDailyUsage: numeric("avg_daily_usage", { precision: 14, scale: 2 }),
+  // Weighted-average price paid per unit, recalculated on every stock
+  // receipt (unaffected by consumption/removal) — see resources-actions.ts.
+  // Feeds the recipe cost-per-quintal calculator on the Recipes page.
+  avgUnitCost: numeric("avg_unit_cost", { precision: 14, scale: 4 }),
   warehouseId: uuid("warehouse_id").references(() => warehouses.id, {
     onDelete: "set null",
   }),
@@ -89,6 +93,9 @@ export const inventoryTransactions = pgTable("inventory_transactions", {
   type: inventoryTransactionTypeEnum("type").notNull(),
   amount: numeric("amount", { precision: 14, scale: 2 }).notNull(),
   resultingQuantity: numeric("resulting_quantity", { precision: 14, scale: 2 }),
+  // Price paid per unit for this specific receipt — prices fluctuate, so
+  // this is asked for on every "add" and rolled into the item's avgUnitCost.
+  unitCost: numeric("unit_cost", { precision: 14, scale: 4 }),
   notes: text("notes"),
   createdByUserId: uuid("created_by_user_id"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),

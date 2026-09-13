@@ -22,6 +22,13 @@
       "when": 1789289152056,
       "tag": "0002_add_password_reset_and_activity_log",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789292669156,
+      "tag": "0003_add_inventory_cost_tracking",
+      "breakpoints": true
     }
   ]
 }

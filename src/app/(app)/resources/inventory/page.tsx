@@ -28,13 +28,14 @@ export default async function InventoryPage() {
               <th>Variety</th>
               <th>Category</th>
               <th>Available</th>
-              <th>Est. Value</th>
+              <th>Avg. Cost</th>
+              <th>Stock Value</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center text-gray-400 py-10">
+                <td colSpan={6} className="text-center text-gray-400 py-10">
                   No inventory items yet.
                 </td>
               </tr>
@@ -42,7 +43,8 @@ export default async function InventoryPage() {
             {items.map((item) => {
               const qty = parseFloat(item.quantityAvailable);
               const low = item.reorderThreshold ? qty <= parseFloat(item.reorderThreshold) : false;
-              const estValue = item.estValuePerUnit ? qty * parseFloat(item.estValuePerUnit) : null;
+              const avgCost = item.avgUnitCost ? parseFloat(item.avgUnitCost) : null;
+              const stockValue = avgCost !== null ? qty * avgCost : item.estValuePerUnit ? qty * parseFloat(item.estValuePerUnit) : null;
               return (
                 <tr key={item.id}>
                   <td>
@@ -58,7 +60,8 @@ export default async function InventoryPage() {
                       {formatNumber(qty)} {item.unit}
                     </span>
                   </td>
-                  <td>{estValue !== null ? formatMoney(estValue) : "—"}</td>
+                  <td>{avgCost !== null ? `${formatMoney(avgCost)}/${item.unit}` : "—"}</td>
+                  <td>{stockValue !== null ? formatMoney(stockValue) : "—"}</td>
                 </tr>
               );
             })}

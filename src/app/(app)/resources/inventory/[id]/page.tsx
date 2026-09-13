@@ -61,7 +61,8 @@ export default async function InventoryItemDetailPage({ params }: { params: Prom
               <tr>
                 <th>Warehouse</th>
                 <th>Current</th>
-                <th>Est. Value</th>
+                <th>Avg. Cost</th>
+                <th>Stock Value</th>
               </tr>
             </thead>
             <tbody>
@@ -70,10 +71,13 @@ export default async function InventoryItemDetailPage({ params }: { params: Prom
                 <td>
                   {formatNumber(item.quantityAvailable)} {item.unit}
                 </td>
+                <td>{item.avgUnitCost ? `ETB ${formatNumber(item.avgUnitCost)}/${item.unit}` : "—"}</td>
                 <td>
-                  {item.estValuePerUnit
-                    ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.estValuePerUnit))}`
-                    : "—"}
+                  {item.avgUnitCost
+                    ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.avgUnitCost))}`
+                    : item.estValuePerUnit
+                      ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.estValuePerUnit))}`
+                      : "—"}
                 </td>
               </tr>
             </tbody>
@@ -90,13 +94,14 @@ export default async function InventoryItemDetailPage({ params }: { params: Prom
                   .reverse()
                   .slice(0, 10)
                   .map((t) => (
-                    <li key={t.id} className="flex justify-between">
+                    <li key={t.id} className="flex justify-between gap-2">
                       <span className="capitalize text-gray-600">{t.type.replace("_", " ")}</span>
                       <span className="font-medium">
                         {t.type === "remove" || t.type === "recipe_consume" ? "-" : "+"}
                         {formatNumber(t.amount)} {item.unit}
+                        {t.unitCost && <span className="text-gray-400 font-normal"> @ ETB {formatNumber(t.unitCost)}</span>}
                       </span>
-                      <span className="text-gray-400">{formatDate(t.date)}</span>
+                      <span className="text-gray-400 shrink-0">{formatDate(t.date)}</span>
                     </li>
                   ))}
               </ul>
@@ -118,6 +123,10 @@ export default async function InventoryItemDetailPage({ params }: { params: Prom
             <div>
               <label className="kf-label">Amount ({item.unit})</label>
               <input type="number" step="0.01" name="amount" required className="kf-input" />
+            </div>
+            <div>
+              <label className="kf-label">Price paid per unit (ETB)</label>
+              <input type="number" step="0.01" name="unitCost" className="kf-input" placeholder="Only used for Add" />
             </div>
             <div>
               <label className="kf-label">Notes</label>

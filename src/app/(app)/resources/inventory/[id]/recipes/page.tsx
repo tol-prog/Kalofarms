@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import { db, schema } from "@/db";
 import { eq } from "drizzle-orm";
 import { PageHeader } from "@/components/ui/page-header";
-import { formatNumber } from "@/lib/format";
+import { formatNumber, formatMoney } from "@/lib/format";
 import { makeRecipe } from "@/lib/actions/resources-actions";
+import { toKg, costPerKg, KG_PER_QUINTAL } from "@/lib/units";
 import { Plus } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -20,18 +21,36 @@ export default async function InventoryRecipesPage({ params }: { params: Promise
     .where(eq(schema.inventoryRecipes.producesItemId, id));
 
   const recipesWithIngredients = await Promise.all(
-    recipes.map(async (r) => ({
-      ...r,
-      ingredients: await db
+    recipes.map(async (r) => {
+      const rawIngredients = await db
         .select({
           amount: schema.inventoryRecipeIngredients.amount,
           unit: schema.inventoryRecipeIngredients.unit,
           name: schema.inventoryItems.name,
+          itemUnit: schema.inventoryItems.unit,
+          avgUnitCost: schema.inventoryItems.avgUnitCost,
         })
         .from(schema.inventoryRecipeIngredients)
         .innerJoin(schema.inventoryItems, eq(schema.inventoryItems.id, schema.inventoryRecipeIngredients.ingredientItemId))
-        .where(eq(schema.inventoryRecipeIngredients.recipeId, r.id)),
-    }))
+        .where(eq(schema.inventoryRecipeIngredients.recipeId, r.id));
+
+      // Direct raw-material cost per ingredient, from its current
+      // weighted-average cost — normalized to kg so mismatched units
+      // (e.g. an ingredient priced per quintal) still line up.
+      const ingredients = rawIngredients.map((ing) => {
+        const amountKg = toKg(parseFloat(ing.amount), ing.unit);
+        const cost = ing.avgUnitCost ? amountKg * costPerKg(parseFloat(ing.avgUnitCost), ing.itemUnit) : null;
+        return { ...ing, cost };
+      });
+
+      const knownCosts = ingredients.filter((i) => i.cost !== null);
+      const totalCost = knownCosts.reduce((sum, i) => sum + (i.cost ?? 0), 0);
+      const outputKg = toKg(parseFloat(r.recipeMakesAmount), r.recipeMakesUnit);
+      const costPerQuintal = outputKg > 0 ? (totalCost / outputKg) * KG_PER_QUINTAL : null;
+      const allCostsKnown = knownCosts.length === ingredients.length && ingredients.length > 0;
+
+      return { ...r, ingredients, totalCost, costPerQuintal, allCostsKnown, missingCostCount: ingredients.length - knownCosts.length };
+    })
   );
 
   return (
@@ -70,6 +89,7 @@ export default async function InventoryRecipesPage({ params }: { params: Promise
                   <tr>
                     <th>Ingredient</th>
                     <th>Amount</th>
+                    <th>Direct Cost</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,10 +99,33 @@ export default async function InventoryRecipesPage({ params }: { params: Promise
                       <td>
                         {formatNumber(ing.amount)} {ing.unit}
                       </td>
+                      <td>{ing.cost !== null ? formatMoney(ing.cost) : <span className="text-gray-400">no cost yet</span>}</td>
                     </tr>
                   ))}
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <td className="font-semibold">Direct raw material cost</td>
+                    <td className="text-gray-500 text-xs">
+                      {!r.allCostsKnown &&
+                        `${r.missingCostCount} ingredient${r.missingCostCount !== 1 ? "s" : ""} missing a cost`}
+                    </td>
+                    <td className="font-semibold">
+                      {r.totalCost > 0 ? formatMoney(r.totalCost) : "—"}
+                      {r.costPerQuintal !== null && r.costPerQuintal > 0 && (
+                        <span className="block text-xs font-normal text-gray-500 mt-0.5">
+                          {formatMoney(r.costPerQuintal)} / quintal
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                </tfoot>
               </table>
+              {!r.allCostsKnown && (
+                <p className="text-xs text-gray-400 mt-2">
+                  Record a price paid when adding stock for every ingredient to get a complete per-quintal cost.
+                </p>
+              )}
               {r.instructions && <p className="text-sm text-gray-500 mt-3">{r.instructions}</p>}
             </div>
           ))}

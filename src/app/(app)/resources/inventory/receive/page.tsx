@@ -53,6 +53,19 @@ export default async function ReceiveInventoryPage() {
             />
           </div>
           <div>
+            <label className="kf-label">Price paid per unit (ETB)</label>
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              inputMode="decimal"
+              name="unitCost"
+              className="kf-input text-lg"
+              placeholder="0"
+            />
+            <p className="text-xs text-gray-400 mt-1">Prices change — this updates the item&apos;s weighted-average cost.</p>
+          </div>
+          <div>
             <label className="kf-label">Notes</label>
             <input type="text" name="notes" className="kf-input" placeholder="e.g. supplier, delivery note #" />
           </div>

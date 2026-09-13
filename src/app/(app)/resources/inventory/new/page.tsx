@@ -38,6 +38,11 @@ export default async function NewInventoryItemPage() {
             <input type="number" step="0.01" name="quantityAvailable" defaultValue={0} className="kf-input" />
           </div>
           <div>
+            <label className="kf-label">Price paid per unit (ETB)</label>
+            <input type="number" step="0.01" name="initialUnitCost" className="kf-input" placeholder="If bought" />
+            <p className="text-xs text-gray-400 mt-1">Starts the weighted-average cost used to price recipes.</p>
+          </div>
+          <div>
             <label className="kf-label">Est. Value per Unit (ETB)</label>
             <input type="number" step="0.01" name="estValuePerUnit" className="kf-input" />
           </div>
