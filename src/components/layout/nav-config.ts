@@ -4,6 +4,7 @@ export type NavItem = {
   href?: string;
   icon: string; // lucide icon name, resolved in sidebar.tsx
   children?: NavLeaf[];
+  adminOnly?: boolean;
 };
 
 export const NAV_ITEMS: NavItem[] = [
@@ -12,12 +13,22 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Livestock",
     icon: "Beef",
     children: [
+      { label: "Log Harvest", href: "/livestock/harvest" },
       { label: "Animals", href: "/livestock/animals" },
       { label: "Livestock Groups", href: "/livestock/groups" },
       { label: "Grazing", href: "/livestock/grazing" },
     ],
   },
   { label: "Plantings", href: "/plantings", icon: "Sprout" },
+  {
+    label: "Sales",
+    icon: "Receipt",
+    children: [
+      { label: "Log a Sale", href: "/sales/new" },
+      { label: "Egg Sale", href: "/sales/eggs/new" },
+      { label: "Feed Sale", href: "/sales/feed/new" },
+    ],
+  },
   {
     label: "Resources",
     icon: "Warehouse",
@@ -51,4 +62,5 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Contacts", href: "/contacts", icon: "IdCard" },
   { label: "Climate", href: "/climate", icon: "CloudSun" },
   { label: "Reports", href: "/reports", icon: "FileText" },
+  { label: "Activity Log", href: "/settings/activity-log", icon: "History", adminOnly: true },
 ];

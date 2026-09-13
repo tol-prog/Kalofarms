@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
+import { logActivity } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
   const v = fd.get(key);
@@ -14,9 +15,10 @@ function str(fd: FormData, key: string): string | null {
 // --- Equipment ----------------------------------------------------------
 
 export async function createEquipment(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Equipment";
   await db.insert(schema.equipment).values({
-    name: str(formData, "name") ?? "Unnamed Equipment",
+    name,
     type: str(formData, "type"),
     make: str(formData, "make"),
     model: str(formData, "model"),
@@ -24,6 +26,12 @@ export async function createEquipment(formData: FormData) {
     purchasePrice: str(formData, "purchasePrice"),
     status: (str(formData, "status") as "operational" | "needs_service" | "out_of_service" | "sold") ?? "operational",
     notes: str(formData, "notes"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "equipment_created",
+    description: `${session.displayName} added equipment: ${name}.`,
   });
   revalidatePath("/resources/equipment");
   redirect("/resources/equipment");
@@ -56,32 +64,52 @@ export async function createWarehouse(formData: FormData) {
 
 // --- Inventory --------------------------------------------------------
 
+/** Shared by createInventoryItem and the new-inventory-type form: when the
+ * farm has exactly one warehouse, every new item belongs to it automatically. */
+async function resolveWarehouseId(formData: FormData): Promise<string | null> {
+  const submitted = str(formData, "warehouseId");
+  if (submitted) return submitted;
+  const warehouses = await db.select({ id: schema.warehouses.id }).from(schema.warehouses);
+  return warehouses.length === 1 ? warehouses[0].id : null;
+}
+
 export async function createInventoryItem(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Item";
   const [row] = await db
     .insert(schema.inventoryItems)
     .values({
-      name: str(formData, "name") ?? "Unnamed Item",
+      name,
       variety: str(formData, "variety"),
       category: str(formData, "category"),
       unit: str(formData, "unit") ?? "kilograms",
       quantityAvailable: str(formData, "quantityAvailable") ?? "0",
       estValuePerUnit: str(formData, "estValuePerUnit"),
       reorderThreshold: str(formData, "reorderThreshold"),
-      warehouseId: str(formData, "warehouseId"),
+      warehouseId: await resolveWarehouseId(formData),
     })
     .returning();
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_item_created",
+    description: `${session.displayName} created a new inventory type: ${name}.`,
+  });
   revalidatePath("/resources/inventory");
   redirect(`/resources/inventory/${row.id}`);
 }
 
-export async function adjustInventory(itemId: string, formData: FormData) {
-  const session = await requireUser();
-  const type = str(formData, "type") as "add" | "remove" | "adjust";
-  const amount = parseFloat(str(formData, "amount") ?? "0");
-
+/** Core add/remove/set-exact logic shared by the per-item "Adjust Stock" form
+ * and the dashboard's "Add Inventory" quick action (quickAddInventory below). */
+async function applyInventoryAdjustment(
+  itemId: string,
+  type: "add" | "remove" | "adjust",
+  amount: number,
+  notes: string | null,
+  session: { userId: string; displayName: string }
+) {
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, itemId)).limit(1);
-  if (!item) redirect("/resources/inventory");
+  if (!item) return null;
 
   const current = parseFloat(item.quantityAvailable);
   let next = current;
@@ -99,23 +127,62 @@ export async function adjustInventory(itemId: string, formData: FormData) {
     type,
     amount: String(amount),
     resultingQuantity: String(next),
-    notes: str(formData, "notes"),
+    notes,
     createdByUserId: session.userId,
   });
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_adjusted",
+    description:
+      type === "adjust"
+        ? `${session.displayName} set ${item.name} to ${next} ${item.unit}.`
+        : `${session.displayName} ${type === "add" ? "added" : "removed"} ${amount} ${item.unit} ${
+            type === "add" ? "to" : "from"
+          } ${item.name} (now ${next} ${item.unit}).`,
+  });
+
+  return item;
+}
+
+export async function adjustInventory(itemId: string, formData: FormData) {
+  const session = await requireUser();
+  const type = (str(formData, "type") as "add" | "remove" | "adjust") ?? "add";
+  const amount = parseFloat(str(formData, "amount") ?? "0");
+
+  await applyInventoryAdjustment(itemId, type, amount, str(formData, "notes"), session);
 
   revalidatePath(`/resources/inventory/${itemId}`);
   revalidatePath("/resources/inventory");
 }
 
+/** "Add Inventory" from the dashboard: restock an EXISTING item only — picked
+ * from a dropdown, never free text — since new item types are only created
+ * from the Inventory section itself (see createInventoryItem above). */
+export async function quickAddInventory(formData: FormData) {
+  const session = await requireUser();
+  const itemId = str(formData, "itemId");
+  if (!itemId) redirect("/resources/inventory/receive");
+
+  const amount = parseFloat(str(formData, "amount") ?? "0");
+  await applyInventoryAdjustment(itemId, "add", amount, str(formData, "notes"), session);
+
+  revalidatePath("/resources/inventory");
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
+}
+
 // --- Recipes ------------------------------------------------------------
 
 export async function createRecipe(itemId: string, formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const recipeName = str(formData, "name") ?? "Unnamed Recipe";
 
   const [recipe] = await db
     .insert(schema.inventoryRecipes)
     .values({
-      name: str(formData, "name") ?? "Unnamed Recipe",
+      name: recipeName,
       producesItemId: itemId,
       recipeMakesAmount: str(formData, "recipeMakesAmount") ?? "1",
       recipeMakesUnit: str(formData, "recipeMakesUnit") ?? "kilograms",
@@ -136,6 +203,13 @@ export async function createRecipe(itemId: string, formData: FormData) {
       unit: ingredientUnits[i] || "kilograms",
     });
   }
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "recipe_created",
+    description: `${session.displayName} created a new recipe: ${recipeName}.`,
+  });
 
   revalidatePath(`/resources/inventory/${itemId}/recipes`);
   redirect(`/resources/inventory/${itemId}/recipes`);
@@ -200,6 +274,13 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
       resultingQuantity: String(next),
       notes: `Made via recipe: ${recipe.name}`,
       createdByUserId: session.userId,
+    });
+
+    await logActivity({
+      userId: session.userId,
+      userName: session.displayName,
+      action: "recipe_made",
+      description: `${session.displayName} made ${batches} batch${batches !== 1 ? "es" : ""} of ${recipe.name} (+${produced} ${producedItem.unit} ${producedItem.name}).`,
     });
   }
 

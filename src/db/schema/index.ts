@@ -1,4 +1,5 @@
 export * from "./users";
+export * from "./activity-log";
 export * from "./farm";
 export * from "./accounting";
 export * from "./livestock";

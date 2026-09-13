@@ -13,13 +13,15 @@ import {
   IdCard,
   CloudSun,
   FileText,
+  Receipt,
+  History,
   ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 import { KALO_LOGO_DATA_URL } from "@/lib/logo";
 import { NAV_ITEMS } from "./nav-config";
 
-const ICONS: Record<string, LucideIcon> = {
+export const ICONS: Record<string, LucideIcon> = {
   LayoutDashboard,
   Beef,
   Sprout,
@@ -29,13 +31,16 @@ const ICONS: Record<string, LucideIcon> = {
   IdCard,
   CloudSun,
   FileText,
+  Receipt,
+  History,
 };
 
-export function Sidebar() {
+export function Sidebar({ role }: { role?: string }) {
   const pathname = usePathname();
+  const items = NAV_ITEMS.filter((item) => !item.adminOnly || role === "admin");
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
-    for (const item of NAV_ITEMS) {
+    for (const item of items) {
       if (item.children?.some((c) => pathname.startsWith(c.href))) {
         initial[item.label] = true;
       }
@@ -55,7 +60,7 @@ export function Sidebar() {
         </span>
       </div>
       <nav className="flex-1 overflow-y-auto py-3 px-2">
-        {NAV_ITEMS.map((item) => {
+        {items.map((item) => {
           const Icon = ICONS[item.icon];
           if (!item.children) {
             const active = item.href ? pathname.startsWith(item.href) : false;

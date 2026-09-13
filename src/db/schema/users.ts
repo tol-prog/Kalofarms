@@ -17,6 +17,9 @@ export const users = pgTable("users", {
   avatarUrl: text("avatar_url"),
   disabled: boolean("disabled").notNull().default(false),
   emailVerified: boolean("email_verified").notNull().default(false),
+  // Forces the change-password screen right after login. Defaults to true so
+  // every seeded/admin-created account (temp password) must rotate it once.
+  mustChangePassword: boolean("must_change_password").notNull().default(true),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),

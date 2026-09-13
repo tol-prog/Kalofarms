@@ -5,6 +5,7 @@ import { db, schema } from "@/db";
 import { eq } from "drizzle-orm";
 import { SESSION_COOKIE, signSession, verifySession, type SessionPayload } from "./session";
 import { hashPassword, verifyPassword } from "./password";
+import { logActivity } from "./activity-log";
 
 export { hashPassword, verifyPassword };
 
@@ -40,6 +41,13 @@ export async function login(email: string, password: string) {
     .update(schema.users)
     .set({ lastLoginAt: new Date() })
     .where(eq(schema.users.id, user.id));
+
+  await logActivity({
+    userId: user.id,
+    userName: user.displayName,
+    action: "login",
+    description: `${user.displayName} signed in.`,
+  });
 
   return { ok: true as const };
 }

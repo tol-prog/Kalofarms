@@ -229,7 +229,7 @@ export default async function DashboardPage() {
           {layer ? (
             <>
               <Link
-                href={`/livestock/animals/${layer.flock.id}?type=harvest#record-activity`}
+                href="/livestock/harvest"
                 className="flex items-center gap-3 rounded-lg px-4 py-3.5 mb-3 text-white"
                 style={{ background: "var(--color-primary)" }}
               >
@@ -345,11 +345,11 @@ export default async function DashboardPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-2 mb-4">
-            <Link href="/resources/inventory/new" className="kf-card flex items-center gap-2.5 px-3.5 py-3">
+            <Link href="/resources/inventory/receive" className="kf-card flex items-center gap-2.5 px-3.5 py-3">
               <PackagePlus size={16} style={{ color: "#3454a8" }} />
               <span className="text-xs font-medium">Add Inventory</span>
             </Link>
-            <Link href="/accounting/transactions/new" className="kf-card flex items-center gap-2.5 px-3.5 py-3">
+            <Link href="/sales/new" className="kf-card flex items-center gap-2.5 px-3.5 py-3">
               <Receipt size={16} style={{ color: "#3454a8" }} />
               <span className="text-xs font-medium">Log Sale</span>
             </Link>

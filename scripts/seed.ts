@@ -157,7 +157,7 @@ async function main() {
     { name: "Broiler Chicken Feed", category: "Animal Feed and Hay", unit: "kilograms", quantityAvailable: "400", reorderThreshold: "500" },
     { name: "Calf Concentrate", unit: "kilograms", quantityAvailable: "0" },
     { name: "Dam ina Atint", unit: "kilograms", quantityAvailable: "1422", estValuePerUnit: "65" },
-    { name: "Eggs", unit: "kilograms", quantityAvailable: "0" },
+    { name: "Eggs", unit: "units", quantityAvailable: "0" },
     { name: "Fattening Cow Concentrate", unit: "kilograms", quantityAvailable: "0" },
     { name: "Frushka", unit: "kilograms", quantityAvailable: "470", estValuePerUnit: "29", reorderThreshold: "500" },
     { name: "Hay", unit: "bales", quantityAvailable: "0" },

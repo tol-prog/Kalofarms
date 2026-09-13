@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { Search, Plus, Settings, ChevronDown, LogOut, UserRound } from "lucide-react";
+import { Search, Plus, Settings, ChevronDown, LogOut, UserRound, KeyRound } from "lucide-react";
 import { logoutAction } from "@/lib/actions/auth-actions";
 
 const QUICK_ADD_LINKS = [
@@ -107,6 +107,13 @@ export function Topbar({ displayName, role }: { displayName: string; role: strin
               <p className="text-sm font-medium">{displayName}</p>
               <p className="text-xs text-gray-500 capitalize">{role.replace("_", " ")}</p>
             </div>
+            <Link
+              href="/change-password"
+              onClick={() => setUserMenuOpen(false)}
+              className="w-full flex items-center gap-2 px-3.5 py-2 text-sm text-left hover:bg-[--color-table-row-hover]"
+            >
+              <KeyRound size={14} /> Change Password
+            </Link>
             <form action={logoutAction}>
               <button
                 type="submit"

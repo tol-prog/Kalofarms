@@ -4,6 +4,7 @@ import { db, schema } from "@/db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
+import { logActivity } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
   const v = fd.get(key);
@@ -38,7 +39,7 @@ export async function createProduct(formData: FormData) {
 }
 
 export async function createOrder(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
   const productIds = formData.getAll("productId") as string[];
   const quantities = formData.getAll("quantity") as string[];
   const unitPrices = formData.getAll("unitPrice") as string[];
@@ -69,6 +70,13 @@ export async function createOrder(formData: FormData) {
   for (const item of items) {
     await db.insert(schema.orderItems).values({ orderId: order.id, ...item });
   }
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "order_created",
+    description: `${session.displayName} created order ${order.orderNumber} (ETB ${total}).`,
+  });
 
   revalidatePath("/market/orders");
   redirect("/market/orders");
