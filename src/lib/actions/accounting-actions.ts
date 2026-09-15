@@ -1,6 +1,7 @@
 "use server";
 
 import { db, schema } from "@/db";
+import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
@@ -12,12 +13,20 @@ function str(fd: FormData, key: string): string | null {
 }
 
 export async function createAccountingCategory(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Category";
+  const type = (str(formData, "type") as "income" | "expense") ?? "expense";
   await db.insert(schema.accountingCategories).values({
-    name: str(formData, "name") ?? "Unnamed Category",
+    name,
     description: str(formData, "description"),
-    type: (str(formData, "type") as "income" | "expense") ?? "expense",
+    type,
     taxLine: str(formData, "taxLine"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "accounting_category_created",
+    description: `${session.displayName} added a ${type} category: ${name}.`,
   });
   revalidatePath("/accounting/categories");
   redirect("/accounting/categories");
@@ -50,15 +59,27 @@ export async function createTransaction(formData: FormData) {
 }
 
 export async function createBudget(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
   const categoryId = str(formData, "categoryId");
   if (!categoryId) redirect("/accounting/budgeting");
+  const budgetedAmount = str(formData, "budgetedAmount") ?? "0";
   await db.insert(schema.budgets).values({
     categoryId,
     periodStart: str(formData, "periodStart") ?? new Date().toISOString().slice(0, 10),
     periodEnd: str(formData, "periodEnd") ?? new Date().toISOString().slice(0, 10),
-    budgetedAmount: str(formData, "budgetedAmount") ?? "0",
+    budgetedAmount,
     notes: str(formData, "notes"),
+  });
+  const [category] = await db
+    .select({ name: schema.accountingCategories.name })
+    .from(schema.accountingCategories)
+    .where(eq(schema.accountingCategories.id, categoryId))
+    .limit(1);
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "budget_created",
+    description: `${session.displayName} set a budget of ETB ${budgetedAmount} for ${category?.name ?? "a category"}.`,
   });
   revalidatePath("/accounting/budgeting");
   redirect("/accounting/budgeting");

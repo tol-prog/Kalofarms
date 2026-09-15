@@ -12,27 +12,42 @@ function str(fd: FormData, key: string): string | null {
 }
 
 export async function createContact(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Contact";
+  const type = (str(formData, "type") as "customer" | "vendor" | "employee" | "other") ?? "customer";
   await db.insert(schema.contacts).values({
-    name: str(formData, "name") ?? "Unnamed Contact",
-    type: (str(formData, "type") as "customer" | "vendor" | "employee" | "other") ?? "customer",
+    name,
+    type,
     email: str(formData, "email"),
     phone: str(formData, "phone"),
     address: str(formData, "address"),
     notes: str(formData, "notes"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "contact_created",
+    description: `${session.displayName} added a ${type} contact: ${name}.`,
   });
   revalidatePath("/contacts");
   redirect("/contacts");
 }
 
 export async function createProduct(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Product";
   await db.insert(schema.products).values({
-    name: str(formData, "name") ?? "Unnamed Product",
+    name,
     sku: str(formData, "sku"),
     category: str(formData, "category"),
     price: str(formData, "price") ?? "0",
     wholesalePrice: str(formData, "wholesalePrice"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "product_created",
+    description: `${session.displayName} added product: ${name}.`,
   });
   revalidatePath("/market/products");
   redirect("/market/products");

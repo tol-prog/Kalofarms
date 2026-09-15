@@ -5,7 +5,7 @@ import { eq, sql, and, desc, ilike } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
-import { logActivity } from "@/lib/activity-log";
+import { logActivity, describeChanges } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
   const v = fd.get(key);
@@ -51,29 +51,61 @@ export async function createLivestock(formData: FormData) {
   redirect(`/livestock/animals/${row.id}`);
 }
 
+const LIVESTOCK_FIELD_LABELS = {
+  nameOrLabel: "name",
+  internalId: "internal ID",
+  animalType: "animal type",
+  breed: "breed",
+  tagNumber: "tag number",
+  gender: "gender",
+  numberInSet: "number in set",
+  status: "status",
+  locationPaddock: "location/paddock",
+  methodAcquired: "method acquired",
+  purchaseDate: "purchase date",
+  birthDate: "birth date",
+  estimatedBreakEven: "estimated break-even",
+  notes: "notes",
+} as const;
+
 export async function updateLivestock(id: string, formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+
+  const [before] = await db.select().from(schema.livestock).where(eq(schema.livestock.id, id)).limit(1);
+
+  const next = {
+    nameOrLabel: str(formData, "nameOrLabel") ?? "Unnamed",
+    internalId: str(formData, "internalId"),
+    animalType: str(formData, "animalType") ?? "Other",
+    breed: str(formData, "breed"),
+    tagNumber: str(formData, "tagNumber"),
+    gender: str(formData, "gender"),
+    numberInSet: Number(str(formData, "numberInSet") ?? "1") || 1,
+    status: (str(formData, "status") as "active" | "sold" | "deceased" | "archived") ?? "active",
+    locationPaddock: str(formData, "locationPaddock"),
+    methodAcquired: str(formData, "methodAcquired") as "purchased" | "born_on_farm" | "gifted" | "other" | null,
+    purchaseDate: str(formData, "purchaseDate"),
+    birthDate: str(formData, "birthDate"),
+    estimatedBreakEven: num(formData, "estimatedBreakEven"),
+    notes: str(formData, "notes"),
+  };
 
   await db
     .update(schema.livestock)
-    .set({
-      nameOrLabel: str(formData, "nameOrLabel") ?? "Unnamed",
-      internalId: str(formData, "internalId"),
-      animalType: str(formData, "animalType") ?? "Other",
-      breed: str(formData, "breed"),
-      tagNumber: str(formData, "tagNumber"),
-      gender: str(formData, "gender"),
-      numberInSet: Number(str(formData, "numberInSet") ?? "1") || 1,
-      status: (str(formData, "status") as "active" | "sold" | "deceased" | "archived") ?? "active",
-      locationPaddock: str(formData, "locationPaddock"),
-      methodAcquired: str(formData, "methodAcquired") as "purchased" | "born_on_farm" | "gifted" | "other" | null,
-      purchaseDate: str(formData, "purchaseDate"),
-      birthDate: str(formData, "birthDate"),
-      estimatedBreakEven: num(formData, "estimatedBreakEven"),
-      notes: str(formData, "notes"),
-      updatedAt: new Date(),
-    })
+    .set({ ...next, updatedAt: new Date() })
     .where(eq(schema.livestock.id, id));
+
+  const changes = describeChanges(before, next, LIVESTOCK_FIELD_LABELS);
+  const label = before?.nameOrLabel ?? next.nameOrLabel;
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_updated",
+    description:
+      changes.length > 0
+        ? `${session.displayName} updated ${label}: ${changes.join(", ")}.`
+        : `${session.displayName} updated ${label} (no changes detected).`,
+  });
 
   revalidatePath("/livestock/animals");
   revalidatePath(`/livestock/animals/${id}`);
@@ -267,43 +299,80 @@ export async function logLayerHarvest(formData: FormData) {
 // --- Livestock groups -------------------------------------------------
 
 export async function createLivestockGroup(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Group";
   const [row] = await db
     .insert(schema.livestockGroups)
     .values({
-      name: str(formData, "name") ?? "Unnamed Group",
+      name,
       type: (str(formData, "type") as "set" | "smart") ?? "set",
     })
     .returning();
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_group_created",
+    description: `${session.displayName} created livestock group: ${name}.`,
+  });
   revalidatePath("/livestock/groups");
   redirect(`/livestock/groups/${row.id}`);
 }
 
 export async function addLivestockToGroup(groupId: string, formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
   const livestockId = str(formData, "livestockId");
   if (livestockId) {
     await db.insert(schema.livestockGroupMembers).values({ groupId, livestockId });
+    const [[group], [animal]] = await Promise.all([
+      db.select().from(schema.livestockGroups).where(eq(schema.livestockGroups.id, groupId)).limit(1),
+      db.select().from(schema.livestock).where(eq(schema.livestock.id, livestockId)).limit(1),
+    ]);
+    await logActivity({
+      userId: session.userId,
+      userName: session.displayName,
+      action: "livestock_group_member_added",
+      description: `${session.displayName} added ${animal?.nameOrLabel ?? "an animal"} to group ${group?.name ?? groupId}.`,
+    });
   }
   revalidatePath(`/livestock/groups/${groupId}`);
 }
 
 export async function removeLivestockFromGroup(groupId: string, memberId: string) {
-  await requireUser();
+  const session = await requireUser();
+  const [member] = await db
+    .select({ nameOrLabel: schema.livestock.nameOrLabel })
+    .from(schema.livestockGroupMembers)
+    .innerJoin(schema.livestock, eq(schema.livestock.id, schema.livestockGroupMembers.livestockId))
+    .where(eq(schema.livestockGroupMembers.id, memberId))
+    .limit(1);
+  const [group] = await db.select().from(schema.livestockGroups).where(eq(schema.livestockGroups.id, groupId)).limit(1);
   await db.delete(schema.livestockGroupMembers).where(eq(schema.livestockGroupMembers.id, memberId));
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_group_member_removed",
+    description: `${session.displayName} removed ${member?.nameOrLabel ?? "an animal"} from group ${group?.name ?? groupId}.`,
+  });
   revalidatePath(`/livestock/groups/${groupId}`);
 }
 
 // --- Grazing -----------------------------------------------------------
 
 export async function createGrazingRecord(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const paddockName = str(formData, "paddockName") ?? "Unnamed Paddock";
   await db.insert(schema.grazingRecords).values({
-    paddockName: str(formData, "paddockName") ?? "Unnamed Paddock",
+    paddockName,
     livestockGroupId: str(formData, "livestockGroupId"),
     startDate: str(formData, "startDate") ?? new Date().toISOString().slice(0, 10),
     endDate: str(formData, "endDate"),
     notes: str(formData, "notes"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "grazing_record_created",
+    description: `${session.displayName} logged grazing at ${paddockName}.`,
   });
   revalidatePath("/livestock/grazing");
 }

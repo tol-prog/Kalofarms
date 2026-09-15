@@ -38,13 +38,21 @@ export async function createEquipment(formData: FormData) {
 }
 
 export async function addEquipmentMaintenance(equipmentId: string, formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const description = str(formData, "description") ?? "Service";
   await db.insert(schema.equipmentMaintenance).values({
     equipmentId,
     date: str(formData, "date") ?? new Date().toISOString().slice(0, 10),
-    description: str(formData, "description") ?? "Service",
+    description,
     cost: str(formData, "cost"),
     performedBy: str(formData, "performedBy"),
+  });
+  const [equip] = await db.select({ name: schema.equipment.name }).from(schema.equipment).where(eq(schema.equipment.id, equipmentId)).limit(1);
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "equipment_maintenance_logged",
+    description: `${session.displayName} logged maintenance on ${equip?.name ?? "equipment"}: ${description}.`,
   });
   revalidatePath(`/resources/equipment`);
 }
@@ -52,11 +60,18 @@ export async function addEquipmentMaintenance(equipmentId: string, formData: For
 // --- Warehouses -----------------------------------------------------------
 
 export async function createWarehouse(formData: FormData) {
-  await requireUser();
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Warehouse";
   await db.insert(schema.warehouses).values({
-    name: str(formData, "name") ?? "Unnamed Warehouse",
+    name,
     location: str(formData, "location"),
     notes: str(formData, "notes"),
+  });
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "warehouse_created",
+    description: `${session.displayName} added warehouse: ${name}.`,
   });
   revalidatePath("/resources/warehouses");
   redirect("/resources/warehouses");
