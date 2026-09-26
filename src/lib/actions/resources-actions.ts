@@ -1,10 +1,10 @@
 "use server";
 
 import { db, schema } from "@/db";
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, asc } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { requireUser } from "@/lib/auth";
+import { requireUser, requireAdmin } from "@/lib/auth";
 import { logActivity, describeChanges } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
@@ -195,6 +195,39 @@ export async function updateInventoryItem(id: string, formData: FormData) {
   redirect(`/resources/inventory/${id}`);
 }
 
+/** Admin-only: permanently removes an inventory item and its transaction
+ * history. Refuses (redirects back with an error flag) when the item is
+ * used as an ingredient in any recipe, since that reference is enforced at
+ * the database level (deleting it would either fail or silently break the
+ * recipe) — the item has to be removed from those recipes first. */
+export async function deleteInventoryItem(id: string) {
+  const session = await requireAdmin();
+  const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
+  if (!item) redirect("/resources/inventory");
+
+  const [usedAsIngredient] = await db
+    .select({ id: schema.inventoryRecipeIngredients.id })
+    .from(schema.inventoryRecipeIngredients)
+    .where(eq(schema.inventoryRecipeIngredients.ingredientItemId, id))
+    .limit(1);
+  if (usedAsIngredient) {
+    redirect(`/resources/inventory/${id}?error=used-in-recipe`);
+  }
+
+  await db.delete(schema.inventoryItems).where(eq(schema.inventoryItems.id, id));
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_item_deleted",
+    description: `${session.displayName} deleted inventory item: ${item.name}.`,
+  });
+
+  revalidatePath("/resources/inventory");
+  revalidatePath("/dashboard");
+  redirect("/resources/inventory");
+}
+
 /** Moving weighted-average cost: only receipts (with a price paid) shift the
  * average — consumption/removal never changes an item's cost basis. */
 function weightedAverageCost(
@@ -209,14 +242,17 @@ function weightedAverageCost(
   return (currentQty * currentAvgCost + addedQty * addedUnitCost) / totalQty;
 }
 
-/** Core add/remove/set-exact logic shared by the per-item "Adjust Stock" form
- * and the dashboard's "Add Inventory" quick action (quickAddInventory below).
- * `unitCost` — price paid per unit — is only meaningful (and only applied)
- * when type === "add", since prices fluctuate and we want a running
- * weighted-average cost to price recipes/feed against. */
+/** Core add/remove/set-exact/used-internally logic shared by the per-item
+ * "Adjust Stock" form and the dashboard's "Add Inventory" quick action
+ * (quickAddInventory below). `unitCost` — price paid per unit — is only
+ * meaningful (and only applied) when type === "add", since prices fluctuate
+ * and we want a running weighted-average cost to price recipes/feed
+ * against. `feeding_consume` is a reduction like "remove", but tagged
+ * separately so it reads clearly in history: feed drawn out to actually
+ * feed Kalo's own flock, not sold or wasted. */
 async function applyInventoryAdjustment(
   itemId: string,
-  type: "add" | "remove" | "adjust",
+  type: "add" | "remove" | "adjust" | "feeding_consume",
   amount: number,
   notes: string | null,
   session: { userId: string; displayName: string },
@@ -228,7 +264,7 @@ async function applyInventoryAdjustment(
   const current = parseFloat(item.quantityAvailable);
   let next = current;
   if (type === "add") next = current + amount;
-  else if (type === "remove") next = Math.max(current - amount, 0);
+  else if (type === "remove" || type === "feeding_consume") next = Math.max(current - amount, 0);
   else next = amount;
 
   const hasCost = type === "add" && typeof unitCost === "number" && unitCost > 0;
@@ -253,13 +289,15 @@ async function applyInventoryAdjustment(
   await logActivity({
     userId: session.userId,
     userName: session.displayName,
-    action: "inventory_adjusted",
+    action: type === "feeding_consume" ? "feed_used_internally" : "inventory_adjusted",
     description:
       type === "adjust"
         ? `${session.displayName} set ${item.name} to ${next} ${item.unit}.`
-        : `${session.displayName} ${type === "add" ? "added" : "removed"} ${amount} ${item.unit} ${
-            type === "add" ? "to" : "from"
-          } ${item.name} (now ${next} ${item.unit})${hasCost ? ` at ETB ${unitCost}/${item.unit}` : ""}.`,
+        : type === "feeding_consume"
+          ? `${session.displayName} used ${amount} ${item.unit} of ${item.name} internally for Kalo's own flock (now ${next} ${item.unit}).`
+          : `${session.displayName} ${type === "add" ? "added" : "removed"} ${amount} ${item.unit} ${
+              type === "add" ? "to" : "from"
+            } ${item.name} (now ${next} ${item.unit})${hasCost ? ` at ETB ${unitCost}/${item.unit}` : ""}.`,
   });
 
   return item;
@@ -267,11 +305,93 @@ async function applyInventoryAdjustment(
 
 export async function adjustInventory(itemId: string, formData: FormData) {
   const session = await requireUser();
-  const type = (str(formData, "type") as "add" | "remove" | "adjust") ?? "add";
+  const type = (str(formData, "type") as "add" | "remove" | "adjust" | "feeding_consume") ?? "add";
   const amount = parseFloat(str(formData, "amount") ?? "0");
   const unitCost = str(formData, "unitCost");
 
   await applyInventoryAdjustment(itemId, type, amount, str(formData, "notes"), session, unitCost ? parseFloat(unitCost) : null);
+
+  revalidatePath(`/resources/inventory/${itemId}`);
+  revalidatePath("/resources/inventory");
+}
+
+/** Replays an item's full transaction history in chronological order to
+ * recompute its weighted-average cost from scratch. Needed because the
+ * average is a *moving* average (each receipt reweights against whatever
+ * quantity was on hand at that moment) — so correcting one historical
+ * batch's price can't just nudge the current avgUnitCost, it has to replay
+ * forward from there. Quantity itself is never touched here (it's already
+ * live/correct); only the cost basis is recalculated. */
+async function recomputeAvgUnitCost(itemId: string): Promise<void> {
+  const txns = await db
+    .select()
+    .from(schema.inventoryTransactions)
+    .where(eq(schema.inventoryTransactions.itemId, itemId))
+    .orderBy(asc(schema.inventoryTransactions.date), asc(schema.inventoryTransactions.createdAt));
+
+  let qty = 0;
+  let avgCost: number | null = null;
+
+  for (const t of txns) {
+    const amount = parseFloat(t.amount);
+    if (t.type === "add" || t.type === "recipe_produce") {
+      if (t.unitCost) {
+        avgCost = weightedAverageCost(qty, avgCost, amount, parseFloat(t.unitCost));
+      }
+      qty += amount;
+    } else if (t.type === "adjust") {
+      qty = amount;
+    } else {
+      // remove, recipe_consume, feeding_consume — quantity down, cost basis unchanged.
+      qty = Math.max(qty - amount, 0);
+    }
+  }
+
+  await db
+    .update(schema.inventoryItems)
+    .set({ avgUnitCost: avgCost !== null ? String(avgCost) : null })
+    .where(eq(schema.inventoryItems.id, itemId));
+}
+
+/** Corrects the price paid on a specific past "add" batch — the weighted
+ * average is calculated from these, so a typo here otherwise skews the cost
+ * basis permanently with no way to fix it. Only applies to "add"
+ * transactions (an actual price paid); after saving, the item's
+ * avgUnitCost is fully recalculated from its transaction history. */
+export async function updateTransactionCost(transactionId: string, itemId: string, formData: FormData) {
+  const session = await requireUser();
+  const unitCostStr = str(formData, "unitCost");
+  if (!unitCostStr) {
+    revalidatePath(`/resources/inventory/${itemId}`);
+    return;
+  }
+
+  const [txn] = await db
+    .select()
+    .from(schema.inventoryTransactions)
+    .where(eq(schema.inventoryTransactions.id, transactionId))
+    .limit(1);
+  if (!txn || txn.itemId !== itemId || txn.type !== "add") {
+    revalidatePath(`/resources/inventory/${itemId}`);
+    return;
+  }
+
+  const oldCost = txn.unitCost;
+  await db
+    .update(schema.inventoryTransactions)
+    .set({ unitCost: unitCostStr })
+    .where(eq(schema.inventoryTransactions.id, transactionId));
+  await recomputeAvgUnitCost(itemId);
+
+  const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, itemId)).limit(1);
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_batch_price_corrected",
+    description: `${session.displayName} corrected a batch price for ${item?.name ?? "an item"}: ETB ${
+      oldCost ?? "(none)"
+    } -> ETB ${unitCostStr}/${item?.unit ?? "unit"} (weighted-average cost recalculated).`,
+  });
 
   revalidatePath(`/resources/inventory/${itemId}`);
   revalidatePath("/resources/inventory");
