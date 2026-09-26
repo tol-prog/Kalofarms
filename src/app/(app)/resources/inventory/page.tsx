@@ -3,12 +3,16 @@ import { db, schema } from "@/db";
 import { asc } from "drizzle-orm";
 import { PageHeader } from "@/components/ui/page-header";
 import { formatMoney, formatNumber } from "@/lib/format";
+import { getFeedItemIds } from "@/lib/feed-items";
 import { Plus, Bell } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function InventoryPage() {
-  const items = await db.select().from(schema.inventoryItems).orderBy(asc(schema.inventoryItems.name));
+  const [items, feedItemIds] = await Promise.all([
+    db.select().from(schema.inventoryItems).orderBy(asc(schema.inventoryItems.name)),
+    getFeedItemIds(),
+  ]);
 
   return (
     <div>
@@ -42,7 +46,10 @@ export default async function InventoryPage() {
             )}
             {items.map((item) => {
               const qty = parseFloat(item.quantityAvailable);
-              const low = item.reorderThreshold ? qty <= parseFloat(item.reorderThreshold) : false;
+              // Feed types are produced in-house per recipe, not restocked
+              // by purchase, so they never show a low-stock flag here.
+              const low =
+                !feedItemIds.has(item.id) && item.reorderThreshold ? qty <= parseFloat(item.reorderThreshold) : false;
               const avgCost = item.avgUnitCost ? parseFloat(item.avgUnitCost) : null;
               const stockValue = avgCost !== null ? qty * avgCost : item.estValuePerUnit ? qty * parseFloat(item.estValuePerUnit) : null;
               return (
