@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { formatNumber, formatDate } from "@/lib/format";
 import { adjustInventory } from "@/lib/actions/resources-actions";
 import { InventoryHistoryChart } from "./history-chart";
-import { FlaskConical } from "lucide-react";
+import { FlaskConical, Pencil } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -39,9 +39,14 @@ export default async function InventoryItemDetailPage({ params }: { params: Prom
         title={item.name}
         description={`${formatNumber(item.quantityAvailable)} ${item.unit} available`}
         actions={
-          <Link href={`/resources/inventory/${id}/recipes`} className="kf-btn-secondary flex items-center gap-1.5">
-            <FlaskConical size={14} /> Recipes
-          </Link>
+          <div className="flex gap-2">
+            <Link href={`/resources/inventory/${id}/edit`} className="kf-btn-secondary flex items-center gap-1.5">
+              <Pencil size={14} /> Edit
+            </Link>
+            <Link href={`/resources/inventory/${id}/recipes`} className="kf-btn-secondary flex items-center gap-1.5">
+              <FlaskConical size={14} /> Recipes
+            </Link>
+          </div>
         }
       />
 
