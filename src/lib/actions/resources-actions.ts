@@ -1,11 +1,11 @@
 "use server";
 
 import { db, schema } from "@/db";
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
-import { logActivity } from "@/lib/activity-log";
+import { logActivity, describeChanges } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
   const v = fd.get(key);
@@ -128,6 +128,71 @@ export async function createInventoryItem(formData: FormData) {
   });
   revalidatePath("/resources/inventory");
   redirect(`/resources/inventory/${row.id}`);
+}
+
+const INVENTORY_ITEM_FIELD_LABELS = {
+  name: "name",
+  variety: "variety",
+  category: "category",
+  unit: "unit",
+  estValuePerUnit: "est. value per unit",
+  reorderThreshold: "reorder threshold",
+  warehouseId: "warehouse",
+} as const;
+
+/** Edits an existing item's identifying/reference details (name, variety,
+ * category, unit, reorder threshold, est. value, warehouse). Deliberately
+ * does NOT touch quantityAvailable or avgUnitCost — those are only ever
+ * changed through a stock receipt/adjustment so the cost-tracking history
+ * stays trustworthy. */
+export async function updateInventoryItem(id: string, formData: FormData) {
+  const session = await requireUser();
+  const [before] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
+  if (!before) return;
+
+  const next = {
+    name: str(formData, "name") ?? before.name,
+    variety: str(formData, "variety"),
+    category: str(formData, "category"),
+    unit: str(formData, "unit") ?? before.unit,
+    estValuePerUnit: str(formData, "estValuePerUnit"),
+    reorderThreshold: str(formData, "reorderThreshold"),
+    warehouseId: str(formData, "warehouseId"),
+  };
+
+  await db.update(schema.inventoryItems).set(next).where(eq(schema.inventoryItems.id, id));
+
+  let warehouseNames: { before: string | null; after: string | null } | null = null;
+  if (before.warehouseId !== next.warehouseId) {
+    const ids = [before.warehouseId, next.warehouseId].filter((v): v is string => !!v);
+    const rows = ids.length ? await db.select().from(schema.warehouses).where(inArray(schema.warehouses.id, ids)) : [];
+    warehouseNames = {
+      before: rows.find((w) => w.id === before.warehouseId)?.name ?? null,
+      after: rows.find((w) => w.id === next.warehouseId)?.name ?? null,
+    };
+  }
+
+  const changes = describeChanges(
+    warehouseNames
+      ? { ...before, warehouseId: warehouseNames.before }
+      : before,
+    warehouseNames ? { ...next, warehouseId: warehouseNames.after } : next,
+    INVENTORY_ITEM_FIELD_LABELS
+  );
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_item_updated",
+    description:
+      changes.length > 0
+        ? `${session.displayName} updated ${before.name}: ${changes.join(", ")}.`
+        : `${session.displayName} updated ${before.name} (no changes detected).`,
+  });
+
+  revalidatePath("/resources/inventory");
+  revalidatePath(`/resources/inventory/${id}`);
+  redirect(`/resources/inventory/${id}`);
 }
 
 /** Moving weighted-average cost: only receipts (with a price paid) shift the
