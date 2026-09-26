@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db, schema } from "@/db";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { PageHeader } from "@/components/ui/page-header";
 import { formatNumber, formatMoney } from "@/lib/format";
 import { makeRecipe } from "@/lib/actions/resources-actions";
@@ -15,10 +15,13 @@ export default async function InventoryRecipesPage({ params }: { params: Promise
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
   if (!item) notFound();
 
+  // Newest recipe first — a just-created recipe should be immediately
+  // visible at the top rather than buried below older ones.
   const recipes = await db
     .select()
     .from(schema.inventoryRecipes)
-    .where(eq(schema.inventoryRecipes.producesItemId, id));
+    .where(eq(schema.inventoryRecipes.producesItemId, id))
+    .orderBy(desc(schema.inventoryRecipes.createdAt));
 
   const recipesWithIngredients = await Promise.all(
     recipes.map(async (r) => {
