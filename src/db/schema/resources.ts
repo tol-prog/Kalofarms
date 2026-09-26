@@ -82,6 +82,7 @@ export const inventoryTransactionTypeEnum = pgEnum("inventory_transaction_type",
   "recipe_consume",
   "recipe_produce",
   "feeding_consume",
+  "sold",
 ]);
 
 export const inventoryTransactions = pgTable("inventory_transactions", {
