@@ -2,6 +2,7 @@ import Link from "next/link";
 import { db, schema } from "@/db";
 import { and, desc, eq, gte, ilike, inArray, sql } from "drizzle-orm";
 import { fetchWeather, weatherLabel } from "@/lib/weather";
+import { getFeedItemIds } from "@/lib/feed-items";
 import { timeAgo, formatNumber, formatDate } from "@/lib/format";
 import { PageHeader } from "@/components/ui/page-header";
 import { IncomeExpenseChart, type MonthlyPoint } from "./income-expense-chart";
@@ -32,9 +33,12 @@ async function getFarmSettings() {
 }
 
 async function getInventoryAlerts() {
-  const items = await db.select().from(schema.inventoryItems);
+  const [items, feedItemIds] = await Promise.all([db.select().from(schema.inventoryItems), getFeedItemIds()]);
   return items
     .filter((item) => {
+      // Feed types are produced in-house from raw materials per their
+      // recipe — there's nothing to "reorder", so they never flag here.
+      if (feedItemIds.has(item.id)) return false;
       if (!item.reorderThreshold) return false;
       return parseFloat(item.quantityAvailable) <= parseFloat(item.reorderThreshold);
     })
