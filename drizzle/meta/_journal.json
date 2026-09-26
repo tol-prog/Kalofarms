@@ -29,6 +29,13 @@
       "when": 1789292669156,
       "tag": "0003_add_inventory_cost_tracking",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790447713383,
+      "tag": "0004_nervous_rocket_racer",
+      "breakpoints": true
     }
   ]
 }
