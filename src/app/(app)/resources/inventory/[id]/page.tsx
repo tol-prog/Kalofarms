@@ -11,7 +11,7 @@ import { FlaskConical, Pencil, Trash2, AlertTriangle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const REDUCING_TYPES = new Set(["remove", "recipe_consume", "feeding_consume"]);
+const REDUCING_TYPES = new Set(["remove", "recipe_consume", "feeding_consume", "sold"]);
 
 export default async function InventoryItemDetailPage({
   params,
@@ -188,6 +188,7 @@ export default async function InventoryItemDetailPage({
                 <option value="remove">Remove</option>
                 <option value="adjust">Set exact amount</option>
                 {isFeedItem && <option value="feeding_consume">Used Internally (Kalo Flock Feed)</option>}
+                {isFeedItem && <option value="sold">Sold</option>}
               </select>
             </div>
             <div>
@@ -199,8 +200,15 @@ export default async function InventoryItemDetailPage({
               <input type="number" step="0.01" name="unitCost" className="kf-input" placeholder="Only used for Add" />
             </div>
             <div>
-              <label className="kf-label">Notes</label>
-              <input type="text" name="notes" className="kf-input" />
+              {/* Feed only ever leaves as sold or used internally by Kalo, so
+                  this doubles as the buyer's name rather than a free note. */}
+              <label className="kf-label">{isFeedItem ? "Buyer Name (if sold)" : "Notes"}</label>
+              <input
+                type="text"
+                name="notes"
+                className="kf-input"
+                placeholder={isFeedItem ? "Who bought or received this feed?" : undefined}
+              />
             </div>
             <button type="submit" className="kf-btn-primary w-full">
               Save
