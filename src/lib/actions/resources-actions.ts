@@ -242,17 +242,19 @@ function weightedAverageCost(
   return (currentQty * currentAvgCost + addedQty * addedUnitCost) / totalQty;
 }
 
-/** Core add/remove/set-exact/used-internally logic shared by the per-item
- * "Adjust Stock" form and the dashboard's "Add Inventory" quick action
- * (quickAddInventory below). `unitCost` — price paid per unit — is only
- * meaningful (and only applied) when type === "add", since prices fluctuate
- * and we want a running weighted-average cost to price recipes/feed
- * against. `feeding_consume` is a reduction like "remove", but tagged
- * separately so it reads clearly in history: feed drawn out to actually
- * feed Kalo's own flock, not sold or wasted. */
+/** Core add/remove/set-exact/used-internally/sold logic shared by the
+ * per-item "Adjust Stock" form and the dashboard's "Add Inventory" quick
+ * action (quickAddInventory below). `unitCost` — price paid per unit — is
+ * only meaningful (and only applied) when type === "add", since prices
+ * fluctuate and we want a running weighted-average cost to price
+ * recipes/feed against. `feeding_consume` and `sold` are both reductions
+ * like "remove", but tagged separately so they read clearly in history:
+ * feed drawn out to actually feed Kalo's own flock (feeding_consume) versus
+ * feed sold to a buyer (sold) — `notes` doubles as the buyer's name for a
+ * sold transaction. */
 async function applyInventoryAdjustment(
   itemId: string,
-  type: "add" | "remove" | "adjust" | "feeding_consume",
+  type: "add" | "remove" | "adjust" | "feeding_consume" | "sold",
   amount: number,
   notes: string | null,
   session: { userId: string; displayName: string },
@@ -264,7 +266,7 @@ async function applyInventoryAdjustment(
   const current = parseFloat(item.quantityAvailable);
   let next = current;
   if (type === "add") next = current + amount;
-  else if (type === "remove" || type === "feeding_consume") next = Math.max(current - amount, 0);
+  else if (type === "remove" || type === "feeding_consume" || type === "sold") next = Math.max(current - amount, 0);
   else next = amount;
 
   const hasCost = type === "add" && typeof unitCost === "number" && unitCost > 0;
@@ -289,15 +291,17 @@ async function applyInventoryAdjustment(
   await logActivity({
     userId: session.userId,
     userName: session.displayName,
-    action: type === "feeding_consume" ? "feed_used_internally" : "inventory_adjusted",
+    action: type === "feeding_consume" ? "feed_used_internally" : type === "sold" ? "feed_sold" : "inventory_adjusted",
     description:
       type === "adjust"
         ? `${session.displayName} set ${item.name} to ${next} ${item.unit}.`
         : type === "feeding_consume"
           ? `${session.displayName} used ${amount} ${item.unit} of ${item.name} internally for Kalo's own flock (now ${next} ${item.unit}).`
-          : `${session.displayName} ${type === "add" ? "added" : "removed"} ${amount} ${item.unit} ${
-              type === "add" ? "to" : "from"
-            } ${item.name} (now ${next} ${item.unit})${hasCost ? ` at ETB ${unitCost}/${item.unit}` : ""}.`,
+          : type === "sold"
+            ? `${session.displayName} sold ${amount} ${item.unit} of ${item.name}${notes ? ` to ${notes}` : ""} (now ${next} ${item.unit}).`
+            : `${session.displayName} ${type === "add" ? "added" : "removed"} ${amount} ${item.unit} ${
+                type === "add" ? "to" : "from"
+              } ${item.name} (now ${next} ${item.unit})${hasCost ? ` at ETB ${unitCost}/${item.unit}` : ""}.`,
   });
 
   return item;
@@ -305,7 +309,7 @@ async function applyInventoryAdjustment(
 
 export async function adjustInventory(itemId: string, formData: FormData) {
   const session = await requireUser();
-  const type = (str(formData, "type") as "add" | "remove" | "adjust" | "feeding_consume") ?? "add";
+  const type = (str(formData, "type") as "add" | "remove" | "adjust" | "feeding_consume" | "sold") ?? "add";
   const amount = parseFloat(str(formData, "amount") ?? "0");
   const unitCost = str(formData, "unitCost");
 
@@ -342,7 +346,7 @@ async function recomputeAvgUnitCost(itemId: string): Promise<void> {
     } else if (t.type === "adjust") {
       qty = amount;
     } else {
-      // remove, recipe_consume, feeding_consume — quantity down, cost basis unchanged.
+      // remove, recipe_consume, feeding_consume, sold — quantity down, cost basis unchanged.
       qty = Math.max(qty - amount, 0);
     }
   }
@@ -473,6 +477,29 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
     .from(schema.inventoryRecipeIngredients)
     .where(eq(schema.inventoryRecipeIngredients.recipeId, recipeId));
 
+  // Load every ingredient's current stock BEFORE mutating anything, so we
+  // can validate the whole batch up front. If any ingredient doesn't have
+  // enough on hand, refuse the entire recipe run — no partial consumption,
+  // no negative stock — and send the user back with the offending
+  // ingredient's name so the exact error message can be rendered.
+  const ingredientItems = await Promise.all(
+    ingredients.map((ing) =>
+      db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, ing.ingredientItemId)).limit(1).then((r) => r[0])
+    )
+  );
+
+  for (let i = 0; i < ingredients.length; i++) {
+    const item = ingredientItems[i];
+    const ing = ingredients[i];
+    if (!item) continue;
+    const needed = parseFloat(ing.amount) * batches;
+    if (parseFloat(item.quantityAvailable) < needed) {
+      redirect(
+        `/resources/inventory/${recipe.producesItemId}/recipes?error=insufficient-stock&ingredient=${encodeURIComponent(item.name)}`
+      );
+    }
+  }
+
   // Direct raw-material cost of THIS batch, from each ingredient's current
   // weighted-average cost — rolled into the produced item's own cost below.
   // Only credited when EVERY ingredient has a known cost, so a partial sum
@@ -480,12 +507,9 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
   let batchIngredientCost = 0;
   let allIngredientCostsKnown = ingredients.length > 0;
 
-  for (const ing of ingredients) {
-    const [item] = await db
-      .select()
-      .from(schema.inventoryItems)
-      .where(eq(schema.inventoryItems.id, ing.ingredientItemId))
-      .limit(1);
+  for (let i = 0; i < ingredients.length; i++) {
+    const ing = ingredients[i];
+    const item = ingredientItems[i];
     if (!item) {
       allIngredientCostsKnown = false;
       continue;
