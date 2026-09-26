@@ -6,12 +6,19 @@ import { PageHeader } from "@/components/ui/page-header";
 import { formatNumber, formatMoney } from "@/lib/format";
 import { makeRecipe } from "@/lib/actions/resources-actions";
 import { toKg, costPerKg, KG_PER_QUINTAL } from "@/lib/units";
-import { Plus } from "lucide-react";
+import { Plus, AlertTriangle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export default async function InventoryRecipesPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function InventoryRecipesPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ error?: string; ingredient?: string }>;
+}) {
   const { id } = await params;
+  const { error, ingredient } = await searchParams;
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
   if (!item) notFound();
 
@@ -66,6 +73,16 @@ export default async function InventoryRecipesPage({ params }: { params: Promise
           </Link>
         }
       />
+
+      {error === "insufficient-stock" && (
+        <div
+          className="flex items-center gap-2 mb-5 px-4 py-2.5 rounded-md border text-sm font-medium"
+          style={{ background: "var(--color-danger-bg)", borderColor: "#e6b3ac", color: "var(--color-danger)" }}
+        >
+          <AlertTriangle size={16} />
+          You don&apos;t have enough &quot;{ingredient ?? "ingredient"}&quot; to make this recipe.
+        </div>
+      )}
 
       {recipesWithIngredients.length === 0 ? (
         <div className="kf-card p-10 text-center text-gray-400">No recipes defined for {item.name} yet.</div>
