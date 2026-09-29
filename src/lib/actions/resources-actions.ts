@@ -460,6 +460,30 @@ export async function createRecipe(itemId: string, formData: FormData) {
   redirect(`/resources/inventory/${itemId}/recipes`);
 }
 
+/** Admin-only: permanently removes a recipe that's no longer used. Its
+ * ingredient rows are removed automatically (cascade) — nothing else
+ * references a recipe by id, so there's no "still in use" case to guard
+ * against the way inventory-item deletion has. Past batches already made
+ * from this recipe stay exactly as they are in the inventory/transaction
+ * history; only the recipe definition itself goes away. */
+export async function deleteRecipe(itemId: string, recipeId: string) {
+  const session = await requireAdmin();
+  const [recipe] = await db.select().from(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId)).limit(1);
+  if (!recipe) redirect(`/resources/inventory/${itemId}/recipes`);
+
+  await db.delete(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId));
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "recipe_deleted",
+    description: `${session.displayName} deleted the recipe: ${recipe.name}.`,
+  });
+
+  revalidatePath(`/resources/inventory/${itemId}/recipes`);
+  redirect(`/resources/inventory/${itemId}/recipes`);
+}
+
 /** "Make Recipe": consumes ingredients, produces the output item. */
 export async function makeRecipe(recipeId: string, formData: FormData) {
   const session = await requireUser();
