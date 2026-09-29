@@ -1,20 +1,33 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { db, schema } from "@/db";
-import { eq, notInArray } from "drizzle-orm";
+import { eq, notInArray, and, ne } from "drizzle-orm";
+import { getSession } from "@/lib/auth";
 import { PageHeader } from "@/components/ui/page-header";
+import { Badge } from "@/components/ui/badge";
 import { formatNumber } from "@/lib/format";
-import { addLivestockToGroup, removeLivestockFromGroup } from "@/lib/actions/livestock-actions";
-import { X } from "lucide-react";
+import {
+  addLivestockToGroup,
+  removeLivestockFromGroup,
+  hideLivestockGroup,
+  unhideLivestockGroup,
+} from "@/lib/actions/livestock-actions";
+import { X, EyeOff, Eye } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function LivestockGroupDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const session = await getSession();
+  const isAdmin = session?.role === "admin";
+
   const [group] = await db.select().from(schema.livestockGroups).where(eq(schema.livestockGroups.id, id)).limit(1);
   if (!group) notFound();
+  // Hidden groups are invisible to non-admins everywhere, including by
+  // direct link — data preserved, just not shown outside admin view.
+  if (!isAdmin && group.archived) notFound();
 
-  const members = await db
+  const allMembers = await db
     .select({
       memberId: schema.livestockGroupMembers.id,
       livestockId: schema.livestock.id,
@@ -27,17 +40,50 @@ export default async function LivestockGroupDetailPage({ params }: { params: Pro
     .innerJoin(schema.livestock, eq(schema.livestock.id, schema.livestockGroupMembers.livestockId))
     .where(eq(schema.livestockGroupMembers.groupId, id));
 
-  const memberIds = members.map((m) => m.livestockId);
+  // Non-admins only see members that aren't themselves individually hidden.
+  const members = isAdmin ? allMembers : allMembers.filter((m) => m.status !== "archived");
+
+  const memberIds = allMembers.map((m) => m.livestockId);
+  // Hidden animals aren't offered for adding to a group either way.
   const available = await db
     .select({ id: schema.livestock.id, nameOrLabel: schema.livestock.nameOrLabel })
     .from(schema.livestock)
-    .where(memberIds.length > 0 ? notInArray(schema.livestock.id, memberIds) : undefined);
+    .where(
+      and(
+        memberIds.length > 0 ? notInArray(schema.livestock.id, memberIds) : undefined,
+        ne(schema.livestock.status, "archived")
+      )
+    );
 
   const boundAdd = addLivestockToGroup.bind(null, id);
+  const boundHideToggle = (group.archived ? unhideLivestockGroup : hideLivestockGroup).bind(null, id);
 
   return (
     <div>
-      <PageHeader title={group.name} description={`${group.type === "smart" ? "Smart" : "Set"} group`} />
+      <PageHeader
+        title={group.name}
+        description={`${group.type === "smart" ? "Smart" : "Set"} group`}
+        actions={
+          <>
+            {group.archived && <Badge variant="muted">hidden</Badge>}
+            {isAdmin && (
+              <form action={boundHideToggle}>
+                <button type="submit" className="kf-btn-secondary flex items-center gap-1.5">
+                  {group.archived ? (
+                    <>
+                      <Eye size={14} /> Unhide
+                    </>
+                  ) : (
+                    <>
+                      <EyeOff size={14} /> Hide
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </>
+        }
+      />
 
       <div className="kf-card p-5 mb-5">
         <h2 className="text-sm font-semibold mb-3">Add Animal to Group</h2>
