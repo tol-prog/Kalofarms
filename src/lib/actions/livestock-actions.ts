@@ -4,7 +4,7 @@ import { db, schema } from "@/db";
 import { eq, sql, and, desc, ilike } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { requireUser } from "@/lib/auth";
+import { requireUser, requireAdmin } from "@/lib/auth";
 import { logActivity, describeChanges } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
@@ -124,6 +124,47 @@ export async function deleteLivestock(id: string) {
   });
   revalidatePath("/livestock/animals");
   redirect("/livestock/animals");
+}
+
+/** Admin-only: hides an animal that's no longer available (sold, deceased,
+ * or otherwise out of active use) from everyone except admins — reuses the
+ * existing "archived" status value, which already meant exactly this but
+ * wasn't wired to any visibility filtering until now. Nothing is deleted;
+ * admins still see the full record and history for future reference. */
+export async function hideLivestock(id: string) {
+  const session = await requireAdmin();
+  const [row] = await db.select().from(schema.livestock).where(eq(schema.livestock.id, id)).limit(1);
+  if (!row) redirect("/livestock/animals");
+
+  await db.update(schema.livestock).set({ status: "archived", updatedAt: new Date() }).where(eq(schema.livestock.id, id));
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_hidden",
+    description: `${session.displayName} hid ${row.nameOrLabel} from non-admin users (all data preserved).`,
+  });
+  revalidatePath("/livestock/animals");
+  revalidatePath(`/livestock/animals/${id}`);
+  redirect("/livestock/animals");
+}
+
+/** Admin-only: reverses hideLivestock, restoring the animal to "active" and
+ * making it visible to everyone again. */
+export async function unhideLivestock(id: string) {
+  const session = await requireAdmin();
+  const [row] = await db.select().from(schema.livestock).where(eq(schema.livestock.id, id)).limit(1);
+  if (!row) redirect("/livestock/animals");
+
+  await db.update(schema.livestock).set({ status: "active", updatedAt: new Date() }).where(eq(schema.livestock.id, id));
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_unhidden",
+    description: `${session.displayName} unhid ${row.nameOrLabel} — visible to everyone again.`,
+  });
+  revalidatePath("/livestock/animals");
+  revalidatePath(`/livestock/animals/${id}`);
+  redirect(`/livestock/animals/${id}`);
 }
 
 /** The single shared inventory item eggs are tracked as ("Eggs", tracked in
@@ -316,6 +357,44 @@ export async function createLivestockGroup(formData: FormData) {
   });
   revalidatePath("/livestock/groups");
   redirect(`/livestock/groups/${row.id}`);
+}
+
+/** Admin-only: hides a livestock group (and its member list) from everyone
+ * except admins, without deleting anything — the `archived` column already
+ * existed on this table but wasn't wired to any visibility filtering. */
+export async function hideLivestockGroup(id: string) {
+  const session = await requireAdmin();
+  const [row] = await db.select().from(schema.livestockGroups).where(eq(schema.livestockGroups.id, id)).limit(1);
+  if (!row) redirect("/livestock/groups");
+
+  await db.update(schema.livestockGroups).set({ archived: true }).where(eq(schema.livestockGroups.id, id));
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_group_hidden",
+    description: `${session.displayName} hid the group ${row.name} from non-admin users (all data preserved).`,
+  });
+  revalidatePath("/livestock/groups");
+  revalidatePath(`/livestock/groups/${id}`);
+  redirect("/livestock/groups");
+}
+
+/** Admin-only: reverses hideLivestockGroup. */
+export async function unhideLivestockGroup(id: string) {
+  const session = await requireAdmin();
+  const [row] = await db.select().from(schema.livestockGroups).where(eq(schema.livestockGroups.id, id)).limit(1);
+  if (!row) redirect("/livestock/groups");
+
+  await db.update(schema.livestockGroups).set({ archived: false }).where(eq(schema.livestockGroups.id, id));
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "livestock_group_unhidden",
+    description: `${session.displayName} unhid the group ${row.name} — visible to everyone again.`,
+  });
+  revalidatePath("/livestock/groups");
+  revalidatePath(`/livestock/groups/${id}`);
+  redirect(`/livestock/groups/${id}`);
 }
 
 export async function addLivestockToGroup(groupId: string, formData: FormData) {
