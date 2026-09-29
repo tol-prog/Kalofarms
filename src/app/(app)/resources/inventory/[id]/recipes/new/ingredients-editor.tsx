@@ -60,15 +60,25 @@ function IngredientRow({
                 filtered.map((it) => (
                   <li
                     key={it.id}
-                    // onMouseDown (not onClick) fires before the input's
-                    // onBlur closes the dropdown, so the pick registers.
-                    onMouseDown={() => {
+                    // The actual pick happens on onClick (fires reliably on
+                    // both mouse and touch), but onMouseDown has to call
+                    // preventDefault() first — otherwise the input's onBlur
+                    // fires immediately on tap, closing/dismissing the
+                    // keyboard and reflowing the page BEFORE the tap
+                    // finishes, so it lands on whatever is now under the
+                    // finger instead of the option that was tapped. This is
+                    // what caused picks to "miss" or select the wrong item
+                    // on mobile. preventDefault() on mousedown stops the
+                    // input from ever losing focus for this interaction, so
+                    // there's no reflow race on any device.
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
                       setSelected(it);
                       setQuery("");
                       setOpen(false);
                     }}
                     className="px-3 py-2 cursor-pointer hover:bg-[--color-table-row-hover]"
-                  >
+                >
                     {it.name}
                   </li>
                 ))
