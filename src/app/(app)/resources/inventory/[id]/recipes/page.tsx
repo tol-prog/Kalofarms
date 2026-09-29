@@ -2,11 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db, schema } from "@/db";
 import { eq, desc } from "drizzle-orm";
+import { getSession } from "@/lib/auth";
 import { PageHeader } from "@/components/ui/page-header";
 import { formatNumber, formatMoney } from "@/lib/format";
-import { makeRecipe } from "@/lib/actions/resources-actions";
+import { makeRecipe, deleteRecipe } from "@/lib/actions/resources-actions";
 import { toKg, costPerKg, KG_PER_QUINTAL } from "@/lib/units";
-import { Plus, AlertTriangle } from "lucide-react";
+import { Plus, AlertTriangle, Trash2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,8 @@ export default async function InventoryRecipesPage({
 }) {
   const { id } = await params;
   const { error, ingredient } = await searchParams;
+  const session = await getSession();
+  const isAdmin = session?.role === "admin";
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
   if (!item) notFound();
 
@@ -97,12 +100,25 @@ export default async function InventoryRecipesPage({
                     Makes {formatNumber(r.recipeMakesAmount)} {r.recipeMakesUnit}
                   </p>
                 </div>
-                <form action={makeRecipe.bind(null, r.id)} className="flex items-center gap-2">
-                  <input type="number" name="batches" defaultValue={1} min={1} className="kf-input w-20" />
-                  <button type="submit" className="kf-btn-primary">
-                    Make Recipe
-                  </button>
-                </form>
+                <div className="flex items-center gap-2">
+                  <form action={makeRecipe.bind(null, r.id)} className="flex items-center gap-2">
+                    <input type="number" name="batches" defaultValue={1} min={1} className="kf-input w-20" />
+                    <button type="submit" className="kf-btn-primary">
+                      Make Recipe
+                    </button>
+                  </form>
+                  {isAdmin && (
+                    <form action={deleteRecipe.bind(null, id, r.id)}>
+                      <button
+                        type="submit"
+                        className="kf-btn-secondary flex items-center gap-1.5 text-[--color-danger]"
+                        title="Delete this recipe"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
               <table className="w-full kf-table mt-2">
                 <thead>
