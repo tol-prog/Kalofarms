@@ -1,15 +1,25 @@
 import Link from "next/link";
 import { db, schema } from "@/db";
 import { desc } from "drizzle-orm";
+import { getSession } from "@/lib/auth";
+import { hideLivestock, unhideLivestock } from "@/lib/actions/livestock-actions";
 import { PageHeader } from "@/components/ui/page-header";
 import { Badge, statusVariant } from "@/components/ui/badge";
 import { formatNumber } from "@/lib/format";
-import { Plus } from "lucide-react";
+import { Plus, EyeOff, Eye } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function AnimalsPage() {
-  const animals = await db.select().from(schema.livestock).orderBy(desc(schema.livestock.createdAt));
+  const session = await getSession();
+  const isAdmin = session?.role === "admin";
+
+  const allAnimals = await db.select().from(schema.livestock).orderBy(desc(schema.livestock.createdAt));
+  // Hidden (status "archived") animals are only visible to admins — their
+  // data is never deleted, just kept out of the everyday list for everyone
+  // else. Admins see them too, marked with their "archived" status badge.
+  const animals = isAdmin ? allAnimals : allAnimals.filter((a) => a.status !== "archived");
+  const hiddenCount = allAnimals.filter((a) => a.status === "archived").length;
 
   const totalAnimals = animals.reduce((sum, a) => sum + a.numberInSet, 0);
   const chickenCount = animals
@@ -60,12 +70,13 @@ export default async function AnimalsPage() {
               <th>Last Weight (kg)</th>
               <th>Status</th>
               <th>Type</th>
+              {isAdmin && <th></th>}
             </tr>
           </thead>
           <tbody>
             {animals.length === 0 && (
               <tr>
-                <td colSpan={6} className="text-center text-gray-400 py-10">
+                <td colSpan={isAdmin ? 7 : 6} className="text-center text-gray-400 py-10">
                   No animals recorded yet. Click &ldquo;Add Animal&rdquo; to get started.
                 </td>
               </tr>
@@ -91,13 +102,29 @@ export default async function AnimalsPage() {
                   {a.animalType}
                   {a.breed ? <span className="kf-badge bg-[--color-badge-muted-bg] text-[--color-badge-muted-text] ml-1.5">{a.breed}</span> : null}
                 </td>
+                {isAdmin && (
+                  <td>
+                    <form action={(a.status === "archived" ? unhideLivestock : hideLivestock).bind(null, a.id)}>
+                      <button
+                        type="submit"
+                        className="text-gray-400 hover:text-[--color-primary] flex items-center gap-1 text-xs"
+                        title={a.status === "archived" ? "Unhide" : "Hide from non-admins"}
+                      >
+                        {a.status === "archived" ? <Eye size={14} /> : <EyeOff size={14} />}
+                      </button>
+                    </form>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       {animals.length > 0 && (
-        <p className="text-xs text-gray-400 mt-2">Displaying all {animals.length} records</p>
+        <p className="text-xs text-gray-400 mt-2">
+          Displaying {animals.length} record{animals.length !== 1 ? "s" : ""}
+          {isAdmin && hiddenCount > 0 ? ` (including ${hiddenCount} hidden, visible to admins only)` : ""}
+        </p>
       )}
     </div>
   );
