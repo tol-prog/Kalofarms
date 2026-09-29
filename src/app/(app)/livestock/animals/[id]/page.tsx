@@ -2,12 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db, schema } from "@/db";
 import { eq, desc } from "drizzle-orm";
+import { getSession } from "@/lib/auth";
 import { PageHeader } from "@/components/ui/page-header";
 import { Badge, statusVariant } from "@/components/ui/badge";
 import { formatDate, formatNumber } from "@/lib/format";
-import { recordActivity, deleteLivestock } from "@/lib/actions/livestock-actions";
+import { recordActivity, deleteLivestock, hideLivestock, unhideLivestock } from "@/lib/actions/livestock-actions";
 import { RecordActivityForm } from "./record-activity-form";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, EyeOff, Eye } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -33,8 +34,14 @@ export default async function AnimalDetailPage({
   const { type } = await searchParams;
   const defaultType = (VALID_TYPES as readonly string[]).includes(type ?? "") ? (type as (typeof VALID_TYPES)[number]) : "note";
 
+  const session = await getSession();
+  const isAdmin = session?.role === "admin";
+
   const [animal] = await db.select().from(schema.livestock).where(eq(schema.livestock.id, id)).limit(1);
   if (!animal) notFound();
+  // Hidden animals are invisible to non-admins everywhere, including by
+  // direct link — their data is preserved, just not shown outside admin view.
+  if (!isAdmin && animal.status === "archived") notFound();
 
   const activity = await db
     .select()
@@ -45,6 +52,8 @@ export default async function AnimalDetailPage({
 
   const boundRecordActivity = recordActivity.bind(null, id);
   const boundDelete = deleteLivestock.bind(null, id);
+  const isHidden = animal.status === "archived";
+  const boundHideToggle = (isHidden ? unhideLivestock : hideLivestock).bind(null, id);
 
   return (
     <div>
@@ -57,6 +66,21 @@ export default async function AnimalDetailPage({
             <Link href={`/livestock/animals/${id}/edit`} className="kf-btn-secondary flex items-center gap-1.5">
               <Pencil size={14} /> Edit
             </Link>
+            {isAdmin && (
+              <form action={boundHideToggle}>
+                <button type="submit" className="kf-btn-secondary flex items-center gap-1.5">
+                  {isHidden ? (
+                    <>
+                      <Eye size={14} /> Unhide
+                    </>
+                  ) : (
+                    <>
+                      <EyeOff size={14} /> Hide
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
             <form action={boundDelete}>
               <button type="submit" className="kf-btn-secondary flex items-center gap-1.5 text-[--color-danger]">
                 <Trash2 size={14} /> Delete
