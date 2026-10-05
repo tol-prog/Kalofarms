@@ -74,6 +74,13 @@ body {
     background: var(--color-table-row-hover);
   }
 
+  .kf-table tbody tr.kf-row-alert {
+    background: var(--color-danger-bg);
+  }
+  .kf-table tbody tr.kf-row-alert:hover {
+    background: #fbdcd8;
+  }
+
   .kf-badge {
     display: inline-flex;
     align-items: center;
