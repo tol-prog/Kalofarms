@@ -64,7 +64,7 @@ export default async function InventoryPage() {
               </tr>
             )}
             {rows.map(({ item, qty, low, avgCost, feedDirectCost, stockValue }) => (
-              <tr key={item.id}>
+              <tr key={item.id} className={low ? "kf-row-alert" : undefined}>
                 <td>
                   <Link href={`/resources/inventory/${item.id}`} className="font-medium text-[--color-primary] hover:underline">
                     {item.name}
