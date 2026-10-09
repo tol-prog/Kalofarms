@@ -5,7 +5,12 @@ import { eq, asc } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import { PageHeader } from "@/components/ui/page-header";
 import { formatNumber, formatDate } from "@/lib/format";
-import { adjustInventory, deleteInventoryItem, updateTransactionCost } from "@/lib/actions/resources-actions";
+import {
+  adjustInventory,
+  deleteInventoryItem,
+  updateTransactionCost,
+  updateReorderThreshold,
+} from "@/lib/actions/resources-actions";
 import { InventoryHistoryChart } from "./history-chart";
 import { FlaskConical, Pencil, Trash2, AlertTriangle } from "lucide-react";
 
@@ -148,10 +153,10 @@ export default async function InventoryItemDetailPage({
                         </span>
                         <span className="text-gray-400 shrink-0">{formatDate(t.date)}</span>
                       </div>
-                      {t.type === "add" && t.unitCost && (
+                      {t.type === "add" && (
                         <details className="mt-0.5">
                           <summary className="text-[11px] text-[--color-primary] cursor-pointer select-none">
-                            Wrong price? Edit this batch
+                            {t.unitCost ? "Wrong price? Edit this batch" : "No price recorded. Add one"}
                           </summary>
                           <form
                             action={updateTransactionCost.bind(null, t.id, id)}
@@ -162,7 +167,8 @@ export default async function InventoryItemDetailPage({
                               step="0.01"
                               name="unitCost"
                               required
-                              defaultValue={t.unitCost}
+                              defaultValue={t.unitCost ?? ""}
+                              placeholder="ETB per unit"
                               className="kf-input text-xs py-1 w-28"
                             />
                             <button type="submit" className="kf-btn-secondary text-xs py-1 px-2">
@@ -178,42 +184,84 @@ export default async function InventoryItemDetailPage({
           </div>
         </div>
 
-        <div className="kf-card p-5 h-fit">
-          <h2 className="text-sm font-semibold mb-3">Adjust Stock</h2>
-          <form action={boundAdjust} className="space-y-3">
-            <div>
-              <label className="kf-label">Action</label>
-              <select name="type" className="kf-input" defaultValue="add">
-                <option value="add">Add</option>
-                <option value="remove">Remove</option>
-                <option value="adjust">Set exact amount</option>
-                {isFeedItem && <option value="feeding_consume">Used Internally (Kalo Flock Feed)</option>}
-                {isFeedItem && <option value="sold">Sold</option>}
-              </select>
-            </div>
-            <div>
-              <label className="kf-label">Amount ({item.unit})</label>
-              <input type="number" step="0.01" name="amount" required className="kf-input" />
-            </div>
-            <div>
-              <label className="kf-label">Price paid per unit (ETB)</label>
-              <input type="number" step="0.01" name="unitCost" className="kf-input" placeholder="Only used for Add" />
-            </div>
-            <div>
-              {/* Feed only ever leaves as sold or used internally by Kalo, so
-                  this doubles as the buyer's name rather than a free note. */}
-              <label className="kf-label">{isFeedItem ? "Buyer Name (if sold)" : "Notes"}</label>
-              <input
-                type="text"
-                name="notes"
-                className="kf-input"
-                placeholder={isFeedItem ? "Who bought or received this feed?" : undefined}
-              />
-            </div>
-            <button type="submit" className="kf-btn-primary w-full">
-              Save
-            </button>
-          </form>
+        <div className="kf-card p-5 h-fit space-y-5">
+          <div>
+            <h2 className="text-sm font-semibold mb-2">Low-Stock Alert</h2>
+            {isFeedItem ? (
+              <p className="text-xs text-gray-400">
+                Feed types don&apos;t use restock alerts; the fix for low feed is making another batch, not reordering.
+              </p>
+            ) : (
+              <>
+                <p className="text-xs text-gray-500 mb-2.5">
+                  {item.reorderThreshold
+                    ? `Alerts (and turns the row red on the Inventory list) at or below ${formatNumber(
+                        item.reorderThreshold
+                      )} ${item.unit}.`
+                    : "No alert set. This item won't show up in low-stock warnings."}
+                </p>
+                <form action={updateReorderThreshold.bind(null, id)} className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    step="0.01"
+                    name="reorderThreshold"
+                    defaultValue={item.reorderThreshold ?? ""}
+                    placeholder={`e.g. 50 ${item.unit}`}
+                    className="kf-input text-sm"
+                  />
+                  <button type="submit" className="kf-btn-secondary text-sm whitespace-nowrap">
+                    Save
+                  </button>
+                </form>
+                {item.reorderThreshold && (
+                  <form action={updateReorderThreshold.bind(null, id)} className="mt-1.5">
+                    <input type="hidden" name="reorderThreshold" value="" />
+                    <button type="submit" className="text-xs text-[--color-danger] hover:underline">
+                      Remove alert entirely
+                    </button>
+                  </form>
+                )}
+              </>
+            )}
+          </div>
+
+          <div className="pt-4 border-t" style={{ borderColor: "var(--color-card-border)" }}>
+            <h2 className="text-sm font-semibold mb-3">Adjust Stock</h2>
+            <form action={boundAdjust} className="space-y-3">
+              <div>
+                <label className="kf-label">Action</label>
+                <select name="type" className="kf-input" defaultValue="add">
+                  <option value="add">Add</option>
+                  <option value="remove">Remove</option>
+                  <option value="adjust">Set exact amount</option>
+                  {isFeedItem && <option value="feeding_consume">Used Internally (Kalo Flock Feed)</option>}
+                  {isFeedItem && <option value="sold">Sold</option>}
+                </select>
+              </div>
+              <div>
+                <label className="kf-label">Amount ({item.unit})</label>
+                <input type="number" step="0.01" name="amount" required className="kf-input" />
+              </div>
+              <div>
+                <label className="kf-label">Price paid per unit (ETB)</label>
+                <input type="number" step="0.01" name="unitCost" className="kf-input" placeholder="Only used for Add" />
+              </div>
+              <div>
+                {/* Feed only ever leaves as sold or used internally by Kalo, so
+                    this doubles as the buyer's name rather than a free note. */}
+                <label className="kf-label">{isFeedItem ? "Buyer Name (if sold)" : "Notes"}</label>
+                <input
+                  type="text"
+                  name="notes"
+                  className="kf-input"
+                  placeholder={isFeedItem ? "Who bought or received this feed?" : undefined}
+                />
+              </div>
+              <button type="submit" className="kf-btn-primary w-full">
+                Save
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
