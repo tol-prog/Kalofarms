@@ -65,7 +65,7 @@ export default async function FeedTypesPage() {
         title="Feed Types"
         description="Choose a feed line to make a batch, review its recipes, or add a new formula."
         actions={
-          <Link href="/resources/inventory/new" className="kf-btn-secondary flex items-center gap-1.5">
+          <Link href="/resources/feed-types/new" className="kf-btn-secondary flex items-center gap-1.5">
             <Plus size={14} /> Add Feed Type
           </Link>
         }
@@ -74,10 +74,10 @@ export default async function FeedTypesPage() {
       {feedTypes.length === 0 ? (
         <div className="kf-card p-10 text-center text-gray-400">
           No feed types yet.{" "}
-          <Link href="/resources/inventory/new" className="text-[--color-primary] font-medium">
-            Add an inventory item
+          <Link href="/resources/feed-types/new" className="text-[--color-primary] font-medium">
+            Add a feed type
           </Link>{" "}
-          for what your feed mill produces (e.g. Layer Chicken Feed), then add a recipe for it.
+          for what your feed mill produces (e.g. Layer Chicken Feed) and you&apos;ll go straight into setting up its first recipe.
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
