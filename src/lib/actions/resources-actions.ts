@@ -228,6 +228,41 @@ export async function updateInventoryItem(id: string, formData: FormData) {
   redirect(`/resources/inventory/${id}`);
 }
 
+/** Lets the low-stock alert threshold be changed, or removed entirely,
+ * right from the item's own page instead of only through the general Edit
+ * form. An empty submission clears it to null, which the "low" check on
+ * the Inventory list and dashboard banner already treats as "never alert
+ * for this item" (same as how feed types are excluded, see getFeedItemIds
+ * in src/lib/feed-items.ts) — no other code needed to change for removal
+ * to take effect. Doesn't redirect, so the user stays on the item page. */
+export async function updateReorderThreshold(id: string, formData: FormData) {
+  const session = await requireUser();
+  const [before] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
+  if (!before) return;
+
+  const next = str(formData, "reorderThreshold");
+  if (next === before.reorderThreshold) {
+    revalidatePath(`/resources/inventory/${id}`);
+    return;
+  }
+
+  await db.update(schema.inventoryItems).set({ reorderThreshold: next }).where(eq(schema.inventoryItems.id, id));
+
+  const beforeLabel = before.reorderThreshold ? `${before.reorderThreshold} ${before.unit}` : "no alert";
+  const afterLabel = next ? `${next} ${before.unit}` : "no alert (removed)";
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "inventory_alert_threshold_updated",
+    description: `${session.displayName} changed the low-stock alert for ${before.name}: ${beforeLabel} -> ${afterLabel}.`,
+  });
+
+  revalidatePath("/resources/inventory");
+  revalidatePath(`/resources/inventory/${id}`);
+  revalidatePath("/dashboard");
+}
+
 /** Admin-only: permanently removes an inventory item and its transaction
  * history. Refuses (redirects back with an error flag) when the item is
  * used as an ingredient in any recipe, since that reference is enforced at
@@ -390,11 +425,13 @@ async function recomputeAvgUnitCost(itemId: string): Promise<void> {
     .where(eq(schema.inventoryItems.id, itemId));
 }
 
-/** Corrects the price paid on a specific past "add" batch — the weighted
- * average is calculated from these, so a typo here otherwise skews the cost
- * basis permanently with no way to fix it. Only applies to "add"
- * transactions (an actual price paid); after saving, the item's
- * avgUnitCost is fully recalculated from its transaction history. */
+/** Sets, or corrects, the price paid on a specific past "add" batch, so a
+ * receipt that was logged with no price (or a wrong one) isn't stuck that
+ * way. Only applies to "add" transactions (an actual price paid); after
+ * saving, the item's avgUnitCost is fully recalculated from its
+ * transaction history, since the weighted average is calculated from
+ * these and a single wrong or missing batch would otherwise skew it (or
+ * any receipt added after it) permanently. */
 export async function updateTransactionCost(transactionId: string, itemId: string, formData: FormData) {
   const session = await requireUser();
   const unitCostStr = str(formData, "unitCost");
