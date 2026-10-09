@@ -5,6 +5,7 @@ import { eq, inArray, asc } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser, requireAdmin } from "@/lib/auth";
+import type { SessionPayload } from "@/lib/session";
 import { logActivity, describeChanges } from "@/lib/activity-log";
 
 function str(fd: FormData, key: string): string | null {
@@ -88,9 +89,10 @@ async function resolveWarehouseId(formData: FormData): Promise<string | null> {
   return warehouses.length === 1 ? warehouses[0].id : null;
 }
 
-export async function createInventoryItem(formData: FormData) {
-  const session = await requireUser();
-  const name = str(formData, "name") ?? "Unnamed Item";
+/** Shared by createInventoryItem and createFeedType: both forms collect the
+ * same inventory-item fields, they just differ in where they send you next
+ * (and what gets logged) once the row exists. */
+async function insertInventoryItemRow(formData: FormData, name: string, session: SessionPayload) {
   const initialQty = parseFloat(str(formData, "quantityAvailable") ?? "0") || 0;
   const initialUnitCost = str(formData, "initialUnitCost");
   const [row] = await db
@@ -120,6 +122,13 @@ export async function createInventoryItem(formData: FormData) {
       createdByUserId: session.userId,
     });
   }
+  return row;
+}
+
+export async function createInventoryItem(formData: FormData) {
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Item";
+  const row = await insertInventoryItemRow(formData, name, session);
   await logActivity({
     userId: session.userId,
     userName: session.displayName,
@@ -128,6 +137,30 @@ export async function createInventoryItem(formData: FormData) {
   });
   revalidatePath("/resources/inventory");
   redirect(`/resources/inventory/${row.id}`);
+}
+
+/** A "feed type" (see src/lib/feed-items.ts) is an inventory item that at
+ * least one recipe produces — the Feed Types page is driven entirely off
+ * that recipe link, not off anything stored on the item itself. So adding
+ * a feed type has to do two things, same as every pre-existing feed type
+ * already has: create its inventory line (identical to createInventoryItem
+ * above), AND get it a first recipe — which is what actually makes it show
+ * up on the Feed Types page. This sends the user straight into "New Recipe"
+ * for the item it just created instead of back to the Inventory list, so
+ * that second step isn't a separate thing to remember. */
+export async function createFeedType(formData: FormData) {
+  const session = await requireUser();
+  const name = str(formData, "name") ?? "Unnamed Feed Type";
+  const row = await insertInventoryItemRow(formData, name, session);
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "feed_type_created",
+    description: `${session.displayName} added a new feed type: ${name}.`,
+  });
+  revalidatePath("/resources/inventory");
+  revalidatePath("/resources/feed-types");
+  redirect(`/resources/inventory/${row.id}/recipes/new`);
 }
 
 const INVENTORY_ITEM_FIELD_LABELS = {
