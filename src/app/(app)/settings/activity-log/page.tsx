@@ -22,6 +22,7 @@ export const dynamic = "force-dynamic";
 const ACTION_ICONS: Record<string, typeof LogIn> = {
   login: LogIn,
   password_changed: KeyRound,
+  password_reset_by_admin: KeyRound,
   inventory_item_created: PackagePlus,
   inventory_adjusted: PackagePlus,
   recipe_created: FlaskConical,
@@ -85,7 +86,7 @@ export default async function ActivityLogPage({
   }
 
   // Who's been most active in the last 30 days (from the same fetched page,
-  // approximated from what's loaded — good enough for a quick glance).
+  // approximated from what's loaded â good enough for a quick glance).
   const byUser = new Map<string, number>();
   for (const log of logs) {
     byUser.set(log.userName, (byUser.get(log.userName) ?? 0) + 1);
@@ -97,7 +98,7 @@ export default async function ActivityLogPage({
 
   return (
     <div>
-      <PageHeader title="Activity Log" description="Who did what, and when — visible to admins only." />
+      <PageHeader title="Activity Log" description="Who did what, and when â visible to admins only." />
 
       <div className="kf-card p-5 mb-5">
         <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Actions per day (last 14 days)</p>
