@@ -5,7 +5,7 @@ import { requireUser } from "@/lib/auth";
 import { PageHeader } from "@/components/ui/page-header";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/format";
-import { toggleUserDisabled } from "@/lib/actions/user-actions";
+import { toggleUserDisabled, resetUserPassword } from "@/lib/actions/user-actions";
 import { Plus } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -51,13 +51,39 @@ export default async function UsersSettingsPage() {
                   <Badge variant={u.disabled ? "danger" : "active"}>{u.disabled ? "Disabled" : "Active"}</Badge>
                 </td>
                 {session.role === "admin" && (
-                  <td>
+                  <td className="align-top">
                     {u.id !== session.userId && (
-                      <form action={toggleUserDisabled.bind(null, u.id, !u.disabled)}>
-                        <button type="submit" className="text-xs text-[--color-primary] font-medium">
-                          {u.disabled ? "Enable" : "Disable"}
-                        </button>
-                      </form>
+                      <>
+                        <form action={toggleUserDisabled.bind(null, u.id, !u.disabled)}>
+                          <button type="submit" className="text-xs text-[--color-primary] font-medium">
+                            {u.disabled ? "Enable" : "Disable"}
+                          </button>
+                        </form>
+                        <details className="mt-1">
+                          <summary className="text-xs text-[--color-primary] font-medium cursor-pointer select-none">
+                            Reset Password
+                          </summary>
+                          <form
+                            action={resetUserPassword.bind(null, u.id)}
+                            className="flex flex-col gap-1.5 mt-1.5 pb-1 w-48"
+                          >
+                            <input
+                              type="text"
+                              name="newPassword"
+                              required
+                              minLength={8}
+                              placeholder="New temporary password"
+                              className="kf-input text-xs py-1"
+                            />
+                            <button type="submit" className="kf-btn-secondary text-xs py-1 whitespace-nowrap">
+                              Save &amp; force reset
+                            </button>
+                            <p className="text-[11px] text-gray-400">
+                              {u.displayName} will be asked to set their own password on next login.
+                            </p>
+                          </form>
+                        </details>
+                      </>
                     )}
                   </td>
                 )}
