@@ -48,7 +48,7 @@ export default async function InventoryItemDetailPage({
       .limit(1),
   ]);
 
-  // A "feed type" â produced by at least one recipe, so it can be drawn
+  // A "feed type" — produced by at least one recipe, so it can be drawn
   // down for Kalo's own flock rather than only sold or removed as waste.
   const isFeedItem = recipeUsingThis.length > 0;
 
@@ -121,13 +121,13 @@ export default async function InventoryItemDetailPage({
                 <td>
                   {formatNumber(item.quantityAvailable)} {item.unit}
                 </td>
-                <td>{item.avgUnitCost ? `ETB ${formatNumber(item.avgUnitCost)}/${item.unit}` : "â"}</td>
+                <td>{item.avgUnitCost ? `ETB ${formatNumber(item.avgUnitCost)}/${item.unit}` : "—"}</td>
                 <td>
                   {item.avgUnitCost
                     ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.avgUnitCost))}`
                     : item.estValuePerUnit
                       ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.estValuePerUnit))}`
-                      : "â"}
+                      : "—"}
                 </td>
               </tr>
             </tbody>
@@ -278,7 +278,7 @@ export default async function InventoryItemDetailPage({
               </div>
               <div>
                 {/* Feed only ever leaves as sold or used internally by Kalo, so
-                    this doubles as the buyer's name rather than a free note. *}
+                    this doubles as the buyer's name rather than a free note. */}
                 <label className="kf-label">{isFeedItem ? "Buyer Name (if sold)" : "Notes"}</label>
                 <input
                   type="text"
