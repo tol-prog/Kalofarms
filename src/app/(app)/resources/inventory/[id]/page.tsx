@@ -10,6 +10,7 @@ import {
   deleteInventoryItem,
   updateTransactionCost,
   updateReorderThreshold,
+  setOpeningCost,
 } from "@/lib/actions/resources-actions";
 import { InventoryHistoryChart } from "./history-chart";
 import { FlaskConical, Pencil, Trash2, AlertTriangle } from "lucide-react";
@@ -47,7 +48,7 @@ export default async function InventoryItemDetailPage({
       .limit(1),
   ]);
 
-  // A "feed type" — produced by at least one recipe, so it can be drawn
+  // A "feed type" â produced by at least one recipe, so it can be drawn
   // down for Kalo's own flock rather than only sold or removed as waste.
   const isFeedItem = recipeUsingThis.length > 0;
 
@@ -120,17 +121,42 @@ export default async function InventoryItemDetailPage({
                 <td>
                   {formatNumber(item.quantityAvailable)} {item.unit}
                 </td>
-                <td>{item.avgUnitCost ? `ETB ${formatNumber(item.avgUnitCost)}/${item.unit}` : "—"}</td>
+                <td>{item.avgUnitCost ? `ETB ${formatNumber(item.avgUnitCost)}/${item.unit}` : "â"}</td>
                 <td>
                   {item.avgUnitCost
                     ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.avgUnitCost))}`
                     : item.estValuePerUnit
                       ? `ETB ${formatNumber(parseFloat(item.quantityAvailable) * parseFloat(item.estValuePerUnit))}`
-                      : "—"}
+                      : "â"}
                 </td>
               </tr>
             </tbody>
           </table>
+
+          {item.avgUnitCost === null && parseFloat(item.quantityAvailable) > 0 && (
+            <div
+              className="px-4 py-3 border-t"
+              style={{ borderColor: "var(--color-card-border)", background: "var(--color-warning-bg)" }}
+            >
+              <p className="text-xs font-medium mb-1.5" style={{ color: "var(--color-warning)" }}>
+                No average cost yet for the {formatNumber(item.quantityAvailable)} {item.unit} already on hand. Set a
+                price for it below (this won&apos;t change the quantity).
+              </p>
+              <form action={setOpeningCost.bind(null, id)} className="flex items-center gap-2">
+                <input
+                  type="number"
+                  step="0.01"
+                  name="unitCost"
+                  required
+                  placeholder="ETB per unit"
+                  className="kf-input text-sm w-36"
+                />
+                <button type="submit" className="kf-btn-secondary text-sm whitespace-nowrap">
+                  Set opening price
+                </button>
+              </form>
+            </div>
+          )}
 
           <div className="p-4 border-t" style={{ borderColor: "var(--color-card-border)" }}>
             <h3 className="text-xs font-semibold uppercase text-gray-500 mb-2">Recent Transactions</h3>
@@ -153,7 +179,7 @@ export default async function InventoryItemDetailPage({
                         </span>
                         <span className="text-gray-400 shrink-0">{formatDate(t.date)}</span>
                       </div>
-                      {t.type === "add" && (
+                      {(t.type === "add" || t.type === "recipe_produce") && (
                         <details className="mt-0.5">
                           <summary className="text-[11px] text-[--color-primary] cursor-pointer select-none">
                             {t.unitCost ? "Wrong price? Edit this batch" : "No price recorded. Add one"}
@@ -245,10 +271,14 @@ export default async function InventoryItemDetailPage({
               <div>
                 <label className="kf-label">Price paid per unit (ETB)</label>
                 <input type="number" step="0.01" name="unitCost" className="kf-input" placeholder="Only used for Add" />
+                <p className="text-xs text-gray-400 mt-1">
+                  Only applied when Action is Add. Remove / Set exact amount / Used Internally / Sold change quantity
+                  only, never cost.
+                </p>
               </div>
               <div>
                 {/* Feed only ever leaves as sold or used internally by Kalo, so
-                    this doubles as the buyer's name rather than a free note. */}
+                    this doubles as the buyer's name rather than a free note. *}
                 <label className="kf-label">{isFeedItem ? "Buyer Name (if sold)" : "Notes"}</label>
                 <input
                   type="text"
