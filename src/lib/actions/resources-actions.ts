@@ -106,7 +106,7 @@ async function insertInventoryItemRow(formData: FormData, name: string, session:
       estValuePerUnit: str(formData, "estValuePerUnit"),
       reorderThreshold: str(formData, "reorderThreshold"),
       warehouseId: await resolveWarehouseId(formData),
-      // Starting fresh, so the "weighted average" is just what was paid â
+      // Starting fresh, so the "weighted average" is just what was paid —
       // no prior stock to weight against.
       avgUnitCost: initialQty > 0 && initialUnitCost ? initialUnitCost : null,
     })
@@ -140,11 +140,11 @@ export async function createInventoryItem(formData: FormData) {
 }
 
 /** A "feed type" (see src/lib/feed-items.ts) is an inventory item that at
- * least one recipe produces â the Feed Types page is driven entirely off
+ * least one recipe produces — the Feed Types page is driven entirely off
  * that recipe link, not off anything stored on the item itself. So adding
  * a feed type has to do two things, same as every pre-existing feed type
  * already has: create its inventory line (identical to createInventoryItem
- * above), AND get it a first recipe â which is what actually makes it show
+ * above), AND get it a first recipe — which is what actually makes it show
  * up on the Feed Types page. This sends the user straight into "New Recipe"
  * for the item it just created instead of back to the Inventory list, so
  * that second step isn't a separate thing to remember. */
@@ -175,7 +175,7 @@ const INVENTORY_ITEM_FIELD_LABELS = {
 
 /** Edits an existing item's identifying/reference details (name, variety,
  * category, unit, reorder threshold, est. value, warehouse). Deliberately
- * does NOT touch quantityAvailable or avgUnitCost â those are only ever
+ * does NOT touch quantityAvailable or avgUnitCost — those are only ever
  * changed through a stock receipt/adjustment so the cost-tracking history
  * stays trustworthy. */
 export async function updateInventoryItem(id: string, formData: FormData) {
@@ -233,7 +233,7 @@ export async function updateInventoryItem(id: string, formData: FormData) {
  * form. An empty submission clears it to null, which the "low" check on
  * the Inventory list and dashboard banner already treats as "never alert
  * for this item" (same as how feed types are excluded, see getFeedItemIds
- * in src/lib/feed-items.ts) â no other code needed to change for removal
+ * in src/lib/feed-items.ts) — no other code needed to change for removal
  * to take effect. Doesn't redirect, so the user stays on the item page. */
 export async function updateReorderThreshold(id: string, formData: FormData) {
   const session = await requireUser();
@@ -267,7 +267,7 @@ export async function updateReorderThreshold(id: string, formData: FormData) {
  * history. Refuses (redirects back with an error flag) when the item is
  * used as an ingredient in any recipe, since that reference is enforced at
  * the database level (deleting it would either fail or silently break the
- * recipe) â the item has to be removed from those recipes first. */
+ * recipe) — the item has to be removed from those recipes first. */
 export async function deleteInventoryItem(id: string) {
   const session = await requireAdmin();
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
@@ -297,7 +297,7 @@ export async function deleteInventoryItem(id: string) {
 }
 
 /** Moving weighted-average cost: only receipts (with a price paid) shift the
- * average â consumption/removal never changes an item's cost basis. */
+ * average — consumption/removal never changes an item's cost basis. */
 function weightedAverageCost(
   currentQty: number,
   currentAvgCost: number | null,
@@ -312,13 +312,13 @@ function weightedAverageCost(
 
 /** Core add/remove/set-exact/used-internally/sold logic shared by the
  * per-item "Adjust Stock" form and the dashboard's "Add Inventory" quick
- * action (quickAddInventory below). `unitCost` â price paid per unit â is
+ * action (quickAddInventory below). `unitCost` — price paid per unit — is
  * only meaningful (and only applied) when type === "add", since prices
  * fluctuate and we want a running weighted-average cost to price
  * recipes/feed against. `feeding_consume` and `sold` are both reductions
  * like "remove", but tagged separately so they read clearly in history:
  * feed drawn out to actually feed Kalo's own flock (feeding_consume) versus
- * feed sold to a buyer (sold) â `notes` doubles as the buyer's name for a
+ * feed sold to a buyer (sold) — `notes` doubles as the buyer's name for a
  * sold transaction. */
 async function applyInventoryAdjustment(
   itemId: string,
@@ -390,7 +390,7 @@ export async function adjustInventory(itemId: string, formData: FormData) {
 /** Replays an item's full transaction history in chronological order to
  * recompute its weighted-average cost from scratch. Needed because the
  * average is a *moving* average (each receipt reweights against whatever
- * quantity was on hand at that moment) â so correcting one historical
+ * quantity was on hand at that moment) — so correcting one historical
  * batch's price can't just nudge the current avgUnitCost, it has to replay
  * forward from there. Quantity itself is never touched here (it's already
  * live/correct); only the cost basis is recalculated. */
@@ -414,7 +414,7 @@ async function recomputeAvgUnitCost(itemId: string): Promise<void> {
     } else if (t.type === "adjust") {
       qty = amount;
     } else {
-      // remove, recipe_consume, feeding_consume, sold â quantity down, cost basis unchanged.
+      // remove, recipe_consume, feeding_consume, sold — quantity down, cost basis unchanged.
       qty = Math.max(qty - amount, 0);
     }
   }
@@ -428,11 +428,11 @@ async function recomputeAvgUnitCost(itemId: string): Promise<void> {
 /** Sets, or corrects, the price paid on a specific past cost-bearing batch,
  * so a receipt that was logged with no price (or a wrong one) isn't stuck
  * that way. Applies to "add" (a purchased receipt) and "recipe_produce" (a
- * made batch of feed, priced from its ingredients when it was made) â
+ * made batch of feed, priced from its ingredients when it was made) —
  * the only two transaction types recomputeAvgUnitCost below treats as
  * cost-bearing. Every other type (remove, adjust, recipe_consume,
  * feeding_consume, sold) is a quantity-only event by design and never
- * carries a unit cost â see weightedAverageCost's doc comment. After
+ * carries a unit cost — see weightedAverageCost's doc comment. After
  * saving, the item's avgUnitCost is fully recalculated from its
  * transaction history, since the weighted average is calculated from
  * these and a single wrong or missing batch would otherwise skew it (or
@@ -477,27 +477,27 @@ export async function updateTransactionCost(transactionId: string, itemId: strin
 }
 
 /** Puts a cost basis on an item's CURRENT on-hand stock when it has none at
- * all yet â mainly the farm's original 24 inventory items, which were
+ * all yet — mainly the farm's original 24 inventory items, which were
  * imported from the old Farmbrite system with a quantity already on hand
  * but no transaction history and no price (cost tracking didn't exist
- * until Batch 4), so their Avg. Cost has read "â" ever since no matter
+ * until Batch 4), so their Avg. Cost has read "—" ever since no matter
  * what gets typed into "Adjust Stock", since a price there is only ever
- * applied when Action is "Add" (adding MORE stock) â there was simply no
+ * applied when Action is "Add" (adding MORE stock) — there was simply no
  * control that could price stock that was already on the books.
  *
  * Unlike a real "Add", this does NOT change the quantity on hand (it's
- * already correct) â it records a backdated "add" transaction for the
+ * already correct) — it records a backdated "add" transaction for the
  * full existing quantity at the given price, so recomputeAvgUnitCost's
  * chronological replay sees a normal opening receipt (qty goes 0 -> this
  * amount, exactly matching what's already on the books) and the item
  * gets a real, editable transaction row instead of silently having none.
  * From then on it shows up in Recent Transactions and its price can be
  * corrected the same "Wrong price? Edit this batch" way as any other
- * receipt â this is a one-time bridge, not a second permanent control.
+ * receipt — this is a one-time bridge, not a second permanent control.
  *
- * Guarded to only run once: if the item already has an avgUnitCost (
+ * Guarded to only run once: if the item already has an avgUnitCost (a
  * real cost basis already exists, from this or a normal receipt), this
- * quietly does nothing â correcting an existing price is what the
+ * quietly does nothing — correcting an existing price is what the
  * per-batch edit above is for, not this. */
 export async function setOpeningCost(itemId: string, formData: FormData) {
   const session = await requireUser();
@@ -537,8 +537,8 @@ export async function setOpeningCost(itemId: string, formData: FormData) {
   revalidatePath("/dashboard");
 }
 
-/** "Add Inventory" from the dashboard: restock an EXISTING item only â picked
- * from a dropdown, never free text â since new item types are only created
+/** "Add Inventory" from the dashboard: restock an EXISTING item only — picked
+ * from a dropdown, never free text — since new item types are only created
  * from the Inventory section itself (see createInventoryItem above). */
 export async function quickAddInventory(formData: FormData) {
   const session = await requireUser();
@@ -554,7 +554,7 @@ export async function quickAddInventory(formData: FormData) {
   redirect("/dashboard");
 }
 
-// --- Recipes -------------------------------------------------------------
+// --- Recipes ------------------------------------------------------------
 
 export async function createRecipe(itemId: string, formData: FormData) {
   const session = await requireUser();
@@ -597,7 +597,7 @@ export async function createRecipe(itemId: string, formData: FormData) {
 }
 
 /** Admin-only: permanently removes a recipe that's no longer used. Its
- * ingredient rows are removed automatically (cascade) â nothing else
+ * ingredient rows are removed automatically (cascade) — nothing else
  * references a recipe by id, so there's no "still in use" case to guard
  * against the way inventory-item deletion has. Past batches already made
  * from this recipe stay exactly as they are in the inventory/transaction
@@ -639,8 +639,8 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
 
   // Load every ingredient's current stock BEFORE mutating anything, so we
   // can validate the whole batch up front. If any ingredient doesn't have
-  // enough on hand, refuse the entire recipe run â no partial consumption,
-  // no negative stock â and send the user back with the offending
+  // enough on hand, refuse the entire recipe run — no partial consumption,
+  // no negative stock — and send the user back with the offending
   // ingredient's name so the exact error message can be rendered.
   const ingredientItems = await Promise.all(
     ingredients.map((ing) =>
@@ -661,7 +661,7 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
   }
 
   // Direct raw-material cost of THIS batch, from each ingredient's current
-  // weighted-average cost â rolled into the produced item's own cost below.
+  // weighted-average cost — rolled into the produced item's own cost below.
   // Only credited when EVERY ingredient has a known cost, so a partial sum
   // never silently understates the produced feed's cost basis.
   let batchIngredientCost = 0;
@@ -705,7 +705,7 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
     const produced = parseFloat(recipe.recipeMakesAmount) * batches;
     const next = parseFloat(producedItem.quantityAvailable) + produced;
 
-    // Cost per unit produced, from this batch's ingredients â rolled into
+    // Cost per unit produced, from this batch's ingredients — rolled into
     // the feed's own weighted-average cost so it carries a real cost basis
     // for pricing (only when every ingredient's cost was known).
     const currentAvgCost = producedItem.avgUnitCost ? parseFloat(producedItem.avgUnitCost) : null;
