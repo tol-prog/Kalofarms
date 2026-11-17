@@ -6,6 +6,7 @@ import {
   numeric,
   date,
   pgEnum,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 // --- Equipment -------------------------------------------------------
@@ -100,6 +101,15 @@ export const inventoryTransactions = pgTable("inventory_transactions", {
   notes: text("notes"),
   createdByUserId: uuid("created_by_user_id"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  // Which recipe/formula caused this transaction — only ever set on
+  // recipe_consume/recipe_produce rows (see makeRecipe). A real foreign key
+  // rather than matching on the `notes` text above, so "how many batches
+  // were made with this exact formula" stays accurate even if a recipe is
+  // renamed. ON DELETE SET NULL: deleting (archiving, really — recipes are
+  // never hard-deleted) a recipe never deletes the production history it
+  // caused, only the id-link to it; the notes text still says which recipe
+  // it was.
+  recipeId: uuid("recipe_id").references(() => inventoryRecipes.id, { onDelete: "set null" }),
 });
 
 // --- Recipes (feed mixing etc.) ----------------------------------------
@@ -116,6 +126,12 @@ export const inventoryRecipes = pgTable("inventory_recipes", {
   recipeMakesUnit: text("recipe_makes_unit").notNull().default("kilograms"),
   instructions: text("instructions"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  // A retired formula — hidden from the normal Recipes list and can't be
+  // made any more, but never actually deleted: its past batches (and their
+  // recipe_id-linked transaction history above) have to stay queryable
+  // forever, which a hard delete would break. Admins can still see and
+  // restore (unarchive) an archived recipe; everyone else never sees it.
+  archived: boolean("archived").notNull().default(false),
 });
 
 export const inventoryRecipeIngredients = pgTable("inventory_recipe_ingredients", {
