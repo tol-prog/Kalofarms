@@ -332,6 +332,23 @@ async function applyInventoryAdjustment(
   if (!item) return null;
 
   const current = parseFloat(item.quantityAvailable);
+
+  // Refuse outright rather than silently flooring at 0. A stock-reducing
+  // adjustment that asks for more than is actually on hand is almost
+  // always a data-entry mistake (wrong item, wrong unit, a typo in the
+  // amount) — previously this clamped to 0 and recorded the full amount
+  // as if it had all been consumed, which both understates what's really
+  // missing and erases the discrepancy from the record instead of
+  // surfacing it. Nothing is written — quantity, transaction row, and
+  // activity log all stay untouched — and the user is sent back with the
+  // exact numbers so they can fix the input instead of guessing why the
+  // item is suddenly at 0.
+  if ((type === "remove" || type === "feeding_consume" || type === "sold") && amount > current) {
+    redirect(
+      `/resources/inventory/${itemId}?error=insufficient-stock&requested=${amount}&available=${current}&adjType=${type}`
+    );
+  }
+
   let next = current;
   if (type === "add") next = current + amount;
   else if (type === "remove" || type === "feeding_consume" || type === "sold") next = Math.max(current - amount, 0);
@@ -596,24 +613,151 @@ export async function createRecipe(itemId: string, formData: FormData) {
   redirect(`/resources/inventory/${itemId}/recipes`);
 }
 
-/** Admin-only: permanently removes a recipe that's no longer used. Its
- * ingredient rows are removed automatically (cascade) — nothing else
- * references a recipe by id, so there's no "still in use" case to guard
- * against the way inventory-item deletion has. Past batches already made
- * from this recipe stay exactly as they are in the inventory/transaction
- * history; only the recipe definition itself goes away. */
-export async function deleteRecipe(itemId: string, recipeId: string) {
-  const session = await requireAdmin();
-  const [recipe] = await db.select().from(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId)).limit(1);
-  if (!recipe) redirect(`/resources/inventory/${itemId}/recipes`);
+/** Replaces an existing recipe's name/makes-amount/instructions and its
+ * whole ingredient list — same insert shape createRecipe uses, just against
+ * a row that already exists. Never touches past transaction history: a
+ * batch already made recorded its own exact consumed/produced amounts at
+ * the time, so editing a formula only changes what a *future* "Make
+ * Recipe" run does, never what already happened. */
+export async function updateRecipe(itemId: string, recipeId: string, formData: FormData) {
+  const session = await requireUser();
+  const recipeName = str(formData, "name") ?? "Unnamed Recipe";
 
-  await db.delete(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId));
+  await db
+    .update(schema.inventoryRecipes)
+    .set({
+      name: recipeName,
+      recipeMakesAmount: str(formData, "recipeMakesAmount") ?? "1",
+      recipeMakesUnit: str(formData, "recipeMakesUnit") ?? "kilograms",
+      instructions: str(formData, "instructions"),
+    })
+    .where(eq(schema.inventoryRecipes.id, recipeId));
+
+  await db.delete(schema.inventoryRecipeIngredients).where(eq(schema.inventoryRecipeIngredients.recipeId, recipeId));
+
+  const ingredientIds = formData.getAll("ingredientItemId") as string[];
+  const ingredientAmounts = formData.getAll("ingredientAmount") as string[];
+  const ingredientUnits = formData.getAll("ingredientUnit") as string[];
+
+  for (let i = 0; i < ingredientIds.length; i++) {
+    if (!ingredientIds[i]) continue;
+    await db.insert(schema.inventoryRecipeIngredients).values({
+      recipeId,
+      ingredientItemId: ingredientIds[i],
+      amount: ingredientAmounts[i] || "0",
+      unit: ingredientUnits[i] || "kilograms",
+    });
+  }
 
   await logActivity({
     userId: session.userId,
     userName: session.displayName,
-    action: "recipe_deleted",
-    description: `${session.displayName} deleted the recipe: ${recipe.name}.`,
+    action: "recipe_updated",
+    description: `${session.displayName} updated the recipe: ${recipeName}.`,
+  });
+
+  revalidatePath(`/resources/inventory/${itemId}/recipes`);
+  redirect(`/resources/inventory/${itemId}/recipes`);
+}
+
+/** Copies a recipe and all of its ingredients into a brand-new recipe, then
+ * sends the user straight into editing the copy — the easy way to build a
+ * new formula off an existing one (tweak a couple of ingredients, rename
+ * it) without retyping everything from scratch, and without touching the
+ * original recipe's own identity or batch-made history at all. Name
+ * collisions are handled automatically: "<name> copy", then "<name> copy
+ * 2", "<name> copy 3", etc., checked against this item's other recipes. */
+export async function duplicateRecipe(itemId: string, recipeId: string) {
+  const session = await requireUser();
+  const [original] = await db.select().from(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId)).limit(1);
+  if (!original) redirect(`/resources/inventory/${itemId}/recipes`);
+
+  const siblings = await db
+    .select({ name: schema.inventoryRecipes.name })
+    .from(schema.inventoryRecipes)
+    .where(eq(schema.inventoryRecipes.producesItemId, original.producesItemId));
+  const existingNames = new Set(siblings.map((s) => s.name));
+
+  let newName = `${original.name} copy`;
+  let n = 2;
+  while (existingNames.has(newName)) {
+    newName = `${original.name} copy ${n}`;
+    n++;
+  }
+
+  const [copy] = await db
+    .insert(schema.inventoryRecipes)
+    .values({
+      name: newName,
+      producesItemId: original.producesItemId,
+      recipeMakesAmount: original.recipeMakesAmount,
+      recipeMakesUnit: original.recipeMakesUnit,
+      instructions: original.instructions,
+    })
+    .returning();
+
+  const ingredients = await db
+    .select()
+    .from(schema.inventoryRecipeIngredients)
+    .where(eq(schema.inventoryRecipeIngredients.recipeId, recipeId));
+  for (const ing of ingredients) {
+    await db.insert(schema.inventoryRecipeIngredients).values({
+      recipeId: copy.id,
+      ingredientItemId: ing.ingredientItemId,
+      amount: ing.amount,
+      unit: ing.unit,
+    });
+  }
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "recipe_duplicated",
+    description: `${session.displayName} duplicated the recipe "${original.name}" into "${newName}".`,
+  });
+
+  revalidatePath(`/resources/inventory/${itemId}/recipes`);
+  redirect(`/resources/inventory/${itemId}/recipes/${copy.id}/edit`);
+}
+
+/** Admin-only: retires a recipe instead of deleting it. A recipe is never
+ * actually removed from the database — its past batches (and the
+ * recipe_id-linked transaction rows pointing at it) have to stay queryable
+ * forever for the "N batches made" trail to mean anything, which a hard
+ * delete would break. Archiving just hides it from the normal Recipes list
+ * and blocks "Make Recipe" on it going forward (see makeRecipe's own
+ * check); an admin can still see it (with a badge) and Unarchive it. */
+export async function archiveRecipe(itemId: string, recipeId: string) {
+  const session = await requireAdmin();
+  const [recipe] = await db.select().from(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId)).limit(1);
+  if (!recipe) redirect(`/resources/inventory/${itemId}/recipes`);
+
+  await db.update(schema.inventoryRecipes).set({ archived: true }).where(eq(schema.inventoryRecipes.id, recipeId));
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "recipe_archived",
+    description: `${session.displayName} archived the recipe: ${recipe.name} (its batch history is kept).`,
+  });
+
+  revalidatePath(`/resources/inventory/${itemId}/recipes`);
+  redirect(`/resources/inventory/${itemId}/recipes`);
+}
+
+/** Admin-only: brings a previously archived recipe back into active use. */
+export async function unarchiveRecipe(itemId: string, recipeId: string) {
+  const session = await requireAdmin();
+  const [recipe] = await db.select().from(schema.inventoryRecipes).where(eq(schema.inventoryRecipes.id, recipeId)).limit(1);
+  if (!recipe) redirect(`/resources/inventory/${itemId}/recipes`);
+
+  await db.update(schema.inventoryRecipes).set({ archived: false }).where(eq(schema.inventoryRecipes.id, recipeId));
+
+  await logActivity({
+    userId: session.userId,
+    userName: session.displayName,
+    action: "recipe_unarchived",
+    description: `${session.displayName} unarchived the recipe: ${recipe.name}.`,
   });
 
   revalidatePath(`/resources/inventory/${itemId}/recipes`);
@@ -631,6 +775,12 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
     .where(eq(schema.inventoryRecipes.id, recipeId))
     .limit(1);
   if (!recipe) return;
+  // An archived (retired) formula can't be run again — archiving is meant
+  // to take a formula out of active use while keeping its past batches
+  // queryable, not to leave it makeable anyway.
+  if (recipe.archived) {
+    redirect(`/resources/inventory/${recipe.producesItemId}/recipes?error=recipe-archived`);
+  }
 
   const ingredients = await db
     .select()
@@ -654,8 +804,13 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
     if (!item) continue;
     const needed = parseFloat(ing.amount) * batches;
     if (parseFloat(item.quantityAvailable) < needed) {
+      // Carry the actual numbers, not just the ingredient's name — "not
+      // enough X" leaves the user guessing how much is actually missing
+      // and has to go check the item page to find out. Showing need vs.
+      // have right here is what stops them from just retrying the same
+      // batch count and hitting this again.
       redirect(
-        `/resources/inventory/${recipe.producesItemId}/recipes?error=insufficient-stock&ingredient=${encodeURIComponent(item.name)}`
+        `/resources/inventory/${recipe.producesItemId}/recipes?error=insufficient-stock&ingredient=${encodeURIComponent(item.name)}&needed=${needed}&available=${item.quantityAvailable}&unit=${encodeURIComponent(item.unit)}`
       );
     }
   }
@@ -687,6 +842,7 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
       resultingQuantity: String(next),
       notes: `Used in recipe: ${recipe.name}`,
       createdByUserId: session.userId,
+      recipeId: recipe.id,
     });
 
     if (item.avgUnitCost) {
@@ -727,6 +883,7 @@ export async function makeRecipe(recipeId: string, formData: FormData) {
       unitCost: costPerUnitProduced !== null ? String(costPerUnitProduced) : null,
       notes: `Made via recipe: ${recipe.name}`,
       createdByUserId: session.userId,
+      recipeId: recipe.id,
     });
 
     await logActivity({
