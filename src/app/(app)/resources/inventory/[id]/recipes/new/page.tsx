@@ -3,7 +3,7 @@ import { db, schema } from "@/db";
 import { eq, asc } from "drizzle-orm";
 import { PageHeader } from "@/components/ui/page-header";
 import { createRecipe } from "@/lib/actions/resources-actions";
-import { IngredientsEditor } from "./ingredients-editor";
+import { IngredientsEditor } from "../ingredients-editor";
 
 export default async function NewRecipePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
