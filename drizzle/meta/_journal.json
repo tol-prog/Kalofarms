@@ -36,6 +36,13 @@
       "when": 1790447713383,
       "tag": "0004_nervous_rocket_racer",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794945399059,
+      "tag": "0005_add_recipe_archive_and_transaction_link",
+      "breakpoints": true
     }
   ]
 }
