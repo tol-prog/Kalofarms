@@ -24,10 +24,10 @@ export default async function InventoryItemDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; requested?: string; available?: string; adjType?: string }>;
 }) {
   const { id } = await params;
-  const { error } = await searchParams;
+  const { error, requested, available, adjType } = await searchParams;
   const session = await getSession();
   const [item] = await db.select().from(schema.inventoryItems).where(eq(schema.inventoryItems.id, id)).limit(1);
   if (!item) notFound();
@@ -92,6 +92,20 @@ export default async function InventoryItemDetailPage({
           <AlertTriangle size={16} />
           Can&apos;t delete &mdash; {item.name} is used as an ingredient in one or more recipes. Remove it from those recipes
           first.
+        </div>
+      )}
+
+      {error === "insufficient-stock" && (
+        <div
+          className="flex items-center gap-2 mb-5 px-4 py-2.5 rounded-md border text-sm font-medium"
+          style={{ background: "var(--color-danger-bg)", borderColor: "#e6b3ac", color: "var(--color-danger)" }}
+        >
+          <AlertTriangle size={16} />
+          Can&apos;t {adjType === "sold" ? "sell" : adjType === "feeding_consume" ? "use" : "remove"} {formatNumber(
+            requested ?? "0"
+          )}{" "}
+          {item.unit} of {item.name} &mdash; only {formatNumber(available ?? "0")} {item.unit} is actually available.
+          Nothing was recorded. Double-check the amount (and the item) before saving again.
         </div>
       )}
 
