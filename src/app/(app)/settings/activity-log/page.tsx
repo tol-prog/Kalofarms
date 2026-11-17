@@ -15,6 +15,7 @@ import {
   Users,
   Beef,
   ClipboardList,
+  Archive,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,10 @@ const ACTION_ICONS: Record<string, typeof LogIn> = {
   inventory_batch_price_corrected: Receipt,
   inventory_opening_cost_set: Receipt,
   recipe_created: FlaskConical,
+  recipe_updated: FlaskConical,
+  recipe_duplicated: FlaskConical,
+  recipe_archived: Archive,
+  recipe_unarchived: Archive,
   recipe_made: FlaskConical,
   transaction_created: Receipt,
   order_created: Receipt,
