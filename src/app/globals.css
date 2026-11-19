@@ -121,6 +121,29 @@ body {
     background: #f5f7f5;
   }
 
+  /* A deliberately quiet, low-weight action — for things like Edit /
+     Duplicate / Archive that sit next to a primary action (e.g. "Make
+     Recipe") and shouldn't visually compete with it or be as easy to
+     tap by accident. Smaller padding/font than kf-btn-primary/secondary,
+     no border, muted by default, fills in on hover/focus so it's still
+     easy to find when actually looking for it. */
+  .kf-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-sidebar-text);
+    opacity: 0.65;
+  }
+  .kf-btn-ghost:hover,
+  .kf-btn-ghost:focus-visible {
+    opacity: 1;
+    background: #f0f2ef;
+  }
+
   .kf-input {
     border: 1px solid var(--color-card-border);
     border-radius: 0.4rem;
