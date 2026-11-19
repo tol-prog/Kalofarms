@@ -170,40 +170,68 @@ export default async function InventoryRecipesPage({
                       : "No batches made yet with this formula."}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col items-end gap-1.5">
+                  {/* Make Recipe is the action people use constantly, so it
+                      stays the one full-size, full-color button here.
+                      Edit/Duplicate/Archive are occasional, lower-stakes
+                      actions — kept small and muted (kf-btn-ghost) in their
+                      own row underneath, so they read as a "more options"
+                      afterthought rather than four equally-weighted choices
+                      someone could tap by mistake while trying to make a
+                      batch. */}
                   <form action={makeRecipe.bind(null, r.id)} className="flex items-center gap-2">
-                    <input type="number" name="batches" defaultValue={1} min={1} className="kf-input w-20" />
-                    <button type="submit" className="kf-btn-primary">
+                    <label className="flex items-center gap-1.5">
+                      <span className="text-xs text-gray-400 whitespace-nowrap">Batches</span>
+                      {/* Sized for a thumb, not a mouse — this was easy to
+                          mis-tap or mis-type on a phone (and once did:
+                          a stray extra digit here is how a past "make
+                          recipe" attempt asked for 181 batches instead of
+                          the intended amount). Wider box, bigger tap
+                          target, and the "Batches" label so it's never a
+                          mystery number next to the button. */}
+                      <input
+                        type="number"
+                        name="batches"
+                        defaultValue={1}
+                        min={1}
+                        inputMode="numeric"
+                        className="kf-input w-20 text-center"
+                        style={{ minHeight: "2.75rem", fontSize: "1rem" }}
+                      />
+                    </label>
+                    <button type="submit" className="kf-btn-primary" style={{ minHeight: "2.75rem" }}>
                       Make Recipe
                     </button>
                   </form>
-                  <Link
-                    href={`/resources/inventory/${id}/recipes/${r.id}/edit`}
-                    className="kf-btn-secondary flex items-center gap-1.5"
-                    title="Edit this recipe"
-                  >
-                    <Pencil size={14} />
-                  </Link>
-                  <form action={duplicateRecipe.bind(null, id, r.id)}>
-                    <button
-                      type="submit"
-                      className="kf-btn-secondary flex items-center gap-1.5"
-                      title="Duplicate this recipe into a new one you can edit — keeps this one's batch history separate"
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href={`/resources/inventory/${id}/recipes/${r.id}/edit`}
+                      className="kf-btn-ghost"
+                      title="Edit this recipe"
                     >
-                      <Copy size={14} />
-                    </button>
-                  </form>
-                  {isAdmin && (
-                    <form action={archiveRecipe.bind(null, id, r.id)}>
+                      <Pencil size={12} /> Edit
+                    </Link>
+                    <form action={duplicateRecipe.bind(null, id, r.id)}>
                       <button
                         type="submit"
-                        className="kf-btn-secondary flex items-center gap-1.5 text-[--color-danger]"
-                        title="Archive this recipe — keeps its batch history, just takes it out of active use"
+                        className="kf-btn-ghost"
+                        title="Duplicate this recipe into a new one you can edit — keeps this one's batch history separate"
                       >
-                        <Archive size={14} />
+                        <Copy size={12} /> Duplicate
                       </button>
                     </form>
-                  )}
+                    {isAdmin && (
+                      <form action={archiveRecipe.bind(null, id, r.id)}>
+                        <button
+                          type="submit"
+                          className="kf-btn-ghost"
+                          title="Archive this recipe — keeps its batch history, just takes it out of active use"
+                        >
+                          <Archive size={12} /> Archive
+                        </button>
+                      </form>
+                    )}
+                  </div>
                 </div>
               </div>
               <table className="w-full kf-table mt-2">
@@ -276,10 +304,10 @@ export default async function InventoryRecipesPage({
                   <div className="flex items-center gap-2">
                     <Link
                       href={`/resources/inventory/${id}/recipes/${r.id}/edit`}
-                      className="kf-btn-secondary flex items-center gap-1.5 text-xs py-1 px-2"
+                      className="kf-btn-ghost"
                       title="Edit this archived recipe"
                     >
-                      <Pencil size={13} />
+                      <Pencil size={12} /> Edit
                     </Link>
                     <form action={unarchiveRecipe.bind(null, id, r.id)}>
                       <button
